@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X, ChevronDown, ShoppingCart } from "lucide-react";
+import logo from '../../assets/icons/deal_spot_log.png'
 
 const userImage = "https://randomuser.me/api/portraits/men/75.jpg";
 const isLoggedIn = true; // Change to false to test guest view
@@ -16,9 +17,9 @@ export default function Navbar() {
           {/* Logo + Tagline */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-white font-bold">
             <div className="text-xl sm:text-2xl">Deal-Spot</div>
-            <div className="text-xs sm:text-sm font-normal opacity-80">
+            <span className="text-xs sm:text-sm font-normal opacity-80">
               Your best deals, every day
-            </div>
+            </span>
           </div>
 
           {/* Search */}
