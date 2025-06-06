@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -37,7 +38,7 @@ const Login = () => {
         </div>
 
         {/* Password */}
-        <div className="mb-6">
+        <div className="mb-4">
           <label htmlFor="login-password" className="block font-semibold mb-1">
             Password
           </label>
@@ -69,12 +70,27 @@ const Login = () => {
           )}
         </div>
 
+        {/* Forgot Password */}
+        <div className="mb-6 text-right">
+          <Link to="/forgot-password" className="text-sm text-pink-500 hover:underline">
+            Forgot password?
+          </Link>
+        </div>
+
         <button
           type="submit"
           className="w-full bg-pink-600 text-white py-2 rounded-md hover:bg-pink-700 transition"
         >
           Login
         </button>
+
+        {/* Register Link */}
+        <p className="mt-6 text-center text-sm text-gray-600">
+          Don’t have an account?{" "}
+          <Link to="/signup" className="text-pink-600 font-medium hover:underline">
+            Register
+          </Link>
+        </p>
       </form>
     </div>
   );
