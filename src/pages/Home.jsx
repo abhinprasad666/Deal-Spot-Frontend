@@ -1,12 +1,12 @@
 import React from 'react'
 import CategoryScroll from '../components/CategoryScroll'
-import PayButton from '../components/PayButton'
+import Slider from '../components/Slider'
 
 const Home = () => {
   return (
     <div>
       <CategoryScroll/>
-      <PayButton/>
+       <Slider/>
     </div>
   )
 }

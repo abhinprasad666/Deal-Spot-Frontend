@@ -33,6 +33,10 @@ export default function Navbar() {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-4 text-white font-medium">
+                        
+                           <Link to={"/"} className="hover:text-gray-200 transition font-bold">
+                                    Home
+                                </Link>
                         <Link
                             to="/become-seller"
                             className="bg-white text-pink-600 font-semibold px-4 py-1.5 rounded-full shadow hover:bg-pink-100 transition duration-200"
@@ -81,9 +85,7 @@ export default function Navbar() {
                                 <Link to={"/login"} className="hover:text-gray-200 transition font-bold">
                                     Login
                                 </Link>
-                                <Link to={"/signup"} className="hover:text-gray-200 transition font-bold">
-                                    Signup
-                                </Link>
+                               
                             </>
                         )}
                     </div>
