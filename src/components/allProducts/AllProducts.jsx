@@ -6,6 +6,7 @@ import Loader from "../layouts/Loader";
 
 
 const AllProducts = () => {
+  
    const { products,loading } = useSelector((state) => state.products);
     
     const dispatch = useDispatch();

@@ -1,16 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 import AuthLayout from "../components/layouts/AuthLayout";
+import MainLayout from "../components/layouts/MainLayout";
+
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import NotFound from "../pages/NotFound";
-import MainLayout from "../components/layouts/MainLayout";
 
-// Payment Success/Failure Pages
-import PaymentFailed from "../pages/payment/PaymentFailed";
+// Payment pages
 import PaymentSuccess from "../pages/payment/PaymentSuccess";
+import PaymentFailed from "../pages/payment/PaymentFailed";
+import ProductDetails from "../pages/productDetails/ProductDetails";
 
-
+// Product Details Page
 
 
 const router = createBrowserRouter([
@@ -19,7 +21,7 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: "", element: <Home /> },
-      // Add other pages here like products, cart, etc.
+      { path: "product/:id", element: <ProductDetails /> }, 
     ],
   },
   {
@@ -32,8 +34,6 @@ const router = createBrowserRouter([
     element: <AuthLayout />,
     children: [{ path: "", element: <Signup /> }],
   },
-
-  //  Payment Routes
   {
     path: "/payment/success",
     element: <PaymentSuccess />,
@@ -42,7 +42,6 @@ const router = createBrowserRouter([
     path: "/payment/failure",
     element: <PaymentFailed />,
   },
-
   {
     path: "*",
     element: <NotFound />,
