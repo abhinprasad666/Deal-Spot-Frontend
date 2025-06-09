@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+
+/* Only if not using Tailwind animate-spin */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  animation: spin 1s linear infinite;
+}

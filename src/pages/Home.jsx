@@ -4,17 +4,9 @@ import PayButton from "../components/PayButton";
 import CategoryScroll from "../components/categories/CategoryScroll";
 import CategoryHighlights from "../components/categories/CategoryHighlights";
 import AllProducts from "../components/allProducts/AllProducts";
-import { useDispatch } from "react-redux";
-import { getProducts } from "../redux/actions/productsActions";
 
 const Home = () => {
 
-    const dispatch= useDispatch()
-
-    useEffect(() => {
-   dispatch(getProducts)
-
-},[dispatch]);
 
     return (
         <div>
@@ -23,6 +15,7 @@ const Home = () => {
             <CategoryHighlights />
             <AllProducts/>
             <PayButton />
+           
         </div>
     );
 };
