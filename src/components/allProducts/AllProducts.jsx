@@ -10,8 +10,10 @@ const AllProducts = () => {
    const { products,loading } = useSelector((state) => state.products);
     
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getProducts);
+        
     }, [dispatch]);
 
    

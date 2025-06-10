@@ -23,7 +23,7 @@ const ProductCardDetail = ({
                 <img
                     src={product.image}
                     alt={product.title}
-                    className="w-full max-h-[550px] object-contain rounded-xl shadow-md"
+                    className="w-full max-h-[580px] object-contain rounded-xl shadow-md"
                 />
             </div>
 
