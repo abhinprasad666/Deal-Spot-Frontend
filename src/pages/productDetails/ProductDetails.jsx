@@ -1,72 +1,79 @@
-// src/pages/ProductDetails.jsx
 import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import ProductCardDetail from "./productDetailsCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../../redux/actions/singleProductActions";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/common/Loader";
+import { showToast } from "../../utils/toastUtils";
 
 const ProductDetails = () => {
-
-  const params=useParams()
-   const { product,loading } = useSelector((state) => state.product);
-    
+    const params = useParams();
     const dispatch = useDispatch();
 
+    // Get product data from redux store
+    const { product, loading } = useSelector((state) => state.product);
+
+    // Fetch product details on mount
     useEffect(() => {
         dispatch(getProduct(params.id));
-    }, [dispatch,params.id]);
+    }, [dispatch, params.id]);
 
-   
+    // Quantity state
     const [quantity, setQuantity] = useState(1);
-    const cartToastId = "cart-toast";
-    const wishlistToastId = "wishlist-toast";
 
+    // Decrease quantity (min 1)
     const handleDecrement = () => {
         if (quantity > 1) {
             setQuantity((prev) => prev - 1);
         }
     };
 
+    // Increase quantity (max stock)
     const handleIncrement = () => {
         if (quantity < product.stock) {
             setQuantity((prev) => prev + 1);
         }
     };
 
+    // Add to cart
     const handleAddToCart = () => {
-        if (!toast.isActive(cartToastId)) {
-            toast.success(`Added ${quantity} item(s) to cart!`, {
-                toastId: cartToastId,
-                position: "top-right",
-                autoClose: 2000,
-            });
-        }
+        showToast(`Added ${quantity} item(s) to cart!`, "success", "cart-toast");
     };
 
+    // Add to wishlist
     const handleAddToWishlist = () => {
-        if (!toast.isActive(wishlistToastId)) {
-            toast.info("Added to wishlist ❤️", {
-                toastId: wishlistToastId,
-                position: "top-right",
-                autoClose: 2000,
-            });
-        }
+        showToast("Added to wishlist", "info", "wishlist-toast");
+    };
+
+    // Share on WhatsApp
+    const handleWhatsAppShare = () => {
+        const shareText = `${product.title} - Check this out on Deal-Spot!\n${window.location.href}`;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+        window.open(whatsappUrl, "_blank");
+    };
+
+    // Copy product link to clipboard
+    const handleCopyLink = () => {
+        navigator.clipboard.writeText(window.location.href);
+        showToast("Product link copied to clipboard", "success", "copy-toast");
     };
 
     return (
         <div className="container mx-auto px-4 py-10 mt-20">
-            <ToastContainer />
-        {loading?<Loader/>:<ProductCardDetail
-                product={product}
-                quantity={quantity}
-                onDecrement={handleDecrement}
-                onIncrement={handleIncrement}
-                onAddToCart={handleAddToCart}
-                onAddToWishlist={handleAddToWishlist}
-            />}
+            {loading ? (
+                <Loader />
+            ) : (
+                <ProductCardDetail
+                    product={product}
+                    quantity={quantity}
+                    onDecrement={handleDecrement}
+                    onIncrement={handleIncrement}
+                    onAddToCart={handleAddToCart}
+                    onAddToWishlist={handleAddToWishlist}
+                    handleWhatsAppShare={handleWhatsAppShare}
+                    handleCopyLink={handleCopyLink}
+                />
+            )}
         </div>
     );
 };
