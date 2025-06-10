@@ -1,5 +1,5 @@
 import axios from "axios";
-import { singleProductFail, singleProductRequest, singleProductSuccess } from "../slices/singleProductSlice";
+import { singleProductFail, singleProductRequest, singleProductSuccess } from "../../slices/product/singleProductSlice";
 
 export const getProduct= id=> async (dispatch) => {
 
@@ -10,6 +10,6 @@ export const getProduct= id=> async (dispatch) => {
         dispatch(singleProductSuccess(data));
     } catch (error) {
         console.log("error in getProduct", error);
-        dispatch(singleProductFail(error.response.data));
+        dispatch(singleProductFail(error.response?.data?.error || "Something went wrong"));
     }
 };

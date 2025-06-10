@@ -1,8 +1,8 @@
-import Slider from "../components/Slider";
-import PayButton from "../components/PayButton";
-import CategoryScroll from "../components/categories/CategoryScroll";
-import CategoryHighlights from "../components/categories/CategoryHighlights";
-import AllProducts from "../components/allProducts/AllProducts";
+import AllProducts from "../components/home/allProducts/AllProducts";
+import CategoryHighlights from "../components/home/categories/CategoryHighlights";
+import CategoryScroll from "../components/home/categories/CategoryScroll";
+import Slider from "../components/home/slider/Slider";
+
 
 const Home = () => {
     return (
@@ -11,7 +11,7 @@ const Home = () => {
             <Slider />
             <CategoryHighlights />
             <AllProducts />
-            <PayButton />
+          
         </div>
     );
 };

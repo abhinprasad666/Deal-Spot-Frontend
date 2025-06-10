@@ -17,7 +17,6 @@ const singleproductSlice = createSlice({
     singleProductSuccess: (state, action) => {
       state.loading = false
       state.product=action.payload.product
-      console.log("single product",action.payload)
      
     },
     singleProductFail: (state,action) => {

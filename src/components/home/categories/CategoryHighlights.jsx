@@ -1,16 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCategories } from "../../redux/actions/categoriesActions";
-import Loader from "../common/Loader";
+import { useSelector } from "react-redux";
+
+import Loader from "../../common/Loader";
 
 const CategoryHighlights = () => {
     const { categories, loading } = useSelector((state) => state.categories);
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getCategories);
-    }, [dispatch]);
 
     const maxCategoryHighlights = 4;
 

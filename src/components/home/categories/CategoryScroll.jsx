@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Loader from "../common/Loader";
+import Loader from "../../common/Loader";
 
 const CategoryScroll = () => {
     const { categories, loading } = useSelector((state) => state.categories);

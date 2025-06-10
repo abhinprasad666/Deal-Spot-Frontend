@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCardDetail from "./productDetailsCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../../redux/actions/singleProductActions";
+import { getProduct } from "../../redux/actions/product/singleProductActions";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/common/Loader";
 import { showToast } from "../../utils/toastUtils";
@@ -11,12 +11,15 @@ const ProductDetails = () => {
     const dispatch = useDispatch();
 
     // Get product data from redux store
-    const { product, loading } = useSelector((state) => state.product);
+    const { product, loading,error } = useSelector((state) => state.product);
 
     // Fetch product details on mount
     useEffect(() => {
+        if(error){
+            return showToast(`${error}`, "red", "error-toast");
+        }
         dispatch(getProduct(params.id));
-    }, [dispatch, params.id]);
+    }, [dispatch, params.id,error]);
 
     // Quantity state
     const [quantity, setQuantity] = useState(1);
