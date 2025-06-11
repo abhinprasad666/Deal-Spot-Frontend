@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function SearchBar({ className = "", placeholder = "Search products..." }) {
     const navigate = useNavigate();
+    const location = useLocation();
     const [keyword, setKeyword] = useState("");
-    const typingTimeoutRef = useRef(null); // 🟢 this persists across renders
+    const typingTimeoutRef = useRef(null);
 
+    // Submit handler (manual form submission)
     const searchHandler = (e) => {
         e.preventDefault();
         const trimmed = keyword.trim();
@@ -16,6 +18,7 @@ export default function SearchBar({ className = "", placeholder = "Search produc
         }
     };
 
+    // Auto navigation after typing delay (debounce)
     useEffect(() => {
         const trimmed = keyword.trim();
 
@@ -33,6 +36,13 @@ export default function SearchBar({ className = "", placeholder = "Search produc
 
         return () => clearTimeout(typingTimeoutRef.current);
     }, [keyword, navigate]);
+
+    // Clear search bar when navigating to home
+    useEffect(() => {
+        if (location.pathname === "/") {
+            setKeyword("");
+        }
+    }, [location]);
 
     return (
         <form onSubmit={searchHandler}>
