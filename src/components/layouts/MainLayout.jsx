@@ -1,7 +1,8 @@
 
 import { Outlet } from "react-router-dom";
 import Footer from "../Footer";
-import Navbar from "../header/Header";
+import Navbar from "../header/Navbar";
+
 
 export default function MainLayout() {
   return (

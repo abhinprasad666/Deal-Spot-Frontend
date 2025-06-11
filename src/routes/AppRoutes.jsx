@@ -11,6 +11,8 @@ import NotFound from "../pages/NotFound";
 import PaymentSuccess from "../pages/payment/PaymentSuccess";
 import PaymentFailed from "../pages/payment/PaymentFailed";
 import ProductDetails from "../pages/productDetails/ProductDetails";
+import ProductSearch from "../components/home/allProducts/ProductSearch";
+
 
 // Product Details Page
 
@@ -21,7 +23,8 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { path: "", element: <Home /> },
-      { path: "product/:id", element: <ProductDetails /> }, 
+      { path: "product/:id", element: <ProductDetails /> },
+      { path: "product/search/:keyword", element: <ProductSearch/> },
     ],
   },
   {

@@ -8,18 +8,18 @@ import { getCategories } from "../../../redux/actions/product/categoriesActions"
 import { showToast } from "../../../utils/toastUtils";
 
 const AllProducts = () => {
-    const { products, loading,error } = useSelector((state) => state.products);
+    const { products, loading, error } = useSelector((state) => state.products);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-           if(error){
+        if (error) {
             return showToast(` ${error}`, "error", "api-error");
-           }
-        dispatch(getProducts);
+        }
+        dispatch(getProducts(null));
         dispatch(getSlides);
         dispatch(getCategories);
-    }, [dispatch,error]);
+    }, [dispatch, error]);
 
     return (
         <section className="max-w-7xl mx-auto px-4 py-8">
