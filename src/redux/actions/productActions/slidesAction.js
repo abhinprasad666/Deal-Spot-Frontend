@@ -1,6 +1,7 @@
 import axios from "axios";
+import { sliderFail, sliderRequest, sliderSuccess } from "../../slices/productSlices/sliderSlice";
 
-import { sliderFail, sliderRequest, sliderSuccess } from "../../slices/product/sliderSlice";
+
 
 export const getSlides = async (dispatch) => {
     dispatch(sliderRequest());

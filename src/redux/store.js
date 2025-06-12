@@ -1,9 +1,9 @@
 import {configureStore } from "@reduxjs/toolkit";
-import products from "./slices/product/productsSlice";
-import product from "./slices/product/singleProductSlice"
-import categories from "./slices/product/categoriesSlice"
-import slides from "./slices/product/sliderSlice"
-
+import products from "./slices/productSlices/productsSlice";
+import product from "./slices/productSlices/singleProductSlice"
+import categories from "./slices/productSlices/categoriesSlice"
+import slides from "./slices/productSlices/sliderSlice"
+import auth from "./slices/authSlice"
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +11,7 @@ export const store = configureStore({
         product,
         categories,
         slides,
+        auth
     },
    
 });

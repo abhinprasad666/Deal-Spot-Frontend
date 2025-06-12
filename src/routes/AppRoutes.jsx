@@ -10,12 +10,10 @@ import NotFound from "../pages/NotFound";
 // Payment pages
 import PaymentSuccess from "../pages/payment/PaymentSuccess";
 import PaymentFailed from "../pages/payment/PaymentFailed";
-import ProductDetails from "../pages/productDetails/ProductDetails";
 import ProductSearch from "../components/home/allProducts/ProductSearch";
 
-
 // Product Details Page
-
+import ProductDetails from "../pages/productDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {

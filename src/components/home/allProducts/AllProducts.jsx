@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../redux/actions/product/productsActions";
+import { getProducts } from "../../../redux/actions/productActions/productsActions";
 import Loader from "../../layouts/Loader";
-import { getSlides } from "../../../redux/actions/product/slidesAction";
-import { getCategories } from "../../../redux/actions/product/categoriesActions";
+import { getSlides } from "../../../redux/actions/productActions/slidesAction";
+import { getCategories } from "../../../redux/actions/productActions/categoriesActions";
 import { showToast } from "../../../utils/toastUtils";
 
 const AllProducts = () => {

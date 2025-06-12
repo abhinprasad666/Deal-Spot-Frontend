@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { showToast } from "../utils/toastUtils";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../redux/actions/authActions/registerActions";
 
 const Signup = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
+  const dispatch = useDispatch();
+    const navigate = useNavigate(); //Hook to navigate programmatically
+    const { error, isAuthenticated } = useSelector((state) => state.auth);
+      // Navigate to homepage on successful login
+      useEffect(() => {
+          if (isAuthenticated) {
+              showToast("Login successful!", "success");
+              navigate("/"); // Navigate to home
+          }
+      }, [isAuthenticated, navigate]);
+  
+      //Show error if any
+      useEffect(() => {
+          if (error) {
+              showToast(`${error}`, "error", "api-error");
+          }
+      }, [error]);
+
   const onSubmit = (data) => {
+    dispatch(registerUser(data))
     console.log("Signup data:", data);
     // Handle signup logic here
   };

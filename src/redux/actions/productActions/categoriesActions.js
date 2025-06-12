@@ -1,5 +1,6 @@
 import axios from "axios";
-import { categoriesFail, categoriesRequest, categoriesSuccess } from "../../slices/product/categoriesSlice";
+import { categoriesFail, categoriesRequest, categoriesSuccess } from "../../slices/productSlices/categoriesSlice";
+
 
 
 export const getCategories = async (dispatch) => {

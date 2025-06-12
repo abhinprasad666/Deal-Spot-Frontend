@@ -1,5 +1,6 @@
 import axios from "axios";
-import { singleProductFail, singleProductRequest, singleProductSuccess } from "../../slices/product/singleProductSlice";
+import { singleProductFail, singleProductRequest, singleProductSuccess } from "../../slices/productSlices/singleProductSlice";
+
 
 export const getProduct= id=> async (dispatch) => {
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getProducts } from "../../../redux/actions/product/productsActions";
+import { getProducts } from "../../../redux/actions/productActions/productsActions";
 import { showToast } from "../../../utils/toastUtils";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "./ProductCard";

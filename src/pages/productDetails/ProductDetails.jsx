@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCardDetail from "./productDetailsCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getProduct } from "../../redux/actions/product/singleProductActions";
+import { getProduct } from "../../redux/actions/productActions/singleProductActions";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/common/Loader";
 import { showToast } from "../../utils/toastUtils";
