@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom"; //useNavigate added
-import { showToast } from "../utils/toastUtils";
-import { loginUser } from "../redux/actions/authActions/loginActions";
+import { showToast } from "../../../utils/toastUtils";
+import { loginUser } from "../../../redux/actions/authActions/loginActions";
 
 const Login = () => {
     const {

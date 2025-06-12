@@ -4,6 +4,7 @@ import product from "./slices/productSlices/singleProductSlice"
 import categories from "./slices/productSlices/categoriesSlice"
 import slides from "./slices/productSlices/sliderSlice"
 import auth from "./slices/authSlice"
+import password from "./slices/passwordSlice"
 
 export const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
         product,
         categories,
         slides,
-        auth
+        auth,
+        password
     },
    
 });

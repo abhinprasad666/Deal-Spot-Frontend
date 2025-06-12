@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { showToast } from "../utils/toastUtils";
+import { showToast } from "../../../utils/toastUtils";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../redux/actions/authActions/registerActions";
+import { registerUser } from "../../../redux/actions/authActions/registerActions";
 
 const Signup = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
