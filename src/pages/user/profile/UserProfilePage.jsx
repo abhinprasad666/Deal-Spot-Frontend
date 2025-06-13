@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import {
     FaShoppingCart,
     FaHeart,
@@ -13,11 +13,15 @@ import {
     FaArrowLeft,
     FaCamera,
 } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../../../components/common/Loader";
+import { uploadProfileImage } from "../../../redux/actions/userProfileActions/uploadProfileIPicActions";
+
+
 
 const UserProfilePage = () => {
+    const dispatch = useDispatch();
     const { user, loading } = useSelector((state) => state.auth);
     const fileInputRef = useRef(null);
 
@@ -39,9 +43,13 @@ const UserProfilePage = () => {
 
     const handleUploadImage = () => {
         if (!selectedImage) return;
-        // TODO: Upload image to server using API call
-        console.log("Uploading image...", selectedImage);
-        // Reset selectedImage if uploaded successfully
+
+        const formData = new FormData();
+        formData.append("image", selectedImage); // field name changed to 'image'
+
+        
+        dispatch(uploadProfileImage(formData)); // image upload action
+
         setSelectedImage(null);
     };
 
@@ -92,7 +100,11 @@ const UserProfilePage = () => {
                         <button
                             onClick={handleUploadImage}
                             className={`mt-4 px-4 py-1 text-sm rounded-full font-medium shadow 
-                            ${selectedImage ? 'bg-green-100 text-green-600 hover:bg-green-200' : 'bg-yellow-100 text-yellow-600 hover:bg-yellow-200'}`}
+                            ${
+                                selectedImage
+                                    ? "bg-green-100 text-green-600 hover:bg-green-200"
+                                    : "bg-yellow-100 text-yellow-600 hover:bg-yellow-200"
+                            }`}
                         >
                             {selectedImage ? "Upload Image" : "Change Image"}
                         </button>
