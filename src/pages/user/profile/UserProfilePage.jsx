@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
     FaShoppingCart,
     FaHeart,
@@ -19,8 +19,10 @@ import Loader from "../../../components/common/Loader";
 
 const UserProfilePage = () => {
     const { user, loading } = useSelector((state) => state.auth);
-    const [previewImage, setPreviewImage] = useState(user.profilePic);
     const fileInputRef = useRef(null);
+
+    const [previewImage, setPreviewImage] = useState(user.profilePic);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     const handleImageClick = () => {
         fileInputRef.current.click();
@@ -31,9 +33,19 @@ const UserProfilePage = () => {
         if (file) {
             const imageURL = URL.createObjectURL(file);
             setPreviewImage(imageURL);
+            setSelectedImage(file);
         }
     };
-    console.log("my image url",previewImage)
+
+    const handleUploadImage = () => {
+        if (!selectedImage) return;
+        // TODO: Upload image to server using API call
+        console.log("Uploading image...", selectedImage);
+        // Reset selectedImage if uploaded successfully
+        setSelectedImage(null);
+    };
+
+    const isImageChanged = selectedImage !== null;
 
     return loading ? (
         <Loader />
@@ -51,7 +63,7 @@ const UserProfilePage = () => {
                         <span>Back</span>
                     </Link>
 
-                    {/* Profile Image with camera overlay */}
+                    {/* Profile Image */}
                     <div className="relative">
                         <img
                             src={previewImage}
@@ -74,6 +86,17 @@ const UserProfilePage = () => {
                             className="hidden"
                         />
                     </div>
+
+                    {/* Change/Upload Button */}
+                    {isImageChanged && (
+                        <button
+                            onClick={handleUploadImage}
+                            className={`mt-4 px-4 py-1 text-sm rounded-full font-medium shadow 
+                            ${selectedImage ? 'bg-green-100 text-green-600 hover:bg-green-200' : 'bg-yellow-100 text-yellow-600 hover:bg-yellow-200'}`}
+                        >
+                            {selectedImage ? "Upload Image" : "Change Image"}
+                        </button>
+                    )}
 
                     <h2 className="text-xl font-bold mt-3 text-gray-800">{user.name}</h2>
                     <p className="text-gray-500 text-sm">{user.email}</p>
