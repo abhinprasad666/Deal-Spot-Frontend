@@ -1,3 +1,4 @@
+// src/redux/slices/authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -27,6 +28,21 @@ const authSlice = createSlice({
             state.isAuthenticated = false;
         },
 
+        // Load user
+        loadUserRequest: (state) => {
+            state.loading = true;
+        },
+        loadUserSuccess: (state, action) => {
+            state.loading = false;
+            state.user = action.payload.user;
+            state.isAuthenticated = true;
+        },
+        loadUserFail: (state) => {
+            state.loading = false;
+            state.user = null;
+            state.isAuthenticated = false;
+        },
+
         // Register
         registerRequest: (state) => {
             state.loading = true;
@@ -43,14 +59,38 @@ const authSlice = createSlice({
             state.isAuthenticated = false;
         },
 
-        logoutUser: (state) => {
-            state.user = null;
-            state.isAuthenticated = false;
-            state.loading = false;
+        // Logout
+             logoutRequest: (state) => {
+            state.loading = true;
+            state.error = null;
         },
+        logoutSuccess: (state,) => {
+            state.loading = false;
+            state.user =null;
+            state.isAuthenticated = false;
+        },
+        logoutFail: (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+            state.isAuthenticated = false;
+        },
+
     },
 });
-export const { loginRequest, loginSuccess, loginFail, logoutUser, registerRequest, registerSuccess, registerFail } =authSlice.actions;
-    
+
+export const {
+    loginRequest,
+    loginSuccess,
+    loginFail,
+    loadUserRequest,
+    loadUserSuccess,
+    loadUserFail,
+    registerRequest,
+    registerSuccess,
+    registerFail,
+    logoutRequest,
+    logoutSuccess,
+    logoutFail
+} = authSlice.actions;
 
 export default authSlice.reducer;

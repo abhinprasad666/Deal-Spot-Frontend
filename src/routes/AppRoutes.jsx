@@ -24,6 +24,7 @@ import VerifyOtpPage from "../pages/user/auth/password/VerifyOtpPage";
 import ResetPasswordPage from "../pages/user/auth/password/ResetPasswordPage";
 import ResetErrorPage from "../pages/user/auth/password/ResetErrorPage";
 import PasswordResetSuccessPage from "../pages/user/auth/password/PasswordResetSuccessPage";
+import UserProfilePage from "../pages/user/UserProfilePage";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
             { path: "", element: <Home /> },
             { path: "product/:id", element: <ProductDetails /> },
             { path: "product/search/:keyword", element: <ProductSearch /> },
+          
         ],
     },
     {
@@ -40,6 +42,7 @@ const router = createBrowserRouter([
         element: <AuthLayout />,
         children: [{ path: "", element: <Login /> }],
     },
+      { path: "user-profile", element: <UserProfilePage/> },
     {
         path: "/signup",
         element: <AuthLayout />,

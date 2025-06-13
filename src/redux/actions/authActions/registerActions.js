@@ -1,27 +1,15 @@
-// src/redux/actions/auth/registerAction.js
-import axios from "axios";
 import { registerFail, registerRequest, registerSuccess } from "../../slices/authSlice";
+import axiosInstance from "../../../api/axiosInstance";
 
+export const registerUser = (userData) => async (dispatch) => {
+    try {
+        dispatch(registerRequest());
 
-export const registerUser = (formData) => async (dispatch) => {
-  try {
-    dispatch(registerRequest());
+        // Axios instance already has withCredentials and baseURL configured
+        const { data } = await axiosInstance.post("api/v1/auth/login", userData);
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    };
-
-    const { data } = await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/signup`,
-      formData,
-      config
-    );
-
-    dispatch(registerSuccess(data));
-  } catch (error) {
-    dispatch(registerFail(error.response?.data?.error || "Registration failed"));
-  }
+        dispatch(registerSuccess(data));
+    } catch (error) {
+        dispatch(registerFail(error.response?.data?.error || "Registration failed"));
+    }
 };

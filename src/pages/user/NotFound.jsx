@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { motion} from "framer-motion";
 
 export default function NotFound() {
   return (
@@ -29,7 +29,7 @@ export default function NotFound() {
       >
         <Link
           to="/"
-          className="px-6 py-3 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition duration-300"
+          className="px-6 py-3 bg-pink-500 text-white rounded-lg shadow-lg hover:bg-pink-600 transition duration-300"
         >
           Go back home
         </Link>
