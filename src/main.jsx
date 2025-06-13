@@ -6,7 +6,10 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
 import App from './App';
+import { loadUser } from './redux/actions/authActions/loadUser';
 
+// 👉 Load user on app startup
+store.dispatch(loadUser());
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <Provider store={store}>

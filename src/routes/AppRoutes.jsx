@@ -24,7 +24,12 @@ import VerifyOtpPage from "../pages/user/auth/password/VerifyOtpPage";
 import ResetPasswordPage from "../pages/user/auth/password/ResetPasswordPage";
 import ResetErrorPage from "../pages/user/auth/password/ResetErrorPage";
 import PasswordResetSuccessPage from "../pages/user/auth/password/PasswordResetSuccessPage";
-import UserProfilePage from "../pages/user/UserProfilePage";
+import ProtectedRoute from "./ProtectedRoute";
+import UserProfilePage from "../pages/user/profile/UserProfilePage";
+import EditProfilePage from "../pages/user/profile/EditProfilePage";
+
+//userprofile
+
 
 const router = createBrowserRouter([
     {
@@ -34,7 +39,8 @@ const router = createBrowserRouter([
             { path: "", element: <Home /> },
             { path: "product/:id", element: <ProductDetails /> },
             { path: "product/search/:keyword", element: <ProductSearch /> },
-          
+           { path: "user-profile", element:<ProtectedRoute><UserProfilePage/></ProtectedRoute> },
+            { path: "edit-profile", element:<ProtectedRoute><EditProfilePage/></ProtectedRoute> },
         ],
     },
     {
@@ -42,7 +48,7 @@ const router = createBrowserRouter([
         element: <AuthLayout />,
         children: [{ path: "", element: <Login /> }],
     },
-      { path: "user-profile", element: <UserProfilePage/> },
+      
     {
         path: "/signup",
         element: <AuthLayout />,
