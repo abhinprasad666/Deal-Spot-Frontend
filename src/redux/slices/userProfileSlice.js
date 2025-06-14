@@ -4,9 +4,7 @@ const initialState = {
   loading: false,
   error: null,
   message: null,
-  isUpdated: false,
-  isImageUpdated: false,
-  imgUploading:false
+  isUploading:false
   
 };
 
@@ -20,35 +18,37 @@ const userProfileSlice = createSlice({
     updateProfileRequest: (state) => {
       state.loading = true;
       state.error = null;
+      state.isUploading=true
     },
     updateProfileSuccess: (state, action) => {
       state.loading = false;
       state.message = action.payload.message;
-      state.isUpdated = true;
+      state.isUploading=false
+      
     },
     updateProfileFail: (state, action) => {
       state.loading = false;
       state.error = action.payload;
-      state.isUpdated = false;
+      state.isUploading=false
     },
 
     // Upload Profile Image
     uploadImageRequest: (state) => {
       state.loading = true;
       state.error = null;
-      state.imgUploading=true
+      state.isUploading=true
     },
     uploadImageSuccess: (state, action) => {
       state.loading = false;
       state.message = action.payload.message;
       state.isImageUpdated = true;
-      state.imgUploading=false
+      state.isUploading=false
     },
     uploadImageFail: (state, action) => {
       state.loading = false;
       state.error = action.payload;
       state.isImageUpdated = false;
-      state.imgUploading=false
+      state.isUploading=false
     },
 
     // Reset Flags
@@ -59,11 +59,14 @@ const userProfileSlice = createSlice({
 
     // Clear All
     clearUserProfileState: (state) => {
-      state.loading = false;
-      state.error = null;
-      state.message = null;
-      state.isUpdated = false;
-      state.isImageUpdated = false;
+     
+        return {
+    ...state,
+    loading:false,
+    error: null,
+    message: null,
+  };
+     
     },
   },
 });

@@ -1,8 +1,17 @@
 import { RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import router from "./routes/AppRoutes";
+import { useEffect } from "react";
+import { loadUser } from "./redux/actions/authActions/loadUser";
+import { useDispatch } from "react-redux";
 
 const App = () => {
+
+      const dispatch = useDispatch();
+
+      useEffect(() => {
+   dispatch(loadUser());
+  }, [dispatch]);
     return (
         <>
             <RouterProvider router={router} />

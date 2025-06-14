@@ -20,7 +20,7 @@ const Login = () => {
     // Navigate to homepage on successful login
     useEffect(() => {
         if (isAuthenticated) {
-            showToast("Login successful!", "success");
+            // showToast("Login successful!", "success");
             navigate("/"); // Navigate to home
         }
     }, [isAuthenticated, navigate]);

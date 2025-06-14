@@ -26,7 +26,7 @@ import ResetErrorPage from "../pages/user/auth/password/ResetErrorPage";
 import PasswordResetSuccessPage from "../pages/user/auth/password/PasswordResetSuccessPage";
 import ProtectedRoute from "./ProtectedRoute";
 import UserProfilePage from "../pages/user/profile/UserProfilePage";
-import EditProfilePage from "../pages/user/profile/EditProfilePage";
+import EditProfilePage from "../pages/user/profile/editProfile/EditProfilePage";
 
 //userprofile
 

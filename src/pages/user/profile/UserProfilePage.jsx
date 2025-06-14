@@ -1,3 +1,4 @@
+// 🛠️ Imports same as before
 import React, { useRef, useState } from "react";
 import {
     FaShoppingCart,
@@ -17,13 +18,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Loader from "../../../components/common/Loader";
 import { uploadProfileImage } from "../../../redux/actions/userProfileActions/uploadProfileIPicActions";
-
-
+import { logout } from "../../../redux/actions/authActions/logoutAction";
 
 const UserProfilePage = () => {
     const dispatch = useDispatch();
-    const { user, loading,} = useSelector((state) => state.auth);
-    const {imgUploading} = useSelector((state) => state.userProfile);
+    const { user, loading } = useSelector((state) => state.auth);
+    const { isUploading } = useSelector((state) => state.userProfile);
     const fileInputRef = useRef(null);
 
     const [previewImage, setPreviewImage] = useState(user.profilePic);
@@ -46,11 +46,9 @@ const UserProfilePage = () => {
         if (!selectedImage) return;
 
         const formData = new FormData();
-        formData.append("image", selectedImage); // field name changed to 'image'
+        formData.append("image", selectedImage);
 
-        
-        dispatch(uploadProfileImage(formData)); // image upload action
-
+        dispatch(uploadProfileImage(formData));
         setSelectedImage(null);
     };
 
@@ -73,39 +71,43 @@ const UserProfilePage = () => {
                     </Link>
 
                     {/* Profile Image */}
-                  {imgUploading?<Loader message={'Please wait while we upload your image...'}/>:<div className="relative">
-                        <img
-                            src={previewImage}
-                            alt="User Avatar"
-                            className="w-24 h-24 rounded-full border-4 border-pink-500 shadow-md object-cover cursor-pointer"
-                            onClick={handleImageClick}
-                        />
-                        <div
-                            onClick={handleImageClick}
-                            className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-md cursor-pointer"
-                            title="Change photo"
-                        >
-                            <FaCamera className="text-pink-500 text-sm" />
+                    {isUploading ? (
+                        <Loader message={"Please wait while we upload your image..."} />
+                    ) : (
+                        <div className="relative">
+                            <img
+                                src={previewImage}
+                                alt="User Avatar"
+                                className="w-24 h-24 rounded-full border-4 border-pink-500 shadow-md object-cover cursor-pointer hover:scale-105 transition-transform duration-200"
+                                onClick={handleImageClick}
+                            />
+                            <div
+                                onClick={handleImageClick}
+                                className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-md cursor-pointer hover:bg-pink-100 transition"
+                                title="Change photo"
+                            >
+                                <FaCamera className="text-pink-500 text-sm" />
+                            </div>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                ref={fileInputRef}
+                                onChange={handleImageChange}
+                                className="hidden"
+                            />
                         </div>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            ref={fileInputRef}
-                            onChange={handleImageChange}
-                            className="hidden"
-                        />
-                    </div>}
+                    )}
 
                     {/* Change/Upload Button */}
                     {isImageChanged && (
                         <button
                             onClick={handleUploadImage}
-                            className={`mt-4 px-4 py-1 text-sm rounded-full font-medium shadow 
-                            ${
-                                selectedImage
-                                    ? "bg-green-100 text-green-600 hover:bg-green-200"
-                                    : "bg-yellow-100 text-yellow-600 hover:bg-yellow-200"
-                            }`}
+                            className={`mt-4 px-4 py-1 text-sm rounded-full font-medium shadow transition 
+                                ${
+                                    selectedImage
+                                        ? "bg-green-100 text-green-600 hover:bg-green-200"
+                                        : "bg-yellow-100 text-yellow-600 hover:bg-yellow-200"
+                                }`}
                         >
                             {selectedImage ? "Upload Image" : "Change Image"}
                         </button>
@@ -142,6 +144,7 @@ const UserProfilePage = () => {
                         label="Logout"
                         textColor="text-red-600"
                         hoverColor="hover:text-red-700"
+                        onClick={() => dispatch(logout())}
                     />
                 </div>
             </div>
@@ -149,8 +152,18 @@ const UserProfilePage = () => {
     );
 };
 
-const ProfileItem = ({ icon, label, textColor = "text-gray-700", hoverColor = "hover:text-pink-600" }) => (
-    <div className={`flex items-center space-x-4 p-4 cursor-pointer transition duration-200 ${hoverColor}`}>
+// 🧩 Reusable Item with Hover Style
+const ProfileItem = ({
+    icon,
+    label,
+    textColor = "text-gray-700",
+    hoverColor = "hover:text-pink-600",
+    onClick = () => {},
+}) => (
+    <div
+        onClick={onClick}
+        className={`flex items-center space-x-4 p-4 cursor-pointer transition duration-200 ${hoverColor} hover:bg-pink-50 hover:shadow-sm rounded-lg mx-2 my-1`}
+    >
         <div className="text-pink-500 text-xl">{icon}</div>
         <p className={`font-medium ${textColor}`}>{label}</p>
     </div>

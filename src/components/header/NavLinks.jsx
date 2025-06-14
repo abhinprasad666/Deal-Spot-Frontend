@@ -16,7 +16,7 @@ export default function NavLinks({ isLoggedIn, user, userImage }) {
                     to="/seller-dashboard"
                     className="text-[8px] lg:text-[15px] bg-white text-pink-600 font-semibold px-4 py-1.5 rounded-full shadow hover:bg-pink-100 transition duration-200"
                 >
-                    Go to Seller Dashboard
+                    Seller Dashboard
                 </Link>
             ) : (
                 <Link
