@@ -6,6 +6,8 @@ const initialState = {
   message: null,
   isUpdated: false,
   isImageUpdated: false,
+  imgUploading:false
+  
 };
 
 const userProfileSlice = createSlice({
@@ -34,16 +36,19 @@ const userProfileSlice = createSlice({
     uploadImageRequest: (state) => {
       state.loading = true;
       state.error = null;
+      state.imgUploading=true
     },
     uploadImageSuccess: (state, action) => {
       state.loading = false;
       state.message = action.payload.message;
       state.isImageUpdated = true;
+      state.imgUploading=false
     },
     uploadImageFail: (state, action) => {
       state.loading = false;
       state.error = action.payload;
       state.isImageUpdated = false;
+      state.imgUploading=false
     },
 
     // Reset Flags

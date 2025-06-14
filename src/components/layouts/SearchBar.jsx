@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Search, X } from "lucide-react";
 
-export default function SearchBar({ className = "", placeholder = "Search products..." }) {
+export default function SearchBar({ className = "", placeholder = "Search..." }) {
     const navigate = useNavigate();
     const location = useLocation();
     const [keyword, setKeyword] = useState("");
     const typingTimeoutRef = useRef(null);
 
-    // Submit handler (manual form submission)
     const searchHandler = (e) => {
         e.preventDefault();
         const trimmed = keyword.trim();
@@ -18,14 +18,11 @@ export default function SearchBar({ className = "", placeholder = "Search produc
         }
     };
 
-    // Auto navigation after typing delay (debounce)
     useEffect(() => {
         const trimmed = keyword.trim();
-
         if (typingTimeoutRef.current) {
             clearTimeout(typingTimeoutRef.current);
         }
-
         typingTimeoutRef.current = setTimeout(() => {
             if (trimmed) {
                 navigate(`/product/search/${trimmed}`);
@@ -33,11 +30,9 @@ export default function SearchBar({ className = "", placeholder = "Search produc
                 navigate("/");
             }
         }, 500);
-
         return () => clearTimeout(typingTimeoutRef.current);
     }, [keyword, navigate]);
 
-    // Clear search bar when navigating to home
     useEffect(() => {
         if (location.pathname === "/") {
             setKeyword("");
@@ -45,14 +40,26 @@ export default function SearchBar({ className = "", placeholder = "Search produc
     }, [location]);
 
     return (
-        <form onSubmit={searchHandler}>
-            <input
-                type="text"
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-                placeholder={placeholder}
-                className={`w-full px-4 py-2 rounded-full border focus:ring-2 focus:outline-none transition duration-200 ${className}`}
-            />
+        <form onSubmit={searchHandler} className={`relative ${className}`}>
+            <div className="flex items-center border border-gray-300 rounded-md px-2 py-1 bg-white focus-within:ring-1 focus-within:ring-rose-500 transition">
+                <Search className="text-gray-500 mr-1" size={18} />
+                <input
+                    type="text"
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    placeholder={placeholder}
+                    className="w-full bg-transparent outline-none text-sm text-gray-700 placeholder:text-gray-400"
+                />
+                {keyword && (
+                    <button
+                        type="button"
+                        onClick={() => setKeyword("")}
+                        className="text-gray-400 hover:text-gray-600 transition"
+                    >
+                        <X size={16} />
+                    </button>
+                )}
+            </div>
         </form>
     );
 }

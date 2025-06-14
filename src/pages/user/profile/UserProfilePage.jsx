@@ -22,7 +22,8 @@ import { uploadProfileImage } from "../../../redux/actions/userProfileActions/up
 
 const UserProfilePage = () => {
     const dispatch = useDispatch();
-    const { user, loading } = useSelector((state) => state.auth);
+    const { user, loading,} = useSelector((state) => state.auth);
+    const {imgUploading} = useSelector((state) => state.userProfile);
     const fileInputRef = useRef(null);
 
     const [previewImage, setPreviewImage] = useState(user.profilePic);
@@ -72,7 +73,7 @@ const UserProfilePage = () => {
                     </Link>
 
                     {/* Profile Image */}
-                    <div className="relative">
+                  {imgUploading?<Loader message={'Please wait while we upload your image...'}/>:<div className="relative">
                         <img
                             src={previewImage}
                             alt="User Avatar"
@@ -93,7 +94,7 @@ const UserProfilePage = () => {
                             onChange={handleImageChange}
                             className="hidden"
                         />
-                    </div>
+                    </div>}
 
                     {/* Change/Upload Button */}
                     {isImageChanged && (
