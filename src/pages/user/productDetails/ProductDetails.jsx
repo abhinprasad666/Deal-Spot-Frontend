@@ -3,11 +3,11 @@ import ProductCardDetail from "./productDetailsCard";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useParams } from "react-router-dom";
-
-
 import { getProduct } from "../../../redux/actions/productActions/singleProductActions";
 import Loader from "../../../components/common/Loader";
 import { showToast } from "../../../utils/toastUtils";
+import Reviews from "../../../components/reviews/Reviews";
+
 
 
 const ProductDetails = () => {
@@ -81,6 +81,12 @@ const ProductDetails = () => {
                     handleCopyLink={handleCopyLink}
                 />
             )}
+
+
+             <div className="min-h-screen bg-gray-50 pt-12">
+      {/* Other product details here */}
+   <Reviews/>
+           </div>
         </div>
     );
 };
