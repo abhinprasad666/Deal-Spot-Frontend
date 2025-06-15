@@ -6,6 +6,7 @@ import slides from "./slices/productSlices/sliderSlice"
 import auth from "./slices/authSlice"
 import password from "./slices/passwordSlice"
 import userProfile from "./slices/userProfileSlice"
+import review from "./slices/reviewsSlice"
 
 export const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
         auth,
         password,
         userProfile,
+        review,
     },
    
 });
