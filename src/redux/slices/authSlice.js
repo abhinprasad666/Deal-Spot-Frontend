@@ -6,6 +6,7 @@ const initialState = {
     isAuthenticated: false,
     loading: false,
     error: null,
+    loginMessage:null
 };
 
 const authSlice = createSlice({
@@ -21,6 +22,7 @@ const authSlice = createSlice({
             state.loading = false;
             state.user = action.payload.user;
             state.isAuthenticated = true;
+            state.loginMessage=true
         },
         loginFail: (state, action) => {
             state.loading = false;
@@ -60,7 +62,7 @@ const authSlice = createSlice({
         },
 
         // Logout
-             logoutRequest: (state) => {
+         logoutRequest: (state) => {
             state.loading = true;
             state.error = null;
         },
@@ -68,6 +70,7 @@ const authSlice = createSlice({
             state.loading = false;
             state.user =null;
             state.isAuthenticated = false;
+             state.loginMessage=null
         },
         logoutFail: (state, action) => {
             state.loading = false;

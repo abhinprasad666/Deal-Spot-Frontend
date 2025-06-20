@@ -6,12 +6,12 @@ import { loadUser } from "./redux/actions/authActions/loadUser";
 import { useDispatch } from "react-redux";
 
 const App = () => {
+    const dispatch = useDispatch();
 
-      const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(loadUser()); 
+    }, [dispatch]);
 
-      useEffect(() => {
-   dispatch(loadUser());
-  }, [dispatch]);
     return (
         <>
             <RouterProvider router={router} />

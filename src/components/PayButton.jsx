@@ -1,10 +1,11 @@
 import axios from "axios";
 
 const PayButton = ({ amount }) => {
+  console.log("hello payment")
     amount=100
   const handlePayment = async () => {
     try {
-      // 1. Create Razorpay Order from backend
+      // Create Razorpay Order from backend
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/payment/create-order`,
            {
@@ -27,7 +28,7 @@ const PayButton = ({ amount }) => {
       );
 
       const order = data?.order;
-      console.log("My Order 👉", order);
+      console.log("My Order", order);
 
       // Razorpay Options
       const options = {
@@ -42,7 +43,7 @@ const PayButton = ({ amount }) => {
           name: "Abhin",
           email: "abhin@example.com",
           contact: "9876543210",
-        },
+        },  
         theme: {
           color: "#0f172a",
         },

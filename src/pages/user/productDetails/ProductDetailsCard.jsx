@@ -1,18 +1,10 @@
 import React from "react";
-import {  FaHeart, FaWhatsapp, FaCopy } from "react-icons/fa";
+import { FaHeart, FaWhatsapp, FaCopy } from "react-icons/fa";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "../../../components/common/Loader";
 
-const ProductCardDetail = ({
-    product,
-    quantity,
-    onDecrement,
-    onIncrement,
-    onAddToCart,
-    onAddToWishlist,
-    handleCopyLink,
-    handleWhatsAppShare,
-}) => {
+const ProductCardDetail = ({ product, onAddToCart, onAddToWishlist, handleCopyLink, handleWhatsAppShare, cartLoading }) => {
     const offerPrice = product?.price - product?.discount;
     const shippingCharge = product?.shippingCharge || 0;
 
@@ -66,50 +58,43 @@ const ProductCardDetail = ({
                     {shippingCharge === 0 ? "Free Shipping" : `₹${shippingCharge}`}
                 </p>
 
-                {/* Quantity Selector */}
-                <div className="flex items-center gap-4 mb-6">
-                    <span className="font-semibold">Quantity:</span>
-                    <div className="flex items-center border rounded-full overflow-hidden">
-                        <button onClick={onDecrement} className="px-4 py-1 text-lg font-bold bg-gray-200 hover:bg-gray-300">
-                            -
-                        </button>
-                        <span className="px-5 py-1 font-medium">{quantity}</span>
-                        <button onClick={onIncrement} className="px-4 py-1 text-lg font-bold bg-gray-200 hover:bg-gray-300">
-                            +
-                        </button>
-                    </div>
-                </div>
-
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 mt-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                     <button
-                        className="w-full bg-pink-600 text-white px-6 py-3 rounded-full shadow hover:bg-pink-700 transition disabled:opacity-50"
-                        disabled={product.stock === 0}
+                        className="w-full h-12 bg-pink-600 text-white rounded-full shadow hover:bg-pink-700 transition disabled:opacity-50 flex items-center justify-center"
+                        disabled={product.stock === 0 || cartLoading}
                         onClick={onAddToCart}
                     >
-                        {product.stock > 0 ? `Add ${quantity} to Cart` : "Out of Stock"}
+                        {cartLoading ? (
+                            <Loader className="h-5 w-5" />
+                        ) : product.stock > 0 ? (
+                            product.isAddCart
+                        ) : (
+                            "Out of Stock"
+                        )}
                     </button>
 
                     <button
-                        className="w-full flex items-center justify-center gap-2 border border-red-500 text-red-500 px-6 py-3 rounded-full hover:bg-red-500 hover:text-white transition"
+                        className="w-full h-12 border border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition flex items-center justify-center gap-2"
                         onClick={onAddToWishlist}
                     >
-                        <FaHeart className="text-lg" />
+                        <FaHeart />
                         Add to Wishlist
                     </button>
                 </div>
 
-                {/* Share Buttons with Icons */}
-                <div className="flex gap-4 mt-6">
+                {/* Share Buttons with Full Width */}
+                <div className="flex flex-col md:flex-row gap-4 mt-6">
                     <button
-                        className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600"
+                        className="w-full flex items-center justify-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600 transition text-sm"
                         onClick={handleWhatsAppShare}
                     >
                         <FaWhatsapp />
                         Share via WhatsApp
                     </button>
+
                     <button
-                        className="flex items-center gap-2 bg-gray-300 px-4 py-2 rounded-full hover:bg-gray-400"
+                        className="w-full flex items-center justify-center gap-2 bg-gray-300 text-gray-800 px-6 py-3 rounded-full hover:bg-gray-400 transition text-sm"
                         onClick={handleCopyLink}
                     >
                         <FaCopy />

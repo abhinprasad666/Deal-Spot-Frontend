@@ -1,10 +1,7 @@
 import axios from "axios";
 import { categoriesFail, categoriesRequest, categoriesSuccess } from "../../slices/productSlices/categoriesSlice";
 
-
-
 export const getCategories = async (dispatch) => {
-
     dispatch(categoriesRequest());
     try {
         const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/category`);

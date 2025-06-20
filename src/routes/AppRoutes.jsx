@@ -25,11 +25,13 @@ import ResetPasswordPage from "../pages/user/auth/password/ResetPasswordPage";
 import ResetErrorPage from "../pages/user/auth/password/ResetErrorPage";
 import PasswordResetSuccessPage from "../pages/user/auth/password/PasswordResetSuccessPage";
 import ProtectedRoute from "./ProtectedRoute";
+
+//userprofile
 import UserProfilePage from "../pages/user/profile/UserProfilePage";
 import EditProfilePage from "../pages/user/profile/editProfile/EditProfilePage";
 
-//userprofile
-
+//cart
+import CartView from "../pages/cart/CartView";
 
 const router = createBrowserRouter([
     {
@@ -39,8 +41,30 @@ const router = createBrowserRouter([
             { path: "", element: <Home /> },
             { path: "product/:id", element: <ProductDetails /> },
             { path: "product/search/:keyword", element: <ProductSearch /> },
-           { path: "user-profile", element:<ProtectedRoute><UserProfilePage/></ProtectedRoute> },
-            { path: "edit-profile", element:<ProtectedRoute><EditProfilePage/></ProtectedRoute> },
+            {
+                path: "user-profile",
+                element: (
+                    <ProtectedRoute>
+                        <UserProfilePage />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "edit-profile",
+                element: (
+                    <ProtectedRoute>
+                        <EditProfilePage />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: "cart",
+                element: (
+                    <ProtectedRoute>
+                        <CartView />
+                    </ProtectedRoute>
+                ),
+            },
         ],
     },
     {
@@ -48,7 +72,7 @@ const router = createBrowserRouter([
         element: <AuthLayout />,
         children: [{ path: "", element: <Login /> }],
     },
-      
+
     {
         path: "/signup",
         element: <AuthLayout />,
@@ -72,12 +96,12 @@ const router = createBrowserRouter([
     {
         path: "/password-update-success",
         element: <AuthLayout />,
-        children: [{ path: "", element:<PasswordResetSuccessPage/>}],
+        children: [{ path: "", element: <PasswordResetSuccessPage /> }],
     },
-      {
+    {
         path: "/reset-error",
         element: <AuthLayout />,
-        children: [{ path: "", element: <ResetErrorPage/> }],
+        children: [{ path: "", element: <ResetErrorPage /> }],
     },
     {
         path: "/payment/success",

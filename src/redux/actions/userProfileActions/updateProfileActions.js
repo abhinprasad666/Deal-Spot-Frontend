@@ -1,12 +1,11 @@
 import axiosInstance from "../../../api/axiosInstance";
-import { clearUserProfileState, updateProfileFail, updateProfileRequest, updateProfileSuccess } from "../../slices/userProfileSlice";
+import { updateProfileFail, updateProfileRequest, updateProfileSuccess } from "../../slices/userProfileSlice";
 
 
 
 export const updateProfile = (updateData) => async (dispatch) => {
     console.log('profile upload data',updateData)
     try {
-        dispatch(clearUserProfileState())
         dispatch(updateProfileRequest());
 
        const {data}=await axiosInstance.put("api/v1/user",updateData);

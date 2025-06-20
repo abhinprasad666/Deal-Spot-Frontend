@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
-import { ShoppingCart, Home } from "lucide-react"; // ⬅️ Added Home icon import
+import { ShoppingCart, Home } from "lucide-react";
 import ProfileDropdown from "./ProfileDropdown";
+import { useSelector } from "react-redux";
 
 export default function NavLinks({ isLoggedIn, user, userImage }) {
     console.log("user role navbar", user);
+
+    const {cartItems}=useSelector(state=>state.cart)
+    const CartCount =cartItems?.items?.length || 0
+
     return (
         <div className="hidden md:flex items-center gap-4 text-white font-medium">
             {/* Home Icon */}
@@ -11,6 +16,7 @@ export default function NavLinks({ isLoggedIn, user, userImage }) {
                 <Home size={20} />
             </Link>
 
+            {/* Seller or Become Seller Link */}
             {user?.role === "seller" ? (
                 <Link
                     to="/seller-dashboard"
@@ -27,9 +33,13 @@ export default function NavLinks({ isLoggedIn, user, userImage }) {
                 </Link>
             )}
 
-            {/* Cart Icon */}
-            <Link to="/cart" className="hover:text-gray-200 transition flex items-center gap-1">
-                <ShoppingCart size={18} />
+            {/* Cart Icon with Badge */}
+            <Link to="/cart" className="relative hover:text-gray-200 transition flex items-center">
+                <ShoppingCart size={20} />
+                {/* Cart count badge */}
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                    {CartCount}
+                </span>
             </Link>
 
             {/* Profile or Login */}

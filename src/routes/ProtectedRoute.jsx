@@ -6,6 +6,7 @@ import Loader from '../components/layouts/Loader';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useSelector((state) => state.auth);
+  console.log('ismmmmm',isAuthenticated)
 
   // Show loading spinner while verifying auth
   if (loading) {

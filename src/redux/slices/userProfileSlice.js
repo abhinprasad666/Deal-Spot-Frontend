@@ -4,7 +4,8 @@ const initialState = {
   loading: false,
   error: null,
   message: null,
-  isUploading:false
+  isUploading:false,
+  update:false
   
 };
 
@@ -24,6 +25,7 @@ const userProfileSlice = createSlice({
       state.loading = false;
       state.message = action.payload.message;
       state.isUploading=false
+      state.update=true
       
     },
     updateProfileFail: (state, action) => {
@@ -51,11 +53,6 @@ const userProfileSlice = createSlice({
       state.isUploading=false
     },
 
-    // Reset Flags
-    resetUpdateStatus: (state) => {
-      state.isUpdated = false;
-      state.isImageUpdated = false;
-    },
 
     // Clear All
     clearUserProfileState: (state) => {
@@ -65,6 +62,7 @@ const userProfileSlice = createSlice({
     loading:false,
     error: null,
     message: null,
+    update:null
   };
      
     },

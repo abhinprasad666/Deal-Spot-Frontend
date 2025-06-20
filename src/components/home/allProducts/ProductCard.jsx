@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
 
     //  Discount Price Calculation
     const offerPrice = product?.price - product?.discount;
-        const dispatch=useDispatch()
+    const dispatch = useDispatch();
 
     return (
         <div
@@ -46,8 +46,7 @@ const ProductCard = ({ product }) => {
                     onClick={(e) => {
                         e.stopPropagation(); // Prevent parent click
                         navigate(`/product/${product?._id}`);
-                        dispatch(getReviewsAction(product?._id))
-                        
+                        dispatch(getReviewsAction(product?._id));
                     }}
                     className="mt-4 w-full bg-gradient-to-r from-pink-600 to-red-500 hover:from-red-500 hover:to-red-500 text-white font-medium py-2 rounded-lg transition-all duration-300"
                 >

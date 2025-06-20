@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom"; //useNavigate added
+import { Link, useNavigate } from "react-router-dom";
 import { showToast } from "../../../utils/toastUtils";
 import { loginUser } from "../../../redux/actions/authActions/loginActions";
 
@@ -14,18 +14,20 @@ const Login = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const dispatch = useDispatch();
-    const navigate = useNavigate(); //Hook to navigate programmatically
-    const { error, isAuthenticated } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
+    const { error, isAuthenticated, loginMessage } = useSelector((state) => state.auth);
 
     // Navigate to homepage on successful login
     useEffect(() => {
         if (isAuthenticated) {
-            // showToast("Login successful!", "success");
-            navigate("/"); // Navigate to home
+            navigate("/");
+            if (loginMessage) {
+                showToast("Login successful!", "success");
+            }
         }
-    }, [isAuthenticated, navigate]);
+    }, [isAuthenticated, navigate, loginMessage]);
 
-    //Show error if any
+    // Show error if any
     useEffect(() => {
         if (error) {
             showToast(`${error}`, "error", "api-error");
@@ -117,6 +119,13 @@ const Login = () => {
                         Register
                     </Link>
                 </p>
+
+                {/* Back to Home Link */}
+                <div className="mt-4 text-center">
+                    <Link to="/" className="inline-block text-sm text-gray-600 hover:text-pink-600 underline transition">
+                        Skip for now
+                    </Link>
+                </div>
             </form>
         </div>
     );

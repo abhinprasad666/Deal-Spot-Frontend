@@ -8,6 +8,7 @@ export const getReviewsAction = (id) => async (dispatch) => {
         const { data } = await axiosInstance.get(`api/v1/review/${id}`);
 
         dispatch(getReviewsSuccess(data));
+        
     } catch (error) {
         console.error("Load user failed:", error.response?.data?.error || error.message);
         dispatch(getReviewsFail(error.response?.data?.error || "Review not fount !"));

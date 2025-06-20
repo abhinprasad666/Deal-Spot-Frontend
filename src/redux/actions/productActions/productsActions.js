@@ -1,7 +1,6 @@
 import axios from "axios";
 import { productFail, productRequest, productSuccess } from "../../slices/productSlices/productsSlice";
 
-
 export const getProducts = (keyword) => async (dispatch) => {
     dispatch(productRequest());
 

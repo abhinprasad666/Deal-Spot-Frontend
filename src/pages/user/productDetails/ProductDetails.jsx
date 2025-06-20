@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ProductCardDetail from "./productDetailsCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -6,37 +6,28 @@ import { getProduct } from "../../../redux/actions/productActions/singleProductA
 import Loader from "../../../components/common/Loader";
 import { showToast } from "../../../utils/toastUtils";
 import Reviews from "../../../components/reviews/Reviews";
+import { addToCart, getCart } from "../../../redux/actions/productActions/cartActions";
 
 const ProductDetails = () => {
     const params = useParams();
     const dispatch = useDispatch();
 
     const { product, loading, error } = useSelector((state) => state.product);
+    const { cartLoading, cartError } = useSelector((state) => state.cart);
 
     useEffect(() => {
-        window.scrollTo(0, 0); // Scroll to top when page loads
+        window.scrollTo(0, 0);
         if (error) {
-            return showToast(`${error}`, "red", "error-toast");
+            showToast(`${error}`, "red", "error-toast");
         }
+
         dispatch(getProduct(params.id));
     }, [dispatch, params.id, error]);
 
-    const [quantity, setQuantity] = useState(1);
-
-    const handleDecrement = () => {
-        if (quantity > 1) {
-            setQuantity((prev) => prev - 1);
-        }
-    };
-
-    const handleIncrement = () => {
-        if (quantity < product.stock) {
-            setQuantity((prev) => prev + 1);
-        }
-    };
-
-    const handleAddToCart = () => {
-        showToast(`Added ${quantity} item(s) to cart!`, "success", "cart-toast");
+    const handleAddToCart = async () => {
+        await Promise.resolve(dispatch(addToCart({ productId: params.id, quantity: 1 })));
+        dispatch(getProduct(params.id));
+         dispatch(getCart);
     };
 
     const handleAddToWishlist = () => {
@@ -61,13 +52,12 @@ const ProductDetails = () => {
             ) : (
                 <ProductCardDetail
                     product={product}
-                    quantity={quantity}
-                    onDecrement={handleDecrement}
-                    onIncrement={handleIncrement}
                     onAddToCart={handleAddToCart}
                     onAddToWishlist={handleAddToWishlist}
                     handleWhatsAppShare={handleWhatsAppShare}
                     handleCopyLink={handleCopyLink}
+                    cartLoading={cartLoading}
+                    cartError={cartError}
                 />
             )}
 
