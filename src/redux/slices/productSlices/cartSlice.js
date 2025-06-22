@@ -5,6 +5,7 @@ const initialState = {
     cartItems: [],
     cartError: null,
     cartSuccess: false,
+    shippingInfo:localStorage.getItem("shippingInfo")?JSON.parse(localStorage.getItem("shippingInfo")):{},
     msg:null
 };
 
@@ -83,6 +84,7 @@ const cartSlice = createSlice({
             state.cartError = action.payload;
             state.cartSuccess = false;
         },
+        //clear cart
         clearCartRequest: (state) => {
             state.cartLoading = true;
         },
@@ -91,11 +93,23 @@ const cartSlice = createSlice({
             state.cartError = null;
             state.cartSuccess = true;
         },
-        claearCartFail: (state, action) => {
+        clearCartFail: (state, action) => {
             state.cartLoading = false;
             state.cartError = action.payload;
             state.cartSuccess = false;
         },
+        //save shippingInfo
+          saveShippingInfo: (state, action) => {
+         state.shippingInfo= localStorage.setItem("shippingInfo",JSON.stringify(action.payload))
+        },
+          clearCartState: (state) => {
+            state.cartLoading = false;
+            state.cartError = null;
+            state.cartSuccess = false;
+            state.shippingInfo=null
+            state.cartItems= []
+        },
+        
     },
 });
 
@@ -117,7 +131,9 @@ export const {
     deleteItemCartFail,
     clearCartRequest,
     clearCartSuccess,
-    claearCartFail,
+    clearCartFail,
+    saveShippingInfo,
+    clearCartState
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

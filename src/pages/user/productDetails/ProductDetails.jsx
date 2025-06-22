@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ProductCardDetail from "./productDetailsCard";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getProduct } from "../../../redux/actions/productActions/singleProductActions";
 import Loader from "../../../components/common/Loader";
 import { showToast } from "../../../utils/toastUtils";
@@ -11,9 +11,12 @@ import { addToCart, getCart } from "../../../redux/actions/productActions/cartAc
 const ProductDetails = () => {
     const params = useParams();
     const dispatch = useDispatch();
+     const navigate = useNavigate();
+     const location = useLocation();
 
     const { product, loading, error } = useSelector((state) => state.product);
     const { cartLoading, cartError } = useSelector((state) => state.cart);
+   const { isAuthenticated } = useSelector((state) => state.auth);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -25,6 +28,14 @@ const ProductDetails = () => {
     }, [dispatch, params.id, error]);
 
     const handleAddToCart = async () => {
+      if (!isAuthenticated) {
+   
+      navigate('/login', {
+        state: { redirect: location.pathname }, // path to redirect after login
+      });
+    }
+
+
         await Promise.resolve(dispatch(addToCart({ productId: params.id, quantity: 1 })));
         dispatch(getProduct(params.id));
          dispatch(getCart);

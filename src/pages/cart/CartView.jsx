@@ -12,19 +12,22 @@ import {
 } from "../../redux/actions/productActions/cartActions";
 import { getProduct } from "../../redux/actions/productActions/singleProductActions";
 import { showToast } from "../../utils/toastUtils";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const CartView = () => {
     const { cartItems, cartLoading, cartError } = useSelector((state) => state.cart);
-
+  const { isAuthenticated } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+     const navigate = useNavigate();
 
     useEffect(() => {
         if (cartError) {
             return showToast(`${cartError}`, "error", "wishlist-toast");
         }
+        
     }, [cartError]);
 
-    console.log("cart....", cartItems);
 
     //increment quantity
     const handleIncrement = async (productId) => {
@@ -50,12 +53,18 @@ const CartView = () => {
         await Promise.resolve(dispatch(clearCart));
         dispatch(getCart);
     };
+    //checkout handler
+    const checkoutHandler=()=>{
+     navigate('/shippingInfo')
+    }
 
     return (
         <>
             {
                 <div className="container mx-auto px-4 py-10 mt-20">
                     <h1 className="text-3xl font-bold mb-8 text-gray-800 flex items-center gap-2">🛒 Your Shopping Cart</h1>
+                    <Link to={"/shipping"}>shipping address</Link>
+                     <Link className="text-2xl text-amber-700" to={"/checkout"}>checkout</Link>
 
                     {cartItems?.items?.length === 0 ? (
                         <div className="flex flex-col items-center justify-center text-center mt-20">
@@ -108,7 +117,7 @@ const CartView = () => {
                                     </div>
                                 </div>
 
-                                <button className="mt-6 w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl transition font-medium">
+                                <button onClick={checkoutHandler} className="mt-6 w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl transition font-medium">
                                     Proceed to Checkout
                                 </button>
                             </div>

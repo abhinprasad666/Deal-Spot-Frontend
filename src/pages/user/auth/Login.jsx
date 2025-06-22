@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { showToast } from "../../../utils/toastUtils";
 import { loginUser } from "../../../redux/actions/authActions/loginActions";
 
@@ -16,16 +16,22 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { error, isAuthenticated, loginMessage } = useSelector((state) => state.auth);
+    const location = useLocation();
 
-    // Navigate to homepage on successful login
+    // const redirect=location.search?'/'+location.search.split('=')[1]:'/'
+    const redirect = location.state?.redirect || "/";
+
     useEffect(() => {
+  
         if (isAuthenticated) {
-            navigate("/");
+       
+            navigate(redirect);
+
             if (loginMessage) {
                 showToast("Login successful!", "success");
             }
         }
-    }, [isAuthenticated, navigate, loginMessage]);
+    }, [isAuthenticated, navigate, loginMessage, redirect]);
 
     // Show error if any
     useEffect(() => {

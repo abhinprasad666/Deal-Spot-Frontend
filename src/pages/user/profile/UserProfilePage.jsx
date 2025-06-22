@@ -1,4 +1,3 @@
-// 🛠️ Imports same as before
 import React, { useRef, useState } from "react";
 import {
     FaShoppingCart,
@@ -19,6 +18,8 @@ import { Link } from "react-router-dom";
 import Loader from "../../../components/common/Loader";
 import { uploadProfileImage } from "../../../redux/actions/userProfileActions/uploadProfileIPicActions";
 import { logout } from "../../../redux/actions/authActions/logoutAction";
+import { clearCartState } from "../../../redux/slices/productSlices/cartSlice";
+
 
 const UserProfilePage = () => {
     const dispatch = useDispatch();
@@ -50,6 +51,11 @@ const UserProfilePage = () => {
 
         dispatch(uploadProfileImage(formData));
         setSelectedImage(null);
+    };
+
+    const handleLogout = () => {
+        dispatch(logout());
+        dispatch(clearCartState());
     };
 
     const isImageChanged = selectedImage !== null;
@@ -144,7 +150,7 @@ const UserProfilePage = () => {
                         label="Logout"
                         textColor="text-red-600"
                         hoverColor="hover:text-red-700"
-                        onClick={() => dispatch(logout())}
+                        onClick={handleLogout}
                     />
                 </div>
             </div>
@@ -152,7 +158,7 @@ const UserProfilePage = () => {
     );
 };
 
-// 🧩 Reusable Item with Hover Style
+// Reusable Item Component
 const ProfileItem = ({
     icon,
     label,

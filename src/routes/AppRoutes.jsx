@@ -32,6 +32,10 @@ import EditProfilePage from "../pages/user/profile/editProfile/EditProfilePage";
 
 //cart
 import CartView from "../pages/cart/CartView";
+//shipping address form
+import ShippingAddressForm from "../components/checkout/ShippingAddressForm";
+import CheckoutPage from "../pages/user/CheckoutPage";
+import ConfirmOrderPage from "../components/checkout/ConfirmOrderPage";
 
 const router = createBrowserRouter([
     {
@@ -61,12 +65,30 @@ const router = createBrowserRouter([
                 path: "cart",
                 element: (
                     <ProtectedRoute>
-                        <CartView />
+                    <CartView />
                     </ProtectedRoute>
                 ),
             },
+          
+           
         ],
     },
+      {
+                path: "shippingInfo",
+                element: (
+                    <ProtectedRoute>
+                        <ShippingAddressForm />
+                    </ProtectedRoute>
+                ),
+            },
+             {
+                path: "/order/confirm",
+                element: (
+                    <ProtectedRoute>
+                        <ConfirmOrderPage />
+                    </ProtectedRoute>
+                ),
+            },
     {
         path: "/login",
         element: <AuthLayout />,

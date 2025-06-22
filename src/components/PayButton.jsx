@@ -60,7 +60,7 @@ const PayButton = ({ amount }) => {
   return (
     <button
       onClick={handlePayment}
-      className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-md transition duration-300"
+       className="w-full mt-5 bg-green-600 hover:bg-green-700 text-white py-2 rounded transition"
     >
       Pay ₹{amount}
     </button>

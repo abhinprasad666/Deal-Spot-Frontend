@@ -4,6 +4,7 @@ import {
     addCartFail,
     addCartRequest,
     addCartSuccess,
+    clearCartFail,
     clearCartRequest,
     clearCartSuccess,
     decrementCartFail,
@@ -26,7 +27,7 @@ export const getCart = async (dispatch) => {
     try {
         const { data } = await axiosInstance.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/cart`);
         dispatch(getCartSuccess(data));
-        console.log("cart success", data);
+    
     } catch (error) {
         console.log("error in getCart", error);
         dispatch(getCartFail(error.response?.data?.error || "Cart request failed"));
@@ -38,7 +39,6 @@ export const addToCart = (cartData) => async (dispatch) => {
     dispatch(addCartRequest());
     try {
         const { data } = await axiosInstance.post(`${import.meta.env.VITE_API_BASE_URL}/api/v1/cart/add`, cartData);
-        console.log("cart dataaaa", data);
         dispatch(addCartSuccess(data));
     } catch (error) {
         console.log("error in addToCart", error);
@@ -96,6 +96,6 @@ export const clearCart = async (dispatch) => {
         dispatch(clearCartSuccess());
     } catch (error) {
         console.log("error in addToCart", error);
-        dispatch(clearPasswordState(error.response?.data?.error || "clear cart faild"));
+        dispatch(clearCartFail(error.response?.data?.error || "clear cart faild"));
     }
 };

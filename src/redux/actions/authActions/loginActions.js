@@ -3,7 +3,6 @@ import axiosInstance from "../../../api/axiosInstance";
 
 export const loginUser = (userData) => async (dispatch) => {
     try {
-        console.log("my user data....", userData);
 
         dispatch(loginRequest());
 

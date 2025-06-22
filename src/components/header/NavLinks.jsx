@@ -4,10 +4,9 @@ import ProfileDropdown from "./ProfileDropdown";
 import { useSelector } from "react-redux";
 
 export default function NavLinks({ isLoggedIn, user, userImage }) {
-    console.log("user role navbar", user);
 
     const {cartItems}=useSelector(state=>state.cart)
-    const CartCount =cartItems?.items?.length || 0
+    const CartCount =cartItems?.items?.length ||null
 
     return (
         <div className="hidden md:flex items-center gap-4 text-white font-medium">
@@ -37,9 +36,9 @@ export default function NavLinks({ isLoggedIn, user, userImage }) {
             <Link to="/cart" className="relative hover:text-gray-200 transition flex items-center">
                 <ShoppingCart size={20} />
                 {/* Cart count badge */}
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+             {CartCount&&   <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
                     {CartCount}
-                </span>
+                </span>}
             </Link>
 
             {/* Profile or Login */}
