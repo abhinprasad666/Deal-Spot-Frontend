@@ -1,25 +1,18 @@
-import axios from "axios";
+import axiosInstance from "../api/axiosInstance";
 
-const PayButton = ({ amount }) => {
-  console.log("hello payment")
-    amount=100
+const PayButton = ({ amount,shippingAddress,paymentMethod,cartIteams,setPayment}) => {
+
+   
   const handlePayment = async () => {
     try {
+      setPayment(true)
       // Create Razorpay Order from backend
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/payment/create-order`,
            {
-          amount,
-          shippingAddress: {
-            fullName: "Abhin",
-            phone: 9072035666,
-            address: "Shaiju Bhavan Palakkal",
-            city: "Kadallal",
-            pinCode: "691559",
-            country: "India",
-          },
-          paymentMethod: "onlinePayment",
-        }, // ₹500 => pass 500
+          amount,shippingAddress ,cartIteams,paymentMethod
+         
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -45,7 +38,7 @@ const PayButton = ({ amount }) => {
           contact: "9876543210",
         },  
         theme: {
-          color: "#0f172a",
+          color:"#0f172a",
         },
       };
 
@@ -58,6 +51,7 @@ const PayButton = ({ amount }) => {
   };
 
   return (
+    
     <button
       onClick={handlePayment}
        className="w-full mt-5 bg-green-600 hover:bg-green-700 text-white py-2 rounded transition"

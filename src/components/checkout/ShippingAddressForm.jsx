@@ -13,10 +13,10 @@ import ShippingPreview from "./ShippingPreview";
 const ShippingAddressPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const shippingInfo = JSON.parse(localStorage.getItem("shippingInfo")) ||{};
-   console.log('shippingInfo',shippingInfo)
+  const shippingAddress = JSON.parse(localStorage.getItem("shippingInfo")) ||{};
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
+  const {shippingInfo}=useSelector(state=>state.cart)
 
   const {
     register,
@@ -49,7 +49,7 @@ const ShippingAddressPage = () => {
     <div className="pt-10 bg-gray-100 min-h-screen">
     
       <CheckoutSteps shipping={true} confirmOrder={false} payment={false} />
-   {shippingInfo? <ShippingPreview shippingInfo={shippingInfo}/>:
+   {shippingInfo? <ShippingPreview shippingInfo={shippingAddress}/>:
    
       <div className="flex justify-center px-4 py-6">
         <form

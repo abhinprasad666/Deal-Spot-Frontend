@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "./CheckoutSteps";
 import PayButton from "../PayButton";
@@ -8,20 +8,16 @@ const ConfirmOrderPage = () => {
   const navigate = useNavigate();
   const shippingInfo = JSON.parse(localStorage.getItem("shippingInfo")) || {};
    const { cartItems } = useSelector((state) => state.cart);
-  
-console.log(cartItems)
 
-  const totalOriginalPrice = 500
+   const shippingCharge =0;
+  const grandTotal=cartItems.grandTotal-shippingCharge
 
-  const totalDiscount = 200
+ const [payment,setPayment]=useState(false)
 
-  const totalPrice =10
-
-  const shippingCharge =0;
 
   return (
     <div>
-      <CheckoutSteps shipping={true} confirmOrder={true} payment={false} />
+      <CheckoutSteps shipping={true} confirmOrder={true} payment={payment} />
 
       <div className="min-h-screen bg-gray-100 py-8 px-4 pt-40">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -101,10 +97,15 @@ console.log(cartItems)
                 </div>
                 <div className="flex justify-between font-semibold text-base border-t pt-2">
                   <span>Grand Total</span>
-                  <span>₹{cartItems.grandTotal-shippingCharge}</span>
+                  <span>₹{grandTotal}</span>
                 </div>
               </div>
-              <PayButton />
+              <PayButton 
+               amount={grandTotal}
+               shippingAddress={shippingInfo}
+              paymentMethod={"onlinePayment"}
+              setPayment={setPayment}
+              />
             </div>
           </div>
           

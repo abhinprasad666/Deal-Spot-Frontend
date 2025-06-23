@@ -1,18 +1,19 @@
-// src/components/checkout/ShippingPreview.jsx
-
 import { FaMapMarkerAlt } from "react-icons/fa";
 
 import { useNavigate } from "react-router-dom";
+import { clearShippingInfo } from "../../redux/slices/productSlices/cartSlice";
+import { useDispatch } from "react-redux";
 
 
 
 const ShippingPreview = ({shippingInfo}) => {
 
-
+  const dispatch=useDispatch()
   const navigate = useNavigate();
 
   const handleChangeAddress = () => {
-    navigate("/checkout/shipping");
+    dispatch(clearShippingInfo())
+    navigate("/shippingInfo");
   };
 
   const handleProceedToPayment = () => {

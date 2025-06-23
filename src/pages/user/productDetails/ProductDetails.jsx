@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ProductCardDetail from "./productDetailsCard";
+import ProductCardDetail from "./ProductCardDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getProduct } from "../../../redux/actions/productActions/singleProductActions";
