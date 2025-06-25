@@ -24,119 +24,87 @@ import VerifyOtpPage from "../pages/user/auth/password/VerifyOtpPage";
 import ResetPasswordPage from "../pages/user/auth/password/ResetPasswordPage";
 import ResetErrorPage from "../pages/user/auth/password/ResetErrorPage";
 import PasswordResetSuccessPage from "../pages/user/auth/password/PasswordResetSuccessPage";
-import ProtectedRoute from "./ProtectedRoute";
 
-//userprofile
+// Profile & Cart
 import UserProfilePage from "../pages/user/profile/UserProfilePage";
 import EditProfilePage from "../pages/user/profile/editProfile/EditProfilePage";
-
-//cart
 import CartView from "../pages/cart/CartView";
-//shipping address form
+
+// Checkout
 import ShippingAddressForm from "../components/checkout/ShippingAddressForm";
-import CheckoutPage from "../pages/user/CheckoutPage";
 import ConfirmOrderPage from "../components/checkout/ConfirmOrderPage";
+import CheckoutPage from "../pages/user/CheckoutPage";
+
+// Auth Middleware
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <MainLayout />,
-        children: [
-            { path: "", element: <Home /> },
-            { path: "product/:id", element: <ProductDetails /> },
-            { path: "product/search/:keyword", element: <ProductSearch /> },
-            {
-                path: "user-profile",
-                element: (
-                    <ProtectedRoute>
-                        <UserProfilePage />
-                    </ProtectedRoute>
-                ),
-            },
-            {
-                path: "edit-profile",
-                element: (
-                    <ProtectedRoute>
-                        <EditProfilePage />
-                    </ProtectedRoute>
-                ),
-            },
-            {
-                path: "cart",
-                element: (
-                    <ProtectedRoute>
-                    <CartView />
-                    </ProtectedRoute>
-                ),
-            },
-          
-           
-        ],
-    },
-      {
-                path: "shippingInfo",
-                element: (
-                    <ProtectedRoute>
-                        <ShippingAddressForm />
-                    </ProtectedRoute>
-                ),
-            },
-             {
-                path: "/order/confirm",
-                element: (
-                    <ProtectedRoute>
-                        <ConfirmOrderPage />
-                    </ProtectedRoute>
-                ),
-            },
-    {
-        path: "/login",
-        element: <AuthLayout />,
-        children: [{ path: "", element: <Login /> }],
-    },
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      { path: "", element: <Home /> },
+      { path: "product/:id", element: <ProductDetails /> },
+      { path: "product/search/:keyword", element: <ProductSearch /> },
+    ],
+  },
 
-    {
-        path: "/signup",
-        element: <AuthLayout />,
-        children: [{ path: "", element: <Signup /> }],
-    },
-    {
-        path: "/forgot-password",
-        element: <AuthLayout />,
-        children: [{ path: "", element: <ForgotPasswordPage /> }],
-    },
-    {
-        path: "/verify-otp",
-        element: <AuthLayout />,
-        children: [{ path: "", element: <VerifyOtpPage /> }],
-    },
-    {
-        path: "/reset-password",
-        element: <AuthLayout />,
-        children: [{ path: "", element: <ResetPasswordPage /> }],
-    },
-    {
-        path: "/password-update-success",
-        element: <AuthLayout />,
-        children: [{ path: "", element: <PasswordResetSuccessPage /> }],
-    },
-    {
-        path: "/reset-error",
-        element: <AuthLayout />,
-        children: [{ path: "", element: <ResetErrorPage /> }],
-    },
-    {
-        path: "/payment/success",
-        element: <PaymentSuccess />,
-    },
-    {
-        path: "/payment/failure",
-        element: <PaymentFailed />,
-    },
-    {
-        path: "*",
-        element: <NotFound />,
-    },
+  //  Grouped all protected routes under one ProtectedRoute wrapper
+  {
+    element: <ProtectedRoute />,
+    children: [
+      { path: "/user-profile", element: <UserProfilePage /> },
+      { path: "/edit-profile", element: <EditProfilePage /> },
+      { path: "/cart", element: <CartView /> },
+      { path: "/shippingInfo", element: <ShippingAddressForm /> },
+      { path: "/order/confirm", element: <ConfirmOrderPage /> },
+      { path: "/checkout", element: <CheckoutPage /> },
+    ],
+  },
+
+  // Auth pages
+  {
+    path: "/login",
+    element: <AuthLayout />,
+    children: [{ path: "", element: <Login /> }],
+  },
+  {
+    path: "/signup",
+    element: <AuthLayout />,
+    children: [{ path: "", element: <Signup /> }],
+  },
+  {
+    path: "/forgot-password",
+    element: <AuthLayout />,
+    children: [{ path: "", element: <ForgotPasswordPage /> }],
+  },
+  {
+    path: "/verify-otp",
+    element: <AuthLayout />,
+    children: [{ path: "", element: <VerifyOtpPage /> }],
+  },
+  {
+    path: "/reset-password",
+    element: <AuthLayout />,
+    children: [{ path: "", element: <ResetPasswordPage /> }],
+  },
+  {
+    path: "/password-update-success",
+    element: <AuthLayout />,
+    children: [{ path: "", element: <PasswordResetSuccessPage /> }],
+  },
+  {
+    path: "/reset-error",
+    element: <AuthLayout />,
+    children: [{ path: "", element: <ResetErrorPage /> }],
+  },
+
+  // Payment status
+  { path: "/payment/success", element: <PaymentSuccess /> },
+  { path: "/payment/failure", element: <PaymentFailed /> },
+
+  // Not found
+  { path: "*", element: <NotFound /> },
 ]);
 
 export default router;
