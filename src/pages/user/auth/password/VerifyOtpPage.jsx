@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { verifyOtp } from "../../../../redux/actions/passwordActions/verifyOtpAction";
 import { clearPasswordState } from "../../../../redux/slices/passwordSlice";
-import Loader from "../../../../components/layouts/Loader";
 import logo from "../../../../../public/favicon.png";
+import Loader from "../../../../components/common/Loader";
 
 const OTP_VALIDITY_DURATION = 300; // 5 minutes
 

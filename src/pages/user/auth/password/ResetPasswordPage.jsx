@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { resetPassword } from "../../../../redux/actions/passwordActions/resetPasswordAction";
 import { useEffect, useState } from "react";
-import Loader from "../../../../components/layouts/Loader";
 import logo from "../../../../../public/favicon.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Loader from "../../../../components/common/Loader";
 
 const ResetPasswordPage = () => {
     const dispatch = useDispatch();

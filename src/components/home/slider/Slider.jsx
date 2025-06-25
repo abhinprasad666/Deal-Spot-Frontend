@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import SliderCard from "./SliderCard";
 
-
 const Slider = () => {
   const slidesData = useSelector((state) => state.slides.slides);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,12 +24,9 @@ const Slider = () => {
     setCurrentIndex((prev) => (prev - 1 + slidesData.length) % slidesData.length);
   };
 
-  if (!slidesData || slidesData.length === 0) {
-    return (
-      <div className="text-center text-gray-500 mt-10">
-        No slides available.
-      </div>
-    );
+  // Final check: only show UI if slides are present and valid
+  if (!Array.isArray(slidesData) || slidesData.length === 0) {
+    return null; //Don't render anything
   }
 
   const currentSlide = slidesData[currentIndex];

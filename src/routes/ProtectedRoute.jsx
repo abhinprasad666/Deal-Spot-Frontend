@@ -1,6 +1,7 @@
 import { Navigate, Outlet} from "react-router-dom";
 import { useSelector } from "react-redux";
-import Loader from "../components/layouts/Loader";
+import Loader from "../components/common/Loader";
+
 
 
 const ProtectedRoute = () => {

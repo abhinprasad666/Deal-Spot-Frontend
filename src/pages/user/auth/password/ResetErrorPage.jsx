@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import Loader from "../../../../components/layouts/Loader";
 import { clearPasswordState } from "../../../../redux/slices/passwordSlice";
+import Loader from "../../../../components/common/Loader";
 
 const ResetErrorPage = () => {
   const { error, loading } = useSelector((state) => state.password);
