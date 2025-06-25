@@ -10,6 +10,7 @@ import { getCart } from "../../../redux/actions/productActions/cartActions";
 
 const AllProducts = () => {
     const { products, loading, error } = useSelector((state) => state.products);
+    const { isAuthenticated } = useSelector((state) => state.auth);
 
     const dispatch = useDispatch();
 
@@ -20,8 +21,11 @@ const AllProducts = () => {
         dispatch(getProducts(null));
         dispatch(getSlides);
         dispatch(getCategories);
-        dispatch(getCart);
-    }, [dispatch, error]);
+        if(isAuthenticated){
+  dispatch(getCart);
+        }
+      
+    }, [dispatch, error,isAuthenticated]);
 
     return (
         <section className="max-w-7xl mx-auto px-4 py-8">

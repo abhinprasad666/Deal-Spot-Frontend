@@ -39,72 +39,72 @@ import CheckoutPage from "../pages/user/CheckoutPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainLayout />,
-    children: [
-      { path: "", element: <Home /> },
-      { path: "product/:id", element: <ProductDetails /> },
-      { path: "product/search/:keyword", element: <ProductSearch /> },
-    ],
-  },
+    {
+        path: "/",
+        element: <MainLayout />,
+        children: [
+            { path: "", element: <Home /> },
+            { path: "product/:id", element: <ProductDetails /> },
+            { path: "product/search/:keyword", element: <ProductSearch /> },
+        ],
+    },
 
-  //  Grouped all protected routes under one ProtectedRoute wrapper
-  {
-    element: <ProtectedRoute />,
-    children: [
-      { path: "/user-profile", element: <UserProfilePage /> },
-      { path: "/edit-profile", element: <EditProfilePage /> },
-      { path: "/cart", element: <CartView /> },
-      { path: "/shippingInfo", element: <ShippingAddressForm /> },
-      { path: "/order/confirm", element: <ConfirmOrderPage /> },
-      { path: "/checkout", element: <CheckoutPage /> },
-    ],
-  },
+    //  Grouped all protected routes under one ProtectedRoute wrapper
+    {
+        element: <ProtectedRoute />,
+        children: [
+            { path: "/user-profile", element: <UserProfilePage /> },
+            { path: "/edit-profile", element: <EditProfilePage /> },
+            { path: "/cart", element: <CartView /> },
+            { path: "/shippingInfo", element: <ShippingAddressForm /> },
+            { path: "/order/confirm", element: <ConfirmOrderPage /> },
+            { path: "/checkout", element: <CheckoutPage /> },
+        ],
+    },
 
-  // Auth pages
-  {
-    path: "/login",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <Login /> }],
-  },
-  {
-    path: "/signup",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <Signup /> }],
-  },
-  {
-    path: "/forgot-password",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <ForgotPasswordPage /> }],
-  },
-  {
-    path: "/verify-otp",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <VerifyOtpPage /> }],
-  },
-  {
-    path: "/reset-password",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <ResetPasswordPage /> }],
-  },
-  {
-    path: "/password-update-success",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <PasswordResetSuccessPage /> }],
-  },
-  {
-    path: "/reset-error",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <ResetErrorPage /> }],
-  },
+    // Auth pages
+    {
+        path: "/login",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <Login /> }],
+    },
+    {
+        path: "/signup",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <Signup /> }],
+    },
+    {
+        path: "/forgot-password",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <ForgotPasswordPage /> }],
+    },
+    {
+        path: "/verify-otp",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <VerifyOtpPage /> }],
+    },
+    {
+        path: "/reset-password",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <ResetPasswordPage /> }],
+    },
+    {
+        path: "/password-update-success",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <PasswordResetSuccessPage /> }],
+    },
+    {
+        path: "/reset-error",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <ResetErrorPage /> }],
+    },
 
-  // Payment status
-  { path: "/payment/success", element: <PaymentSuccess /> },
-  { path: "/payment/failure", element: <PaymentFailed /> },
+    // Payment status
+    { path: "/payment/success", element: <PaymentSuccess /> },
+    { path: "/payment/failure", element: <PaymentFailed /> },
 
-  // Not found
-  { path: "*", element: <NotFound /> },
+    // Not found
+    { path: "*", element: <NotFound /> },
 ]);
 
 export default router;

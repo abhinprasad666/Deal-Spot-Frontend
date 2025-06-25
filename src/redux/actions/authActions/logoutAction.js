@@ -3,7 +3,6 @@ import { logoutFail, logoutRequest, logoutSuccess } from "../../slices/authSlice
 
 
 export const logout = () => async (dispatch) => {
-    console.log('my dispatch',dispatch)
     try {
         dispatch(logoutRequest());
 

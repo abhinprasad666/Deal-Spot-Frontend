@@ -1,5 +1,4 @@
 import axiosInstance from "../../../api/axiosInstance";
-import { clearPasswordState } from "../../slices/passwordSlice";
 import {
     addCartFail,
     addCartRequest,

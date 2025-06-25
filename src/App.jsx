@@ -4,9 +4,20 @@ import router from "./routes/AppRoutes";
 import { useEffect } from "react";
 import { loadUser } from "./redux/actions/authActions/loadUser";
 import { useDispatch } from "react-redux";
+import { getCart } from "./redux/actions/productActions/cartActions";
 
 const App = () => {
-  
+    const dispatch = useDispatch();
+
+
+
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        if (isLoggedIn === "true") {
+            dispatch(loadUser());
+          
+        }
+    }, [dispatch]);
 
     return (
         <>
