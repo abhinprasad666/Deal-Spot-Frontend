@@ -37,6 +37,7 @@ import CheckoutPage from "../pages/user/CheckoutPage";
 
 // Auth Middleware
 import ProtectedRoute from "./ProtectedRoute";
+import OrderDetails from "../pages/user/OrderDetails/OrderDetails";
 
 const router = createBrowserRouter([
     {
@@ -59,6 +60,7 @@ const router = createBrowserRouter([
             { path: "/shippingInfo", element: <ShippingAddressForm /> },
             { path: "/order/confirm", element: <ConfirmOrderPage /> },
             { path: "/checkout", element: <CheckoutPage /> },
+            { path: "/myOrders", element: <OrderDetails/> },
         ],
     },
 

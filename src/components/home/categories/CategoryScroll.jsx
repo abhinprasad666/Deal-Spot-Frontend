@@ -24,7 +24,7 @@ const CategoryScroll = () => {
     return (
         <>
         
-    {loading?<Loader/>:<div>
+    {loading?<Loader layoutLoder={true} message={"Loading..."}/>:<div>
         <style>
             {`
         .no-scrollbar::-webkit-scrollbar {

@@ -11,9 +11,7 @@ const CategoryHighlights = () => {
 
     return (
         <div>
-            {loading ? (
-                <Loader />
-            ) : (
+            {!loading && categories &&(
                 <section className="max-w-7xl mx-auto px-4 py-8">
                     <h2 className="text-xl md:text-2xl font-semibold mb-6">Hot Deals on Fashion</h2>
 

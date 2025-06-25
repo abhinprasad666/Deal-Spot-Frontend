@@ -20,7 +20,6 @@ import { uploadProfileImage } from "../../../redux/actions/userProfileActions/up
 import { logout } from "../../../redux/actions/authActions/logoutAction";
 import { clearCartState } from "../../../redux/slices/productSlices/cartSlice";
 
-
 const UserProfilePage = () => {
     const dispatch = useDispatch();
     const { user, loading } = useSelector((state) => state.auth);
@@ -61,7 +60,7 @@ const UserProfilePage = () => {
     const isImageChanged = selectedImage !== null;
 
     return loading ? (
-        <Loader />
+        <Loader layoutLoder={true} message={" Loading your profile information..."} />
     ) : (
         <div className="min-h-screen bg-gray-50 py-10 px-4 flex justify-center">
             <div className="w-full my-10 bg-white shadow-md rounded-2xl overflow-hidden border max-w-4xl">
@@ -133,9 +132,11 @@ const UserProfilePage = () => {
 
                 {/* Action Sections */}
                 <div className="divide-y">
-                    <ProfileItem icon={<FaShoppingCart />} label="My Cart" />
+                    <Link to={"/cart"}>
+                        <ProfileItem icon={<FaShoppingCart />} label="My Cart" />
+                    </Link>
                     <ProfileItem icon={<FaHeart />} label="My Wishlist" />
-                    <ProfileItem icon={<FaBoxOpen />} label="My Orders" />
+                  <Link to={'/myOrders'}> <ProfileItem icon={<FaBoxOpen />} label="My Orders" /></Link> 
                     <ProfileItem icon={<FaMapMarkerAlt />} label="My Address" />
                     <ProfileItem icon={<FaCreditCard />} label="Saved Cards" />
                     <ProfileItem icon={<FaBell />} label="Notifications" />

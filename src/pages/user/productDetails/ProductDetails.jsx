@@ -57,10 +57,11 @@ const ProductDetails = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-10 mt-20">
-            {loading ? (
-                <Loader />
-            ) : (
+        <div>
+       {loading ?  <Loader layoutLoder={true} message={"Loading products..."} />   : <div className="container mx-auto px-4 py-10 mt-20">
+           
+               
+          (
                 <ProductCardDetail
                     product={product}
                     onAddToCart={handleAddToCart}
@@ -70,11 +71,12 @@ const ProductDetails = () => {
                     cartLoading={cartLoading}
                     cartError={cartError}
                 />
-            )}
+            )
 
             <div className="bg-gray-50 pt-12">
                 <Reviews />
             </div>
+        </div>}
         </div>
     );
 };

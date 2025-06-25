@@ -30,7 +30,7 @@ const ProductSearch = () => {
                         <ProductCard key={product._id} product={product} />
                     ))}
                 </div>
-            ) : (
+            ) :(
                 <div className="text-center mt-10 text-gray-600">
                     <p className="text-lg font-medium">
                         No products found for "<span className="text-black">{keyword}</span>"

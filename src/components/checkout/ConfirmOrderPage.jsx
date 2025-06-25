@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "./CheckoutSteps";
 import PayButton from "../PayButton";
 import { useSelector } from "react-redux";
 
 const ConfirmOrderPage = () => {
-  const navigate = useNavigate();
   const shippingInfo = JSON.parse(localStorage.getItem("shippingInfo")) || {};
    const { cartItems } = useSelector((state) => state.cart);
 
@@ -105,6 +103,7 @@ const ConfirmOrderPage = () => {
                shippingAddress={shippingInfo}
               paymentMethod={"onlinePayment"}
               setPayment={setPayment}
+            
               />
             </div>
           </div>
