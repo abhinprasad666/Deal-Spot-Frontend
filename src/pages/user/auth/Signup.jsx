@@ -16,7 +16,7 @@ const Signup = () => {
       // Navigate to homepage on successful login
       useEffect(() => {
           if (isAuthenticated) {
-              showToast("Login successful!", "success");
+              showToast("Account created successfully.", "success");
               navigate("/"); // Navigate to home
           }
       }, [isAuthenticated, navigate]);

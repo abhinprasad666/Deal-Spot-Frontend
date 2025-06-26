@@ -6,7 +6,7 @@ export const registerUser = (userData) => async (dispatch) => {
         dispatch(registerRequest());
 
         // Axios instance already has withCredentials and baseURL configured
-        const { data } = await axiosInstance.post("api/v1/auth/login", userData);
+        const { data } = await axiosInstance.post("api/v1/auth/signup", userData);
 
         dispatch(registerSuccess(data));
     } catch (error) {
