@@ -100,6 +100,7 @@ const ConfirmOrderPage = () => {
               </div>
               <PayButton 
                amount={grandTotal}
+               totalDiscount={cartItems.totalDiscount}
                shippingAddress={shippingInfo}
               paymentMethod={"onlinePayment"}
               setPayment={setPayment}

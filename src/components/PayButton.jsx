@@ -1,6 +1,6 @@
 import axiosInstance from "../api/axiosInstance";
 
-const PayButton = ({ amount,shippingAddress,paymentMethod,cartIteams,setPayment}) => {
+const PayButton = ({ amount,totalDiscount, shippingAddress,paymentMethod,cartIteams,setPayment}) => {
 
    
   const handlePayment = async () => {
@@ -10,7 +10,7 @@ const PayButton = ({ amount,shippingAddress,paymentMethod,cartIteams,setPayment}
       const { data } = await axiosInstance.post(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/payment/create-order`,
            {
-          amount,shippingAddress ,cartIteams,paymentMethod
+          amount,totalDiscount,shippingAddress ,cartIteams,paymentMethod
          
         },
         {

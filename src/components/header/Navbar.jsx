@@ -5,6 +5,7 @@ import NavbarBrand from "./NavbarBrand";
 import SearchBar from "../layouts/SearchBar";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
+import userPlaceholder from "../../assets/icons/person.png"
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -12,7 +13,7 @@ export default function Navbar() {
 
     const { isAuthenticated, user } = useSelector((state) => state.auth);
 
-    const userImage = user?.profilePic || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png";
+    const userImage = user?.profilePic || userPlaceholder;
 
     return (
         <nav className="bg-pink-600 shadow-md fixed top-0 left-0 w-full z-50">

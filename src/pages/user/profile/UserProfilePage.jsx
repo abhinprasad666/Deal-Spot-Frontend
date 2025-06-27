@@ -19,6 +19,7 @@ import Loader from "../../../components/common/Loader";
 import { uploadProfileImage } from "../../../redux/actions/userProfileActions/uploadProfileIPicActions";
 import { logout } from "../../../redux/actions/authActions/logoutAction";
 import { clearCartState } from "../../../redux/slices/productSlices/cartSlice";
+import userPlaceholder from "../../../assets/icons/person.png"
 
 const UserProfilePage = () => {
     const dispatch = useDispatch();
@@ -26,8 +27,9 @@ const UserProfilePage = () => {
     const { isUploading } = useSelector((state) => state.userProfile);
     const fileInputRef = useRef(null);
 
-    const [previewImage, setPreviewImage] = useState(user.profilePic);
+    const [previewImage, setPreviewImage] = useState(user.profilePic || userPlaceholder);
     const [selectedImage, setSelectedImage] = useState(null);
+    console.log('user profile pic',previewImage)
 
     const handleImageClick = () => {
         fileInputRef.current.click();

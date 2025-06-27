@@ -1,6 +1,7 @@
 import { Navigate, Outlet} from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../components/common/Loader";
+import Navbar from "../components/header/Navbar";
 
 
 
@@ -17,7 +18,10 @@ const ProtectedRoute = () => {
         return <Navigate to="/login" replace />;
     }
 
-    return <Outlet />;
+    return(<div> 
+       
+        <Outlet />;
+    </div>) 
 };
 
 export default ProtectedRoute;

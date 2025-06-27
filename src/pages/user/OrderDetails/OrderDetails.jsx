@@ -1,125 +1,171 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { ShoppingBag, MessageSquareText, Star } from "lucide-react";
+import { Link } from "react-router-dom";
+import ProductReview from "./ProductReview";
+import { useDispatch, useSelector } from "react-redux";
+import { showToast } from "../../../utils/toastUtils";
+import { getMyOrders } from "../../../redux/actions/ordersActions";
+
+const statusColorMap = {
+    Pending: "bg-yellow-100 text-yellow-800",
+    Confirmed: "bg-blue-100 text-blue-800",
+    Shipped: "bg-indigo-100 text-indigo-800",
+    Delivered: "bg-green-100 text-green-800",
+    Cancelled: "bg-red-100 text-red-800",
+    Refunded: "bg-gray-200 text-gray-800",
+};
 
 const OrderDetails = () => {
-  const order = {
-    _id: "ORD123456",
-    razorpayOrderId: "RZP123456789",
-    userId: "USER987654",
-    paymentMethod: "onlinePayment",
-    status: "Confirmed",
-    totalPrice: 2499,
-    paidAt: "2024-06-01T12:34:56Z",
-    orderedAt: "2024-06-01T11:30:00Z",
-    shippingAddress: {
-      fullName: "Abhin Prasad",
-      phone: "9876543210",
-      addressLine1: "123 Main Street",
-      city: "Kochi",
-      pincode: "682001",
-      country: "India",
-      state: "Kerala",
-    },
-    cartItems: [
-      {
-        productId: {
-          _id: "PROD001",
-          name: "Noise Smartwatch",
-          image: "https://via.placeholder.com/100",
-          price: 1499,
-        },
-        quantity: 1,
-      },
-      {
-        productId: {
-          _id: "PROD002",
-          name: "boAt Rockerz Headphones",
-          image: "https://via.placeholder.com/100",
-          price: 999,
-        },
-        quantity: 1,
-      },
-    ],
-    statusHistory: [
-      {
-        status: "Pending",
-        changedAt: "2024-06-01T11:30:00Z",
-      },
-      {
-        status: "Confirmed",
-        changedAt: "2024-06-01T12:00:00Z",
-      },
-    ],
-  };
+    const [showModal, setShowModal] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
-  return (
-    <div className="max-w-5xl mx-auto p-6 mt-20">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">🧾 Order Details</h1>
+    const { orders = [], error } = useSelector((state) => state.order);
+    const dispatch = useDispatch();
+    const dummyDiscount=568
 
-      {/* Basic Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 text-sm">
-        <div className="bg-white shadow p-4 rounded-xl">
-          <p><span className="font-semibold">Order ID:</span> {order._id}</p>
-          <p><span className="font-semibold">Razorpay ID:</span> {order.razorpayOrderId}</p>
-          <p><span className="font-semibold">User ID:</span> {order.userId}</p>
-          <p><span className="font-semibold">Payment Method:</span> {order.paymentMethod}</p>
-          <p><span className="font-semibold">Paid At:</span> {new Date(order.paidAt).toLocaleString()}</p>
-          <p><span className="font-semibold">Ordered At:</span> {new Date(order.orderedAt).toLocaleString()}</p>
-        </div>
+    useEffect(() => {
+        if (error) {
+            showToast(`${error}`, "error", "api-error");
+        }
+        dispatch(getMyOrders);
+    }, [dispatch, error]);
 
-        {/* Shipping Info */}
-        <div className="bg-white shadow p-4 rounded-xl">
-          <p className="font-semibold text-lg mb-2">Shipping Address</p>
-          <p>{order.shippingAddress.fullName}</p>
-          <p>{order.shippingAddress.phone}</p>
-          <p>{order.shippingAddress.addressLine1}, {order.shippingAddress.city}</p>
-          <p>{order.shippingAddress.state} - {order.shippingAddress.pincode}</p>
-          <p>{order.shippingAddress.country}</p>
-        </div>
-      </div>
+    const handleOpenModal = (product) => {
+        setSelectedProduct(product);
+        setShowModal(true);
+    };
 
-      {/* Products */}
-      <div className="mt-8">
-        <h2 className="text-xl font-bold text-gray-800 mb-4">🛍️ Ordered Products</h2>
-        <div className="space-y-4">
-          {order.cartItems.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-4 bg-white shadow p-4 rounded-xl"
-            >
-              <img
-                src={item.productId.image}
-                alt={item.productId.name}
-                className="w-20 h-20 rounded object-cover"
-              />
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-900">{item.productId.name}</h3>
-                <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
-                <p className="text-sm text-gray-600">Price: ₹{item.productId.price}</p>
-              </div>
+    const handleReviewSubmit = ({ rating, comment, product }) => {
+        console.log("Submit review:", { rating, comment, product });
+        // TODO: Call API to submit the review
+    };
+
+    return (
+        <div className="max-w-6xl mx-auto px-4 py-10 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 min-h-screen mt-30">
+            <div className="flex items-center justify-center mb-10 gap-2">
+                <ShoppingBag className="text-pink-700" size={28} />
+                <h1 className="text-3xl font-bold text-pink-700">My Orders</h1>
             </div>
-          ))}
+
+            {orders.length === 0 ? (
+                <p className="text-center text-gray-500 mt-10">You haven’t ordered anything yet.</p>
+            ) : (
+                orders.map((order) => {
+                    const orderedOn = new Date(order.orderedAt).toLocaleDateString("en-IN");
+                    const paidOn = order.paidAt ? new Date(order.paidAt).toLocaleDateString("en-IN") : null;
+
+                    return (
+                        <div key={order._id} className="bg-white rounded-xl shadow-lg p-6 mb-10 border border-blue-100">
+                            <div className="flex justify-between items-center mb-4 text-sm text-gray-500">
+                                <p>
+                                    <span className="font-semibold text-gray-700">Order ID:</span>{" "}
+                                    {order.razorpayOrderId || order._id}
+                                </p>
+                                <p>
+                                    <span className="font-semibold text-gray-700">Ordered on:</span> {orderedOn}
+                                </p>
+                            </div>
+
+                            {/* Cart Items */}
+                            <div className="space-y-5">
+                                {order.cartItems.map((item, index) => {
+                                    const product = item.productId;
+                                    const expectedDate = new Date(order.expectedDeliveryDate).toLocaleDateString("en-US", {
+                                        month: "short",
+                                        day: "numeric",
+                                    });
+
+                                    return (
+                                        <div
+                                            key={index}
+                                            className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center border-b pb-4"
+                                        >
+                                            <Link to={`/product/${product._id}`} className="flex items-center gap-4">
+                                                <img
+                                                    src={product.image}
+                                                    alt={product.title}
+                                                    className="w-20 h-20 object-cover rounded-lg"
+                                                />
+                                                <div>
+                                                    <p className="font-semibold text-gray-800">{product.title}</p>
+                                                    <p className="text-gray-500 text-sm">Qty: {item.quantity}</p>
+                                                </div>
+                                            </Link>
+
+                                            {/* Price & Review */}
+                                            <div className="text-center md:text-left">
+                                                <p className="text-sm text-gray-500">Price</p>
+                                                <p className="text-lg font-semibold text-green-600">
+                                                    ₹ {product.price - product.discount}
+                                                </p>
+
+                                                {order.status === "Delivered" && (
+                                                    <button
+                                                        onClick={() => handleOpenModal(product)}
+                                                        className="mt-2 text-sm text-pink-600 hover:underline flex items-center justify-center gap-1"
+                                                    >
+                                                        <Star size={16} className="text-yellow-400" />
+                                                        Rate & Review
+                                                    </button>
+                                                )}
+                                            </div>
+
+                                            <div className="text-center md:text-left">
+                                                <p className="text-gray-500 text-sm mb-1">Status</p>
+                                                <span
+                                                    className={`px-3 py-1 rounded-full text-sm font-medium ${
+                                                        statusColorMap[order.status]
+                                                    }`}
+                                                >
+                                                    {order.status}
+                                                </span>
+                                                <p className="text-xs text-gray-500 mt-1">Expected by {expectedDate}</p>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Footer: Shipping + Total */}
+                            <div className="mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-t pt-4">
+                                <div className="text-sm text-gray-600">
+                                    <p className="font-semibold text-gray-800">Shipping:</p>
+                                    <p>
+                                        {order.shippingAddress.fullName}, {order.shippingAddress.city},{" "}
+                                        {order.shippingAddress.pincode}
+                                    </p>
+                                </div>
+
+                                <div className="text-right text-sm text-gray-700">
+                                    <p className="font-semibold">Total Amount: ₹{order.totalPrice}</p>
+                                    {order?.totalDiscount > 0 && (
+                                        <p className="text-green-600">Discount Saved: ₹{order?.totalDiscount}</p>
+                                    )}
+                                    {paidOn && <p className="text-gray-500 text-xs mt-1">Paid on: {paidOn}</p>}
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })
+            )}
+
+            {/* Bottom Chat Button */}
+            <div className="mt-10 text-center">
+                <button className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium shadow hover:bg-blue-200 transition-all">
+                    <MessageSquareText size={16} />
+                    Chat with Us
+                </button>
+            </div>
+
+            {/* Review Modal */}
+            <ProductReview
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+                onSubmit={handleReviewSubmit}
+                product={selectedProduct}
+            />
         </div>
-      </div>
-
-      {/* Status */}
-      <div className="mt-8">
-        <h2 className="text-xl font-bold text-gray-800 mb-4">📦 Order Status</h2>
-        <ul className="space-y-2 text-sm text-gray-700">
-          {order.statusHistory.map((entry, idx) => (
-            <li key={idx} className="flex items-center gap-4">
-              <span className="font-semibold">{entry.status}</span>
-              <span className="text-gray-500">@ {new Date(entry.changedAt).toLocaleString()}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Total */}
-      <div className="mt-8 bg-white shadow p-4 rounded-xl text-right text-lg font-bold text-gray-800">
-        Grand Total: ₹{order.totalPrice}
-      </div>
-    </div>
-  );
+    );
 };
 
 export default OrderDetails;
