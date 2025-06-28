@@ -2,7 +2,6 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 
 const ReviewCard = ({ review }) => {
-    
   const stars = Array.from({ length: 5 }, (_, i) => (
     <FaStar
       key={i}

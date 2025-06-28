@@ -1,19 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Star } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { createReview } from "../../../redux/actions/reviewsActions/createReviewActions";
+import { showToast } from "../../../utils/toastUtils";
+import { getMyOrders } from "../../../redux/actions/ordersActions";
+import { clearReviewState } from "../../../redux/slices/reviewsSlice";
 
-const ProductReview = ({ isOpen, onClose, onSubmit, product }) => {
+const ProductReview = ({ isOpen, onClose, product }) => {
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
   const [comment, setComment] = useState("");
 
+  const dispatch = useDispatch();
+  const { error, uploadReview } = useSelector((state) => state.review);
+
   const handleSubmit = () => {
     if (rating < 1 || !comment.trim()) return;
-    onSubmit({ rating, comment, product });
+    dispatch(createReview({ rating, comment }, product._id));
     setRating(0);
     setComment("");
     onClose();
   };
+
+  useEffect(() => {
+    if (error) {
+      showToast(`${error}`, "error", "api-error");
+    }
+    if (uploadReview) {
+      showToast("Review added successfully", "success", "add review");
+      dispatch(getMyOrders);
+      setInterval(()=>{
+     dispatch(clearReviewState())
+      },1000)
+    }
+  }, [error, uploadReview, dispatch]);
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
@@ -22,7 +43,6 @@ const ProductReview = ({ isOpen, onClose, onSubmit, product }) => {
           Rate & Review
         </Dialog.Title>
 
-        {/* Product Preview */}
         {product && (
           <div className="flex items-center gap-4 mb-6">
             <img
@@ -52,7 +72,7 @@ const ProductReview = ({ isOpen, onClose, onSubmit, product }) => {
           ))}
         </div>
 
-        {/* Comment Box */}
+        {/* Comment */}
         <textarea
           rows={4}
           className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 mb-4 resize-none"
@@ -61,7 +81,7 @@ const ProductReview = ({ isOpen, onClose, onSubmit, product }) => {
           onChange={(e) => setComment(e.target.value)}
         />
 
-        {/* Action Buttons */}
+        {/* Buttons */}
         <div className="flex justify-end gap-3">
           <button
             onClick={onClose}

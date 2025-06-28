@@ -5,6 +5,7 @@ const initialState = {
     error: null,
     message: null,
     reviews: [],
+    uploadReview:null
 };
 
 const reviewSlice = createSlice({
@@ -28,14 +29,17 @@ const reviewSlice = createSlice({
         createReviewRequest: (state) => {
             state.loading = true;
             state.error = null;
+            state.uploadReview=null;
         },
         createReviewSuccess: (state, action) => {
             state.loading = false;
             state.message = action.payload.message;
+            state.uploadReview=true;
         },
         createReviewFail: (state, action) => {
             state.loading = false;
             state.error = action.payload;
+            state.uploadReview=null;
         },
 
         // Delete review
@@ -57,6 +61,7 @@ const reviewSlice = createSlice({
         clearReviewState: (state) => {
             state.error = null;
             state.message = null;
+            state.uploadReview=null
         },
     },
 });

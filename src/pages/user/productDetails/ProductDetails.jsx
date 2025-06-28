@@ -11,12 +11,12 @@ import { addToCart, getCart } from "../../../redux/actions/productActions/cartAc
 const ProductDetails = () => {
     const params = useParams();
     const dispatch = useDispatch();
-     const navigate = useNavigate();
-     const location = useLocation();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const { product, loading, error } = useSelector((state) => state.product);
     const { cartLoading, cartError } = useSelector((state) => state.cart);
-   const { isAuthenticated } = useSelector((state) => state.auth);
+    const { isAuthenticated } = useSelector((state) => state.auth);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -28,17 +28,16 @@ const ProductDetails = () => {
     }, [dispatch, params.id, error]);
 
     const handleAddToCart = async () => {
-      if (!isAuthenticated) {
-   
-      navigate('/login', {
-        state: { redirect: location.pathname }, // path to redirect after login
-      });
-    }
-
+        if (!isAuthenticated) {
+            navigate("/login", {
+                state: { redirect: location.pathname }, // path to redirect after login
+            });
+        }
 
         await Promise.resolve(dispatch(addToCart({ productId: params.id, quantity: 1 })));
         dispatch(getProduct(params.id));
-         dispatch(getCart);
+        dispatch(getCart);
+        
     };
 
     const handleAddToWishlist = () => {
@@ -58,25 +57,25 @@ const ProductDetails = () => {
 
     return (
         <div>
-       {loading ?  <Loader layoutLoder={true} message={"Loading products..."} />   : <div className="container mx-auto px-4 py-10 mt-20">
-           
-               
-          (
-                <ProductCardDetail
-                    product={product}
-                    onAddToCart={handleAddToCart}
-                    onAddToWishlist={handleAddToWishlist}
-                    handleWhatsAppShare={handleWhatsAppShare}
-                    handleCopyLink={handleCopyLink}
-                    cartLoading={cartLoading}
-                    cartError={cartError}
-                />
-            )
+            {loading ? (
+                <Loader layoutLoder={true} message={"Loading products..."} />
+            ) : (
+                <div className="container mx-auto px-4 py-10 mt-20">
+                    <ProductCardDetail
+                        product={product}
+                        onAddToCart={handleAddToCart}
+                        onAddToWishlist={handleAddToWishlist}
+                        handleWhatsAppShare={handleWhatsAppShare}
+                        handleCopyLink={handleCopyLink}
+                        cartLoading={cartLoading}
+                        cartError={cartError}
+                    />
 
-            <div className="bg-gray-50 pt-12">
-                <Reviews />
-            </div>
-        </div>}
+                    <div className="bg-gray-50 pt-12">
+                        <Reviews productId={params.id} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

@@ -1,21 +1,25 @@
 import React, { useEffect } from "react";
 import ReviewCard from "./ReviewCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loader from "../common/Loader";
 import { showToast } from "../../utils/toastUtils";
+import { getReviewsAction } from "../../redux/actions/reviewsActions/getReviewAction";
 
 
 
 
-const Reviews = () => {
+const Reviews = ({productId}) => {
 
   const {reviews,loading,error}=useSelector((state)=>state.review)
+const dispatch=useDispatch()
 
       useEffect(() => {
           if (error) {
               return showToast(` ${error}`, "error", "api-error");
+             
           }
-      }, [error]);
+           dispatch(getReviewsAction(productId))
+      }, [error,dispatch,productId]);
   return (
 
  <>
