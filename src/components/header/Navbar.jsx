@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import NavbarBrand from "./NavbarBrand";
-import SearchBar from "../layouts/SearchBar";
+import SearchBar from "../layouts/user/SearchBar";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
 import userPlaceholder from "../../assets/icons/person.png"

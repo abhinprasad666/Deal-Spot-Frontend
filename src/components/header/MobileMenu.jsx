@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import SearchBar from "../layouts/SearchBar";
+import SearchBar from "../layouts/user/SearchBar";
 
 export default function MobileMenu({
     isLoggedIn,

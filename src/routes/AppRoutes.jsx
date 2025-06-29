@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 
 // Layouts
-import AuthLayout from "../components/layouts/AuthLayout";
-import MainLayout from "../components/layouts/MainLayout";
+import MainLayout from "../components/layouts/user/MainLayout";
+import AuthLayout from "../components/layouts/user/AuthLayout";
+
 
 // Pages
 import Home from "../pages/user/Homepage";
@@ -26,20 +27,24 @@ import ConfirmOrderPage from "../components/checkout/ConfirmOrderPage";
 import CheckoutPage from "../pages/user/CheckoutPage";
 import OrderDetails from "../pages/user/OrderDetails/OrderDetails";
 
-// Middleware
+
+// Middleware user
 import ProtectedRoute from "./ProtectedRoute";
+
+//seller
+import SellerMainLayout from "../components/layouts/seller/sellerMainLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-      // 🌐 Public Routes
+      //  Public Routes
       { path: "", element: <Home /> },
       { path: "product/:id", element: <ProductDetails /> },
       { path: "product/search/:keyword", element: <ProductSearch /> },
 
-      // 🔐 Protected Routes inside MainLayout
+      //  Protected Routes inside MainLayout
       {
         element: <ProtectedRoute />,
         children: [
@@ -55,7 +60,16 @@ const router = createBrowserRouter([
     ],
   },
 
-  // 🔑 Auth Routes
+  //seller
+    {
+    path: "/seller",
+    element: <SellerMainLayout/>,
+    children: [
+      // { path: "", element: <Login /> }
+    ],
+  },
+
+  //  Auth Routes
   {
     path: "/login",
     element: <AuthLayout />,
@@ -92,7 +106,7 @@ const router = createBrowserRouter([
     children: [{ path: "", element: <ResetErrorPage /> }],
   },
 
-  // 💳 Payment Status
+  // Payment Status
   { path: "/payment/success", element: <PaymentSuccess /> },
   { path: "/payment/failure", element: <PaymentFailed /> },
 
