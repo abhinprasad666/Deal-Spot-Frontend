@@ -1,13 +1,23 @@
-import React from 'react'
-import SellerNavbar from '../../seller/navbar/SellerNavbar'
+import React from 'react';
+import SellerNavbar from '../../seller/navbar/SellerNavbar';
+import SellerFooter from '../../seller/footer/SellerFooter';
+import { Outlet } from 'react-router-dom';
 
-const sellerMainLayout = () => {
+const SellerMainLayout = () => {
   return (
-    <div>
-        <SellerNavbar/>
-      
-    </div>
-  )
-}
+    <div className="flex flex-col min-h-screen">
+      {/* Top Navbar */}
+      <SellerNavbar />
 
-export default sellerMainLayout
+      {/* Page Content (fills remaining height) */}
+      <main className="flex-1">
+        <Outlet />
+      </main>
+
+      {/* Footer stays at bottom */}
+      <SellerFooter />
+    </div>
+  );
+};
+
+export default SellerMainLayout;
