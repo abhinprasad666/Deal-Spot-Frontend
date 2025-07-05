@@ -14,10 +14,10 @@ const ConfirmOrderPage = () => {
 
 
   return (
-    <div>
+    <div className="mt-20">
       <CheckoutSteps shipping={true} confirmOrder={true} payment={payment} />
 
-      <div className="min-h-screen bg-gray-100 py-8 px-4 pt-40">
+      <div className="min-h-screen bg-gray-100 py-8 px-4 pt-30">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           {/* LEFT SECTION */}

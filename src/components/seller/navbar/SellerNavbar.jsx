@@ -9,10 +9,13 @@ import {
   ShoppingBag,
   User,
   LogOut,
+  Moon,
+  Sun,
 } from "lucide-react";
 
 const SellerNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false); // visual theme toggle
 
   const navLinks = [
     { name: "Dashboard", path: "/seller/dashboard", icon: <LayoutDashboard size={20} /> },
@@ -22,22 +25,33 @@ const SellerNavbar = () => {
   ];
 
   const handleLogout = () => {
-    // TODO: Logout Logic
     console.log("Logout");
   };
 
+  const toggleTheme = () => setIsDark(!isDark);
+
   return (
-    <nav className="bg-pink-500 text-white shadow-md sticky top-0 z-50">
+    <nav
+      className={`transition-all duration-500 shadow-md sticky top-0 z-50 ${
+        isDark ? "bg-gray-900 text-white" : "bg-pink-500 text-white"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
+
           {/* Logo */}
-          <Link to="/seller/dashboard" className="flex items-center space-x-2">
-            <img
-              src="/sample-seller-logo.png"
-              alt="Seller Logo"
-              className="w-8 h-8 rounded-full bg-white p-1"
-            />
-            <span className="text-xl font-semibold">Seller Panel</span>
+          <Link to="/seller/dashboard" className="flex flex-col leading-tight">
+            <span className="text-xl sm:text-2xl font-bold tracking-tight">
+              <span className={`${isDark ? "text-white" : "text-white"}`}>Deal</span>
+              <span className={`${isDark ? "text-yellow-400" : "text-yellow-300"}`}>Spot</span>
+            </span>
+            <span
+              className={`text-xs sm:text-sm font-medium tracking-wide pl-1 ${
+                isDark ? "text-gray-300" : "text-pink-100"
+              }`}
+            >
+              Seller Panel
+            </span>
           </Link>
 
           {/* Desktop Nav */}
@@ -46,16 +60,16 @@ const SellerNavbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="flex items-center space-x-1 hover:text-gray-200 font-medium"
+                className="flex items-center space-x-1 hover:underline font-medium"
               >
                 {link.icon}
                 <span>{link.name}</span>
               </Link>
             ))}
 
-            {/* Profile Dropdown */}
+            {/* Profile */}
             <div className="relative group">
-              <button className="flex items-center space-x-1 hover:text-gray-200">
+              <button className="flex items-center space-x-1 hover:underline">
                 <User className="w-5 h-5" />
                 <span>Profile</span>
               </button>
@@ -76,10 +90,21 @@ const SellerNavbar = () => {
                 </button>
               </div>
             </div>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="transition-all duration-300 p-1 rounded-full hover:bg-white/10"
+            >
+              {isDark ? <Sun size={22} className="text-yellow-400" /> : <Moon size={22} />}
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Mobile Icons */}
+          <div className="md:hidden flex items-center gap-4">
+            <button onClick={toggleTheme} className="transition-all duration-300">
+              {isDark ? <Sun size={24} className="text-yellow-400" /> : <Moon size={24} />}
+            </button>
             <button onClick={() => setIsOpen(!isOpen)}>
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -87,14 +112,18 @@ const SellerNavbar = () => {
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-pink-400 px-4 py-3 space-y-2">
+        <div
+          className={`md:hidden px-4 py-3 space-y-2 transition-all duration-500 ${
+            isDark ? "bg-gray-800" : "bg-pink-400"
+          }`}
+        >
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className="flex items-center space-x-2 py-2 border-b border-pink-300 text-white hover:bg-pink-600 rounded-md px-2"
+              className="flex items-center space-x-2 py-2 border-b border-pink-300 hover:bg-pink-600 rounded-md px-2"
               onClick={() => setIsOpen(false)}
             >
               {link.icon}
@@ -104,7 +133,7 @@ const SellerNavbar = () => {
 
           <Link
             to="/seller/profile"
-            className="flex items-center space-x-2 py-2 border-b border-pink-300 text-white hover:bg-pink-600 rounded-md px-2"
+            className="flex items-center space-x-2 py-2 border-b border-pink-300 hover:bg-pink-600 rounded-md px-2"
             onClick={() => setIsOpen(false)}
           >
             <User size={20} />
@@ -116,7 +145,7 @@ const SellerNavbar = () => {
               handleLogout();
               setIsOpen(false);
             }}
-            className="flex items-center w-full space-x-2 py-2 text-white hover:bg-pink-600 rounded-md px-2"
+            className="flex items-center w-full space-x-2 py-2 hover:bg-pink-600 rounded-md px-2"
           >
             <LogOut size={20} />
             <span>Logout</span>

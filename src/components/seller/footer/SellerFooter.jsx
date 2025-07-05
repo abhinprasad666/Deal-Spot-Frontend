@@ -1,46 +1,66 @@
-import React from "react";
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail } from "lucide-react";
 
 const SellerFooter = () => {
   return (
-    <footer className="bg-gray-100 text-gray-600 text-sm mt-10 border-t ">
-      <div className="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between gap-6">
-        
-        {/* ✅ Navigation Links */}
-        <div className="flex flex-col gap-2 md:gap-1">
-          <p className="font-semibold text-gray-800 mb-1">Quick Links</p>
-          <Link to="/seller/dashboard" className="hover:text-pink-600 transition">Dashboard</Link>
-          <Link to="/seller/products" className="hover:text-pink-600 transition">Products</Link>
-          <Link to="/seller/orders" className="hover:text-pink-600 transition">Orders</Link>
-          <Link to="/support" className="hover:text-pink-600 transition">Support</Link>
-        </div>
+    <footer className="bg-[#0b1120] text-white py-10 mt-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
-        {/* ✅ Contact Section */}
-        <div className="flex flex-col gap-2">
-          <p className="font-semibold text-gray-800 mb-1">Contact Us</p>
-          <a href="mailto:seller@smartshop.com" className="flex items-center gap-2 hover:text-pink-600 transition">
-            <Mail size={16} /> seller@smartshop.com
-          </a>
-        </div>
+          {/* Deal-Spot Seller Info */}
+          <div>
+            <h2 className="text-2xl font-bold mb-3">Deal-Spot Seller Hub</h2>
+            <p className="text-sm text-gray-300">
+              Empower your business by reaching millions of customers across India. Manage, sell, and grow with confidence.
+            </p>
+          </div>
 
-        {/* ✅ Social Icons */}
-        <div className="flex flex-col gap-2">
-          <p className="font-semibold text-gray-800 mb-1">Connect with us</p>
-          <div className="flex gap-4">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-pink-600 transition">
-              <Github size={20} />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-pink-600 transition">
-              <Linkedin size={20} />
-            </a>
+          {/* Seller Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li><Link to="/seller/dashboard" className="hover:underline">Dashboard</Link></li>
+              <li><Link to="/seller/products" className="hover:underline">Manage Products</Link></li>
+              <li><Link to="/seller/orders" className="hover:underline">Order History</Link></li>
+              <li><Link to="/seller/analytics" className="hover:underline">Analytics</Link></li>
+            </ul>
+          </div>
+
+          {/* Help & Resources */}
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Help & Support</h3>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li><Link to="/seller/support" className="hover:underline">Seller Support</Link></li>
+              <li><Link to="/seller/faq" className="hover:underline">FAQ</Link></li>
+              <li><Link to="/seller/policies" className="hover:underline">Seller Policies</Link></li>
+              <li><Link to="/seller/community" className="hover:underline">Community</Link></li>
+            </ul>
+          </div>
+
+          {/* Social + Contact */}
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Connect with Us</h3>
+            <div className="flex items-center gap-4 mt-2">
+              <a href="#" className="w-9 h-9 rounded-full bg-gray-700 hover:bg-[#1877f2] flex items-center justify-center transition-colors">
+                <FaFacebookF className="text-white" />
+              </a>
+              <a href="#" className="w-9 h-9 rounded-full bg-gray-700 hover:bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 flex items-center justify-center transition-all">
+                <FaInstagram className="text-white" />
+              </a>
+              <a href="#" className="w-9 h-9 rounded-full bg-gray-700 hover:bg-[#FF0000] flex items-center justify-center transition-colors">
+                <FaYoutube className="text-white" />
+              </a>
+            </div>
+            <p className="text-sm text-gray-300 mt-4">
+              📩 <Link to="/seller/contact" className="underline">Contact Seller Support</Link>
+            </p>
           </div>
         </div>
-      </div>
 
-      {/* ✅ Bottom Text */}
-      <div className="border-t text-center py-3 text-xs text-gray-500 bg-gray-50">
-        © {new Date().getFullYear()} SmartShop Seller. All rights reserved.
+        {/* Footer Bottom */}
+        <div className="border-t border-gray-700 mt-10 pt-4 text-center text-sm text-gray-400">
+        <p>© {new Date().getFullYear()} Deal-Spot. Powered by Sellers.</p>
+        </div>
       </div>
     </footer>
   );

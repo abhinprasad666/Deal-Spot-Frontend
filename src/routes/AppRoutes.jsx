@@ -66,7 +66,7 @@ const router = createBrowserRouter([
     path: "/seller",
     element: <SellerMainLayout/>,
     children: [
-      { path: "", element: <SellerDashboard /> }
+      { path: "/dashboard", element: <SellerDashboard /> }
     ],
   },
 
