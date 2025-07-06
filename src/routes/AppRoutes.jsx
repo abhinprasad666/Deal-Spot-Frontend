@@ -35,6 +35,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import SellerMainLayout from "../components/layouts/seller/sellerMainLayout";
 import SellerDashboard from "../components/seller/sellerDashboard/SellerDashboard";
 import SellerProducts from "../components/seller/products/SellerProducts";
+import AddProduct from "../components/seller/products/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -68,7 +69,8 @@ const router = createBrowserRouter([
     element: <SellerMainLayout/>,
     children: [
       { path: "dashboard", element: <SellerDashboard /> },
-      { path: "products", element: <SellerProducts/> }
+      { path: "products", element: <SellerProducts/> },
+      { path: "add-product", element: <AddProduct/> },
     ],
   },
 
