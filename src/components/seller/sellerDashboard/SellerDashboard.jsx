@@ -7,6 +7,7 @@ import {
   FaUsers,
   FaShoppingCart,
   FaExclamationTriangle,
+  FaStar,
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { getSellerStatus } from "../../../redux/actions/seller/statusAction";
@@ -20,7 +21,7 @@ const SellerDashboard = () => {
 
   useEffect(() => {
     dispatch(getSellerStatus);
-     dispatch(getSellerProducts);
+    dispatch(getSellerProducts);
   }, [dispatch]);
 
   return (
@@ -66,10 +67,15 @@ const SellerDashboard = () => {
               icon={FaUsers}
               gradient="from-blue-500 to-indigo-500"
             />
+            <DashboardCard
+              title="Total Reviews"
+              value={status?.totalReviews ?? 0}
+              icon={FaStar}
+              gradient="from-yellow-400 to-yellow-600"
+            />
           </div>
         )}
       </div>
- 
     </div>
   );
 };

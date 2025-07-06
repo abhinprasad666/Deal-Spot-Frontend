@@ -33,8 +33,8 @@ const EditProduct = () => {
 
     const { categories } = useSelector((state) => state.categories);
     const singleProductState = useSelector((state) => state.product);
-    const { product, } = singleProductState || {};
-const { loading,error,updateMessage} = useSelector((state) => state.sellerProducts);
+    const { product } = singleProductState || {};
+    const { loading, error, updateMessage } = useSelector((state) => state.sellerProducts);
 
     const [preview, setPreview] = useState(null);
     const [currentImage, setCurrentImage] = useState(null);
@@ -96,7 +96,7 @@ const { loading,error,updateMessage} = useSelector((state) => state.sellerProduc
         dispatch(updateProduct(productId, formData))
             .then(() => {
                 showToast("Product updated successfully!", "success");
-                dispatch(clearProductMessage())
+                dispatch(clearProductMessage());
             })
             .catch(() => {
                 showToast("Failed to update product", "error");
