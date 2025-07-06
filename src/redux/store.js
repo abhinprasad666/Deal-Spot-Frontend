@@ -9,7 +9,11 @@ import userProfile from "./slices/userProfileSlice"
 import review from "./slices/reviewsSlice"
 import cart from "./slices/productSlices/cartSlice"
 import order from "./slices/ordersSlice"
+
+//seller
 import status from "./slices/seller/sellerStatus"
+import sellerProducts from "./slices/seller/sellerProducts"
+
 export const store = configureStore({
     reducer: {
         products,
@@ -22,7 +26,9 @@ export const store = configureStore({
         review,
         cart,
         order,
-        status
+        //seller
+        status,
+        sellerProducts,
 
     },
    

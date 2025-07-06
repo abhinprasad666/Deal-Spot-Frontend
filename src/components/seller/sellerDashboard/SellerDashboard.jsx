@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSellerStatus } from "../../../redux/actions/seller/statusAction";
 import { useEffect } from "react";
 import Loader from "../../common/Loader";
+import { getSellerProducts } from "../../../redux/actions/seller/sellerProducts";
 
 const SellerDashboard = () => {
   const { status, loading, error } = useSelector((state) => state.status);
@@ -19,6 +20,7 @@ const SellerDashboard = () => {
 
   useEffect(() => {
     dispatch(getSellerStatus);
+     dispatch(getSellerProducts);
   }, [dispatch]);
 
   return (
@@ -67,6 +69,7 @@ const SellerDashboard = () => {
           </div>
         )}
       </div>
+ 
     </div>
   );
 };
