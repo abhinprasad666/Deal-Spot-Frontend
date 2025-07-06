@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersList } from "../../redux/actions/seller/usersListActions";
+import { User, Fingerprint } from "lucide-react"; // 👈 make sure this is installed
 
 const TotalUsersList = () => {
   const dispatch = useDispatch();
@@ -31,15 +32,19 @@ const TotalUsersList = () => {
       ) : (
         <div className="bg-white dark:bg-[#1f1f1f] rounded-xl shadow p-4">
           <ul className="space-y-3">
-            {usersList?.map((user) => (
+            {usersList.map((user) => (
               <li
                 key={user._id}
                 className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2"
               >
-                <span className="text-gray-800 dark:text-white font-medium">
+                <div className="flex items-center gap-2 text-gray-800 dark:text-white font-medium">
+                  <User className="w-4 h-4 text-blue-500" />
                   {user.name}
-                </span>
-                <span className="text-xs text-gray-500">{user._id}</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-gray-500">
+                  <Fingerprint className="w-4 h-4 text-gray-400" />
+                  {user._id}
+                </div>
               </li>
             ))}
           </ul>
