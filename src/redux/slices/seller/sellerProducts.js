@@ -6,7 +6,7 @@ const initialState = {
     error: null,
     productMessage: null,
     deleteMessage:null,
-    editMessage:null
+    updateMessage:null
 };
 
 const sellerProductslice = createSlice({
@@ -57,10 +57,29 @@ const sellerProductslice = createSlice({
             state.error = action.payload;
             state.deleteMessage=null
         },
+        //update product
+         //delete product
+        updateProductRequest: (state) => {
+            state.loading = true;
+         state.updateMessage=null
+        },
+        updateProductSuccess: (state, action) => {
+            state.loading = false;
+            state.productMessage = action.payload.message
+            state.updateMessage=true
+        },
+        updateProductFail: (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+            state.deleteMessage=null
+            state.updateMessage=null
+        },
         //clear message
         clearProductMessage: (state) => {
             state.loading = false;
             state.productMessage = null;
+             state.deleteMessage=null,
+             state.updateMessage=null
         },
     },
 });
@@ -78,6 +97,10 @@ export const {
     deleteProductRequest,
     deleteProductSuccess,
     deleteProductFail,
+    //update product
+    updateProductRequest,
+    updateProductSuccess,
+    updateProductFail,
     //clear product message
     clearProductMessage,
 } = sellerProductslice.actions;

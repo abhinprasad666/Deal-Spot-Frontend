@@ -1,6 +1,6 @@
 import axios from "axios";
 import axiosInstance from "../../../api/axiosInstance";
-import { addProductFail, addProductRequest, addProductSuccess, deleteProductFail, deleteProductRequest, deleteProductSuccess, getSellerProductsFail, getSellerProductsRequest, getSellerProductsSuccess } from "../../slices/seller/sellerProducts";
+import { addProductFail, addProductRequest, addProductSuccess, deleteProductFail, deleteProductRequest, deleteProductSuccess, getSellerProductsFail, getSellerProductsRequest, getSellerProductsSuccess, updateProductFail, updateProductRequest, updateProductSuccess } from "../../slices/seller/sellerProducts";
 
 
 
@@ -22,8 +22,6 @@ export const getSellerProducts= async (dispatch) => {
 //add new product
 
 export const createProduct=  productData=>async (dispatch) => {
-
-    console.log("add product data",productData)
    
     dispatch(addProductRequest());
     try {
@@ -56,6 +54,31 @@ export const deleteProduct= productId=> async (dispatch) => {
         console.log("delete data name ",data)
     } catch (error) {
         console.log("error in get seller delete product", error);
-        dispatch(deleteProductFail(error.response?.data?.error || "seller delete product fail"));
+        dispatch(deleteProductFail(error.response?.data?.error || "Seller delete product fail"));
+    }
+};
+
+//edit product
+export const updateProduct=  (productId,productData)=>async (dispatch) => {
+
+    console.log("update product id",productId)
+     console.log("update product data",productData)
+   
+    dispatch(updateProductRequest());
+    try {
+        const config = {
+            withCredentials: true,
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        };
+
+        const { data } = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/v1/product/${productId}`, productData, config);
+            
+        dispatch(updateProductSuccess(data));
+        console.log("seller edit product  product",data)
+    } catch (error) {
+        console.log("error in  seller edit product", error);
+        dispatch(updateProductFail(error.response?.data?.error || "Edit product fail"));
     }
 };
