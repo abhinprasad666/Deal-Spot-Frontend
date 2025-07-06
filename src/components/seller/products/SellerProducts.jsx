@@ -1,19 +1,28 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getSellerProducts } from "../../../redux/actions/seller/sellerProducts";
+import { deleteProduct, getSellerProducts } from "../../../redux/actions/seller/sellerProducts";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrash, FaStar, FaBoxOpen } from "react-icons/fa";
 import Loader from "../../common/Loader";
+import { showToast } from "../../../utils/toastUtils";
+import { clearProductMessage } from "../../../redux/slices/seller/sellerProducts";
 
 const SellerProducts = () => {
   const dispatch = useDispatch();
-  const { sellerProducts, loading, error } = useSelector(
-    (state) => state.sellerProducts
-  );
+  
+  const { sellerProducts, loading, error,productMessage,deleteMessage} = useSelector((state) => state.sellerProducts);
 
   useEffect(() => {
     dispatch(getSellerProducts);
-  }, [dispatch]);
+    if(deleteMessage){
+       showToast(`${productMessage} Deleted Successfully`, "success", "product-toast");
+        dispatch(clearProductMessage());
+    }
+       if(error){
+       showToast(error, "error", "product-toast");
+        dispatch(clearProductMessage());
+    }
+  }, [dispatch,deleteMessage,productMessage,error]);
 
   return (
     <div className="p-4">
@@ -79,6 +88,7 @@ const SellerProducts = () => {
                   <FaEdit /> Edit
                 </Link>
                 <button
+                onClick={()=>dispatch(deleteProduct(product._id))}
                   className="flex items-center gap-1 px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition"
                 >
                   <FaTrash /> Delete

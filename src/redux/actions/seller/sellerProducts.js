@@ -1,6 +1,6 @@
 import axios from "axios";
 import axiosInstance from "../../../api/axiosInstance";
-import { addProductFail, addProductRequest, addProductSuccess, getSellerProductsFail, getSellerProductsRequest, getSellerProductsSuccess } from "../../slices/seller/sellerProducts";
+import { addProductFail, addProductRequest, addProductSuccess, deleteProductFail, deleteProductRequest, deleteProductSuccess, getSellerProductsFail, getSellerProductsRequest, getSellerProductsSuccess } from "../../slices/seller/sellerProducts";
 
 
 
@@ -41,5 +41,21 @@ export const createProduct=  productData=>async (dispatch) => {
     } catch (error) {
         console.log("error in  seller add product", error);
         dispatch(addProductFail(error.response?.data?.error || "add product fail"));
+    }
+};
+
+//delete product
+
+export const deleteProduct= productId=> async (dispatch) => {
+
+   console.log("product id delete",productId)
+    dispatch(deleteProductRequest());
+    try {
+        const { data } = await axiosInstance.delete(`${import.meta.env.VITE_API_BASE_URL}/api/v1/product/${productId}`);
+        dispatch(deleteProductSuccess(data));
+        console.log("delete data name ",data)
+    } catch (error) {
+        console.log("error in get seller delete product", error);
+        dispatch(deleteProductFail(error.response?.data?.error || "seller delete product fail"));
     }
 };

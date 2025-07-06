@@ -47,7 +47,6 @@ const AddProduct = () => {
 
    const { productMessage, error, loading } = useSelector((state) => state.sellerProducts);
   const { categories } = useSelector((state) => state.categories);
- console.log('loading',loading)
 
   const [preview, setPreview] = useState(null);
 
