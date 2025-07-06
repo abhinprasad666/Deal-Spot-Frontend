@@ -13,7 +13,7 @@ import order from "./slices/ordersSlice"
 //seller
 import status from "./slices/seller/sellerStatus"
 import sellerProducts from "./slices/seller/sellerProducts"
-
+import sellerOrdersList from "./slices/seller/orderListSlice"
 export const store = configureStore({
     reducer: {
         products,
@@ -29,6 +29,7 @@ export const store = configureStore({
         //seller
         status,
         sellerProducts,
+        sellerOrdersList
 
     },
    

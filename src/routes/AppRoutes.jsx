@@ -37,6 +37,7 @@ import SellerDashboard from "../components/seller/sellerDashboard/SellerDashboar
 import SellerProducts from "../components/seller/products/SellerProducts";
 import AddProduct from "../components/seller/products/AddProduct";
 import EditProduct from "../components/seller/products/EditProduct";
+import SellerOrdersList from "../components/seller/orderList/SellerOrdersList";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,7 @@ const router = createBrowserRouter([
       { path: "products", element: <SellerProducts/> },
       { path: "add-product", element: <AddProduct/> },
       { path: "edit-product/:productId", element: <EditProduct/> },
+      { path: "orders", element: <SellerOrdersList/> },
     ],
   },
 
