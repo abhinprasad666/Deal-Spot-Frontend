@@ -7,9 +7,9 @@ import { FaEdit, FaCloudUploadAlt, FaBoxes, FaCheckCircle, FaInfoCircle } from "
 import { useParams } from "react-router-dom";
 import { getCategories } from "../../../redux/actions/productActions/categoriesActions";
 import { showToast } from "../../../utils/toastUtils";
-import { updateProduct } from "../../../redux/actions/seller/sellerProducts";
+import { updateProduct } from "../../../redux/actions/seller/sellerProductsActions";
 import { getProduct } from "../../../redux/actions/productActions/singleProductActions";
-import { clearProductMessage } from "../../../redux/slices/seller/sellerProducts";
+import { clearProductMessage } from "../../../redux/slices/seller/sellerProductsSlice";
 
 // Validation schema
 const schema = yup.object().shape({

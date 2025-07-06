@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteProduct, getSellerProducts } from "../../../redux/actions/seller/sellerProducts";
+import { deleteProduct, getSellerProducts } from "../../../redux/actions/seller/sellerProductsActions";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrash, FaStar, FaBoxOpen } from "react-icons/fa";
 import Loader from "../../common/Loader";
 import { showToast } from "../../../utils/toastUtils";
-import { clearProductMessage } from "../../../redux/slices/seller/sellerProducts";
+import { clearProductMessage } from "../../../redux/slices/seller/sellerProductsSlice";
 
 const SellerProducts = () => {
   const dispatch = useDispatch();

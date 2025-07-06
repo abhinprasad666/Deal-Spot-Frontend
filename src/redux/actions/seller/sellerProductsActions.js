@@ -1,6 +1,6 @@
 import axios from "axios";
 import axiosInstance from "../../../api/axiosInstance";
-import { addProductFail, addProductRequest, addProductSuccess, deleteProductFail, deleteProductRequest, deleteProductSuccess, getSellerProductsFail, getSellerProductsRequest, getSellerProductsSuccess, updateProductFail, updateProductRequest, updateProductSuccess } from "../../slices/seller/sellerProducts";
+import { addProductFail, addProductRequest, addProductSuccess, deleteProductFail, deleteProductRequest, deleteProductSuccess, getSellerProductsFail, getSellerProductsRequest, getSellerProductsSuccess, updateProductFail, updateProductRequest, updateProductSuccess } from "../../slices/seller/sellerProductsSlice";
 
 
 

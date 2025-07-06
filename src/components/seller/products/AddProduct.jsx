@@ -10,10 +10,10 @@ import {
   FaBoxes,
   FaInfoCircle,
 } from "react-icons/fa";
-import { createProduct } from "../../../redux/actions/seller/sellerProducts";
+import { createProduct } from "../../../redux/actions/seller/sellerProductsActions";
 import { showToast } from "../../../utils/toastUtils";
 import { getCategories } from "../../../redux/actions/productActions/categoriesActions";
-import { clearProductMessage } from "../../../redux/slices/seller/sellerProducts";
+import { clearProductMessage } from "../../../redux/slices/seller/sellerProductsSlice";
 import Loader from "../../common/Loader";
 
 

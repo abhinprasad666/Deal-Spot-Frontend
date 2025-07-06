@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSellerStatus } from "../../../redux/actions/seller/statusAction";
 import { useEffect } from "react";
 import Loader from "../../common/Loader";
-import { getSellerProducts } from "../../../redux/actions/seller/sellerProducts";
+import { getSellerProducts } from "../../../redux/actions/seller/sellerProductsActions";
 
 const SellerDashboard = () => {
   const { status, loading, error } = useSelector((state) => state.status);

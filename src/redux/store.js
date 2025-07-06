@@ -12,7 +12,7 @@ import order from "./slices/ordersSlice"
 
 //seller
 import status from "./slices/seller/sellerStatus"
-import sellerProducts from "./slices/seller/sellerProducts"
+import sellerProducts from "./slices/seller/sellerProductsSlice"
 import sellerOrdersList from "./slices/seller/orderListSlice"
 import usersList from "./slices/seller/getUsersSlice"
 
