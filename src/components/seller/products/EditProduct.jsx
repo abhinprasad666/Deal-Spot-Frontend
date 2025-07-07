@@ -49,6 +49,7 @@ const EditProduct = () => {
     } = useForm({ resolver: yupResolver(schema) });
 
     useEffect(() => {
+        
         dispatch(getCategories);
         dispatch(getProduct(productId));
     }, [dispatch, productId]);
@@ -96,6 +97,7 @@ const EditProduct = () => {
 
         dispatch(updateProduct(productId, formData))
             .then(() => {
+               
                 showToast("Product updated successfully!", "success");
                 dispatch(clearProductMessage());
             })

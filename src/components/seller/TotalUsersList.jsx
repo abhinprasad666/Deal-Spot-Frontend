@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersList } from "../../redux/actions/seller/usersListActions";
 import { User, Fingerprint } from "lucide-react"; // 👈 make sure this is installed
+import Loader from "../common/Loader";
+
 
 const TotalUsersList = () => {
   const dispatch = useDispatch();
@@ -12,7 +14,7 @@ const TotalUsersList = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <p className="p-4 text-gray-500">Loading users...</p>;
+    return <Loader message={"Loading users..."}/>;
   }
 
   return (
@@ -42,8 +44,8 @@ const TotalUsersList = () => {
                   {user.name}
                 </div>
                 <div className="flex items-center gap-2 text-xs text-gray-500">
-                  <Fingerprint className="w-4 h-4 text-gray-400" />
-                  {user._id}
+                  <Fingerprint className="w-4 h-4 text-green-400" />
+              {user._id}
                 </div>
               </li>
             ))}

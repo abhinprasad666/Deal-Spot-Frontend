@@ -15,7 +15,7 @@ import status from "./slices/seller/sellerStatus"
 import sellerProducts from "./slices/seller/sellerProductsSlice"
 import sellerOrdersList from "./slices/seller/orderListSlice"
 import usersList from "./slices/seller/getUsersSlice"
-
+import sellerReviews from "./slices/seller/sellerReviewsSlice"
 export const store = configureStore({
     reducer: {
         products,
@@ -33,6 +33,7 @@ export const store = configureStore({
         sellerProducts,
         sellerOrdersList,
         usersList,
+        sellerReviews,
 
     },
    
