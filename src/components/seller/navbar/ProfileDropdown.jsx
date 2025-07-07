@@ -8,7 +8,7 @@ const ProfileDropdown = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log("Logged out");
+    console.log("/Logged out");
     navigate("/login");
   };
 
@@ -24,14 +24,14 @@ const ProfileDropdown = () => {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <button
+      <Link to={"seller/profile"}
         onClick={() => setOpen(!open)}
         className="flex items-center gap-1 text-gray-700 hover:text-pink-600 text-sm font-medium"
       >
         <User size={18} />
         Profile
         <span className="ml-1">▼</span>
-      </button>
+      </Link>
 
       {open && (
         <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-md py-2 z-50">

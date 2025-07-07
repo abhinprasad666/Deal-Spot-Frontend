@@ -41,6 +41,8 @@ import SellerOrdersList from "../components/seller/orderList/SellerOrdersList";
 import TotalUsersList from "../components/seller/TotalUsersList";
 import SellerReviewList from "../components/seller/reviewList/SellerReviewList";
 import SellerProductReviews from "../components/seller/reviewList/SellerProductReviews";
+import SellerProfile from "../components/seller/profile/SellerProfile";
+import UpdateSellerProfile from "../components/seller/profile/UpdateSellerProfile";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +83,8 @@ const router = createBrowserRouter([
       { path: "users", element: <TotalUsersList/> },
       { path: "reviews", element: <SellerReviewList/> },
       { path: "product/:productId/reviews", element: <SellerProductReviews/> },
+      { path: "profile", element: <SellerProfile/> },
+      { path: "update-profile", element: <UpdateSellerProfile/> },
     ],
   },
 

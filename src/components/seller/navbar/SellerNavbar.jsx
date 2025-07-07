@@ -11,17 +11,18 @@ import {
   LogOut,
   Moon,
   Sun,
+  Home,
+  Bell,
 } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const SellerNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false); // visual theme toggle
-
+  const [isDark, setIsDark] = useState(false);
+  const { seller, error } = useSelector((state) => state.sellerData);
   const navLinks = [
     { name: "Dashboard", path: "/seller/dashboard", icon: <LayoutDashboard size={20} /> },
-    { name: "Products", path: "/seller/products", icon: <Package size={20} /> },
     { name: "Add Product", path: "/seller/add-product", icon: <PlusCircle size={20} /> },
-    { name: "Orders", path: "/seller/orders", icon: <ShoppingBag size={20} /> },
   ];
 
   const handleLogout = () => {
@@ -38,24 +39,29 @@ const SellerNavbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-
           {/* Logo */}
-          <Link to="/seller/dashboard" className="flex flex-col leading-tight">
+          <Link to="/seller" className="flex flex-col leading-tight">
             <span className="text-xl sm:text-2xl font-bold tracking-tight">
-              <span className={`${isDark ? "text-white" : "text-white"}`}>Deal</span>
-              <span className={`${isDark ? "text-yellow-400" : "text-yellow-300"}`}>Spot</span>
+              <span className="text-white">Deal</span>
+              <span className="text-yellow-300">Spot</span>
             </span>
-            <span
-              className={`text-xs sm:text-sm font-medium tracking-wide pl-1 ${
-                isDark ? "text-gray-300" : "text-pink-100"
-              }`}
-            >
+            <span className="text-xs sm:text-sm font-medium tracking-wide pl-1 text-pink-100">
               Seller Panel
             </span>
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-6">
+            {/* Home */}
+            <Link
+              to="/seller"
+              className="flex items-center space-x-1 hover:underline font-medium"
+            >
+              <Home size={20} />
+              <span>Home</span>
+            </Link>
+
+            {/* Navigation Links */}
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -67,10 +73,21 @@ const SellerNavbar = () => {
               </Link>
             ))}
 
-            {/* Profile */}
+            {/* Notification Bell */}
+            <button className="relative hover:bg-white/10 p-1 rounded-full">
+              <Bell size={20} />
+              {/* Optional notification dot */}
+              <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full" />
+            </button>
+
+            {/* Profile Dropdown */}
             <div className="relative group">
-              <button className="flex items-center space-x-1 hover:underline">
-                <User className="w-5 h-5" />
+              <button className="flex items-center space-x-2 hover:underline">
+                <img
+                  src={seller?seller.profilePic :"https://i.pravatar.cc/150?img=3"}
+                  alt="Profile"
+                  className="w-6 h-6 rounded-full"
+                />
                 <span>Profile</span>
               </button>
               <div className="absolute right-0 mt-2 w-44 bg-white text-black rounded-md shadow-md opacity-0 group-hover:opacity-100 transition duration-200 z-50">
@@ -119,6 +136,17 @@ const SellerNavbar = () => {
             isDark ? "bg-gray-800" : "bg-pink-400"
           }`}
         >
+          {/* Home */}
+          <Link
+            to="/seller"
+            className="flex items-center space-x-2 py-2 border-b border-pink-300 hover:bg-pink-600 rounded-md px-2"
+            onClick={() => setIsOpen(false)}
+          >
+            <Home size={20} />
+            <span>Home</span>
+          </Link>
+
+          {/* Links */}
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -131,6 +159,7 @@ const SellerNavbar = () => {
             </Link>
           ))}
 
+          {/* Profile + Logout */}
           <Link
             to="/seller/profile"
             className="flex items-center space-x-2 py-2 border-b border-pink-300 hover:bg-pink-600 rounded-md px-2"

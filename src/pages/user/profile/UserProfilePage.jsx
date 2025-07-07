@@ -21,6 +21,7 @@ import { logout } from "../../../redux/actions/authActions/logoutAction";
 import { clearCartState } from "../../../redux/slices/productSlices/cartSlice";
 import userPlaceholder from "../../../assets/icons/person.png"
 
+
 const UserProfilePage = () => {
     const dispatch = useDispatch();
     const { user, loading } = useSelector((state) => state.auth);
