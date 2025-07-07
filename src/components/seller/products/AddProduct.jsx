@@ -14,10 +14,11 @@ import { createProduct } from "../../../redux/actions/seller/sellerProductsActio
 import { showToast } from "../../../utils/toastUtils";
 import { getCategories } from "../../../redux/actions/productActions/categoriesActions";
 import { clearProductMessage } from "../../../redux/slices/seller/sellerProductsSlice";
-import Loader from "../../common/Loader";
+import ButtonLoader from "../../common/ButtonLoader";
 
 
-//Schema
+
+// Validation Schema
 const schema = yup.object().shape({
   title: yup.string().required("Product title is required"),
   description: yup.string().required("Description is required").min(10),
@@ -45,7 +46,7 @@ const schema = yup.object().shape({
 const AddProduct = () => {
   const dispatch = useDispatch();
 
-   const { productMessage, error, loading } = useSelector((state) => state.sellerProducts);
+  const { productMessage, error, loading } = useSelector((state) => state.sellerProducts);
   const { categories } = useSelector((state) => state.categories);
 
   const [preview, setPreview] = useState(null);
@@ -58,7 +59,7 @@ const AddProduct = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  // Image Preview
+  //  Image Preview
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -73,7 +74,6 @@ const AddProduct = () => {
       ...data,
       discount: data.discount ?? 0,
     };
-
     dispatch(createProduct(formattedData));
   };
 
@@ -102,16 +102,14 @@ const AddProduct = () => {
             <FaBoxes /> Start Selling Smart
           </h2>
           <p className="text-sm leading-relaxed opacity-90">
-            Showcase your products with style. Make sure to provide all key
-            details and stand out from the crowd. 🛍️
+            Showcase your products with style. Provide all key details and stand out from the crowd. 🛍️
           </p>
           <ul className="mt-6 space-y-3 text-sm">
             <li className="flex items-center gap-2">
               <FaCheckCircle className="text-green-300" /> Clear product name
             </li>
             <li className="flex items-center gap-2">
-              <FaCheckCircle className="text-green-300" /> Right category &
-              stock
+              <FaCheckCircle className="text-green-300" /> Right category & stock
             </li>
             <li className="flex items-center gap-2">
               <FaCheckCircle className="text-green-300" /> Upload good images
@@ -144,9 +142,7 @@ const AddProduct = () => {
               className="mt-1 w-full p-2.5 rounded-md bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white"
             />
             {errors.title && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.title.message}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
             )}
           </div>
 
@@ -161,9 +157,7 @@ const AddProduct = () => {
               className="mt-1 w-full p-2.5 rounded-md bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white"
             ></textarea>
             {errors.description && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.description.message}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>
             )}
           </div>
 
@@ -179,9 +173,7 @@ const AddProduct = () => {
                 className="mt-1 w-full p-2.5 rounded-md bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white"
               />
               {errors.price && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.price.message}
-                </p>
+                <p className="text-red-500 text-sm mt-1">{errors.price.message}</p>
               )}
             </div>
 
@@ -196,9 +188,7 @@ const AddProduct = () => {
                 className="mt-1 w-full p-2.5 rounded-md bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white"
               />
               {errors.discount && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.discount.message}
-                </p>
+                <p className="text-red-500 text-sm mt-1">{errors.discount.message}</p>
               )}
             </div>
 
@@ -212,9 +202,7 @@ const AddProduct = () => {
                 className="mt-1 w-full p-2.5 rounded-md bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white"
               />
               {errors.stock && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.stock.message}
-                </p>
+                <p className="text-red-500 text-sm mt-1">{errors.stock.message}</p>
               )}
             </div>
           </div>
@@ -236,9 +224,7 @@ const AddProduct = () => {
               ))}
             </select>
             {errors.category && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.category.message}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.category.message}</p>
             )}
           </div>
 
@@ -269,9 +255,7 @@ const AddProduct = () => {
               </div>
             )}
             {errors.image && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.image.message}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.image.message}</p>
             )}
           </div>
 
@@ -280,12 +264,19 @@ const AddProduct = () => {
             type="submit"
             disabled={loading}
             className={`w-full flex justify-center items-center gap-2 ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-green-600 hover:bg-green-700"
+              loading ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
             } text-white text-lg font-semibold py-3 rounded-lg transition`}
           >
-            <FaPlus /> {loading ? "Adding..." : "Add Product"}
+            {loading ? (
+              <>
+                <ButtonLoader size={6} color="#fff"  message="Product Uploading "messageWidth="sm"/>
+              </>
+            ) : (
+              <>
+                <FaPlus />
+                <span>Add Product</span>
+              </>
+            )}
           </button>
         </form>
       </div>

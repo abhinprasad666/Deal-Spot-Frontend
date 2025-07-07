@@ -6,6 +6,7 @@ import { FaEdit, FaTrash, FaStar, FaBoxOpen } from "react-icons/fa";
 import Loader from "../../common/Loader";
 import { showToast } from "../../../utils/toastUtils";
 import { clearProductMessage } from "../../../redux/slices/seller/sellerProductsSlice";
+import ButtonLoader from "../../common/ButtonLoader";
 
 const SellerProducts = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const SellerProducts = () => {
       </h1>
 
       {loading ? (
-        <Loader />
+        <Loader message={"Loading Products Please Wait..."}/>
       ) : error ? (
         <p className="text-red-500 text-center">{error}</p>
       ) : sellerProducts.length === 0 ? (
@@ -91,7 +92,7 @@ const SellerProducts = () => {
                 onClick={()=>dispatch(deleteProduct(product._id))}
                   className="flex items-center gap-1 px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition"
                 >
-                  <FaTrash /> Delete
+                  <FaTrash /> {deleteMessage ?  <ButtonLoader size={4} color="#fff"  message="Deleting"/>: "Delete"}
                 </button>
               </div>
             </div>

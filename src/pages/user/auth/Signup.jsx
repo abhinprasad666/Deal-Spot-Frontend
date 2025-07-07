@@ -4,6 +4,7 @@ import { showToast } from "../../../utils/toastUtils";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../../redux/actions/authActions/registerActions";
+import ButtonLoader from "../../../components/common/ButtonLoader";
 
 const Signup = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -12,7 +13,7 @@ const Signup = () => {
 
   const dispatch = useDispatch();
     const navigate = useNavigate(); //Hook to navigate programmatically
-    const { error, isAuthenticated } = useSelector((state) => state.auth);
+    const { error, isAuthenticated,loading } = useSelector((state) => state.auth);
       // Navigate to homepage on successful login
       useEffect(() => {
           if (isAuthenticated) {
@@ -144,12 +145,18 @@ const Signup = () => {
           )}
         </div>
 
-        <button
-          type="submit"
-          className="w-full bg-pink-600 text-white py-2 rounded-md hover:bg-pink-700 transition"
-        >
-          Sign Up
-        </button>
+       <button
+  type="submit"
+  disabled={loading}
+  className={`w-full text-white py-2 rounded-md transition flex justify-center items-center 
+    ${loading ? "bg-pink-400 cursor-not-allowed" : "bg-pink-600 hover:bg-pink-700"}`}
+>
+  {loading ? (
+    <ButtonLoader size={6} color="#fff" message="Registering your account" />
+  ) : (
+    "Register"
+  )}
+</button>
 
         <p className="text-center mt-4 text-sm">
           Already have an account?{" "}

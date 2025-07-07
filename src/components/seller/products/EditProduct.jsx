@@ -10,6 +10,7 @@ import { showToast } from "../../../utils/toastUtils";
 import { updateProduct } from "../../../redux/actions/seller/sellerProductsActions";
 import { getProduct } from "../../../redux/actions/productActions/singleProductActions";
 import { clearProductMessage } from "../../../redux/slices/seller/sellerProductsSlice";
+import ButtonLoader from "../../common/ButtonLoader";
 
 // Validation schema
 const schema = yup.object().shape({
@@ -237,7 +238,7 @@ const EditProduct = () => {
                             loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
                         } text-white font-semibold py-3 rounded-lg transition`}
                     >
-                        <FaEdit /> {loading ? "Updating..." : "Update Product"}
+                        <FaEdit /> {loading ?  <ButtonLoader size={6} color="#fff"  message="Updating"/>: "Update Product"}
                     </button>
                 </form>
             </div>

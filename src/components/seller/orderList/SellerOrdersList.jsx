@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSellerOrders } from "../../../redux/actions/seller/orderListActions";
 import CancelOrderModal from "./CancelOrderModal";
+import Loader from "../../common/Loader";
 
 const SellerOrdersList = () => {
   const dispatch = useDispatch();
-  const { orders } = useSelector((state) => state.sellerOrdersList);
+  const { orders,loading } = useSelector((state) => state.sellerOrdersList);
 
   const [selectedOrderId, setSelectedOrderId] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -38,6 +39,7 @@ const SellerOrdersList = () => {
       <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-gray-800 dark:text-white">
         🧾 Seller Orders
       </h2>
+     { loading? <Loader message={"Loading Orders Please Wait..."}/>:<div>
       <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
         Total Orders: {orders.length}
       </p>
@@ -147,6 +149,7 @@ const SellerOrdersList = () => {
           onSubmit={handleCancelSubmit}
         />
       )}
+      </div>}
     </div>
   );
 };

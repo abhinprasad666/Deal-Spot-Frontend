@@ -1,4 +1,6 @@
-// pages/seller/SellerDashboard.jsx
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import DashboardCard from "./DashboardCard";
 import {
@@ -9,15 +11,15 @@ import {
   FaExclamationTriangle,
   FaStar,
 } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { getSellerStatus } from "../../../redux/actions/seller/statusAction";
-import { useEffect } from "react";
+
 import Loader from "../../common/Loader";
+import { getSellerStatus } from "../../../redux/actions/seller/statusAction";
 import { getSellerProducts } from "../../../redux/actions/seller/sellerProductsActions";
 
 const SellerDashboard = () => {
   const { status, loading, error } = useSelector((state) => state.status);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getSellerStatus);
@@ -48,30 +50,35 @@ const SellerDashboard = () => {
               value={status?.totalProducts ?? 0}
               icon={FaBoxOpen}
               gradient="from-green-500 to-teal-500"
+              onViewMore={() => navigate("/seller/products")}
             />
             <DashboardCard
               title="Total Orders"
               value={status?.totalOrders ?? 0}
               icon={FaShoppingCart}
               gradient="from-orange-500 to-amber-500"
+              onViewMore={() => navigate("/seller/orders")}
             />
             <DashboardCard
               title="Out of Stock"
               value={status?.outOfStock ?? 0}
               icon={FaExclamationTriangle}
               gradient="from-rose-500 to-pink-500"
+              onViewMore={() => navigate("/seller/products?filter=out-of-stock")}
             />
             <DashboardCard
               title="Total Users"
               value={status?.totalUsers ?? 0}
               icon={FaUsers}
               gradient="from-blue-500 to-indigo-500"
+              onViewMore={() => navigate("/seller/users")}
             />
             <DashboardCard
               title="Total Reviews"
               value={status?.totalReviews ?? 0}
               icon={FaStar}
               gradient="from-yellow-400 to-yellow-600"
+              onViewMore={() => navigate("/seller/reviews")}
             />
           </div>
         )}
