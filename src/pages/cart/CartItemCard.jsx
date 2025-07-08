@@ -6,7 +6,7 @@ const CartItemCard = ({ item, onIncrement, onDecrement, onDelete, activeItemId, 
     const isUpdatingQty = activeItemId === item.productId._id;
 
     return (
-        <div className="flex flex-col sm:flex-row items-center bg-white border border-gray-200 shadow-sm p-4 rounded-2xl relative">
+        <div className="dark:bg-gray-700 flex flex-col sm:flex-row items-center bg-white border border-gray-200 shadow-sm p-4 rounded-2xl relative">
             <button
                 onClick={() => onDelete(item.productId._id)}
                 className="absolute top-2 right-2 text-red-500 hover:text-red-700"
@@ -24,9 +24,9 @@ const CartItemCard = ({ item, onIncrement, onDecrement, onDelete, activeItemId, 
                 <h2 className="text-lg font-semibold text-gray-900">{item.productName}</h2>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-2 text-sm text-gray-600">
-                    <p><span className="font-medium">Price:</span> ₹{item.price}</p>
-                    <p><span className="font-medium text-green-600">Discount:</span> ₹{item.discount}</p>
-                    <p><span className="font-medium">Delivery:</span> ₹{item.deliveryCharge}</p>
+                    <p className="dark:text-gray-300"><span className="font-medium">Price:</span> ₹{item.price}</p>
+                    <p className="dark:text-gray-200"><span className="font-medium text-green-600 dark:text-green-500">Discount:</span> ₹{item.discount}</p>
+                    <p className="dark:text-gray-300"><span className="font-medium">Delivery:</span> ₹{item.deliveryCharge}</p>
                 </div>
 
                 <div className="mt-3 flex items-center gap-3">
@@ -40,7 +40,7 @@ const CartItemCard = ({ item, onIncrement, onDecrement, onDelete, activeItemId, 
                             -
                         </button>
 
-                        <span className="w-8 h-8 flex items-center justify-center text-gray-800 text-sm">
+                        <span className="w-8 h-8 flex items-center justify-center text-gray-800 text-sm dark:text-gray-300">
                             {isUpdatingQty ? <Loader size="20" /> : item.quantity}
                         </span>
 
@@ -53,7 +53,7 @@ const CartItemCard = ({ item, onIncrement, onDecrement, onDelete, activeItemId, 
                         </button>
                     </div>
 
-                    <span className="ml-auto font-semibold text-sm text-gray-800">
+                    <span className="ml-auto font-semibold text-sm text-gray-800 dark:text-gray-300">
                         Subtotal: ₹{item.subtotal}
                     </span>
                 </div>

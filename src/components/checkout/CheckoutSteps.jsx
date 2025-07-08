@@ -13,7 +13,7 @@ const CheckoutSteps = ({ shipping, confirmOrder, payment }) => {
   const activeStatus = [shipping, confirmOrder, payment];
 
   return (
-    <div className="sticky top-0 z-30 bg-white shadow-sm mt-10">
+    <div className="sticky top-0 z-30 bg-white shadow-sm mt-10 dark:bg-gray-800">
       <div className="flex items-center justify-center py-4 px-2 sm:px-6">
         <div className="flex w-full max-w-4xl items-center justify-between relative">
           {steps.map((step, index) => {

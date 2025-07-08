@@ -46,7 +46,7 @@ const ShippingAddressPage = () => {
   }, [selectedCountry, countries]);
 
   return (
-    <div className="pt-10 bg-gray-100 min-h-screen">
+    <div className="pt-10 bg-gray-100 min-h-screen dark:bg-gray-900">
     
       <CheckoutSteps shipping={true} confirmOrder={false} payment={false} />
    {shippingInfo? <ShippingPreview shippingInfo={shippingAddress}/>:
@@ -54,7 +54,7 @@ const ShippingAddressPage = () => {
       <div className="flex justify-center px-4 py-6">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-full max-w-3xl bg-white rounded-md shadow-md p-6 space-y-4"
+          className="w-full max-w-3xl bg-white rounded-md shadow-md p-6 space-y-4  dark:bg-gray-800"
         >
           {/* Title */}
           <h2 className="text-xl font-semibold text-gray-800 text-center flex justify-center items-center gap-2">

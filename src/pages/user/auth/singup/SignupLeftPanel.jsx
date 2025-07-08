@@ -3,7 +3,7 @@ import { CheckCircle, UserPlus } from "lucide-react";
 
 const SignupLeftPanel = () => {
   return (
-    <div className="md:w-1/2 flex flex-col justify-center items-start p-12 bg-white shadow-md">
+    <div className="md:w-1/2 flex flex-col justify-center items-start p-12 bg-white shadow-md dark:bg-gray-900 ">
       <h1 className="text-4xl font-extrabold text-pink-600 mb-4 animate-bounce flex items-center gap-2">
         <UserPlus className="w-8 h-8" /> DealSpot
       </h1>

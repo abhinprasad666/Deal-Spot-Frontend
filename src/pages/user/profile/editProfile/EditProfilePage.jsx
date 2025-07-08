@@ -56,8 +56,8 @@ const EditProfilePage = () => {
             {isUploading ? (
                 <Loader message={"Updating your information. This may take a moment."} />
             ) : (
-                <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50">
-                    <div className="w-full max-w-xl bg-white rounded-xl shadow-md p-5">
+                <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50 dark:bg-gray-900">
+                    <div className="w-full max-w-xl bg-white rounded-xl shadow-md p-5 dark:bg-gray-700">
                         {/* Back Button */}
                         <button
                             onClick={() => {
@@ -86,7 +86,7 @@ const EditProfilePage = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-sm">
                             {/* Name */}
                             <div>
-                                <label className="block text-gray-700 font-medium">Name</label>
+                                <label className="block text-gray-700 font-medium dark:text-gray-200">Name</label>
                                 <input
                                     type="text"
                                     autoComplete="name"
@@ -98,7 +98,7 @@ const EditProfilePage = () => {
 
                             {/* Email */}
                             <div>
-                                <label className="block text-gray-700 font-medium">Email</label>
+                                <label className="block text-gray-700 font-medium dark:text-gray-200">Email</label>
                                 <input
                                     type="email"
                                     autoComplete="email"
@@ -116,7 +116,7 @@ const EditProfilePage = () => {
 
                             {/* Current Password */}
                             <div>
-                                <label className="block text-gray-700 font-medium">Current Password</label>
+                                <label className="block text-gray-700 font-medium dark:text-gray-200">Current Password</label>
                                 <div className="relative">
                                     <input
                                         type={showCurrent ? "text" : "password"}
@@ -129,7 +129,7 @@ const EditProfilePage = () => {
                                     />
                                     <span
                                         onClick={() => setShowCurrent(!showCurrent)}
-                                        className="absolute top-3 right-3 cursor-pointer text-gray-500"
+                                        className="absolute top-3 right-3 cursor-pointer text-gray-500 dark:text-gray-200"
                                     >
                                         {showCurrent ? <FaEyeSlash /> : <FaEye />}
                                     </span>
@@ -141,7 +141,7 @@ const EditProfilePage = () => {
 
                             {/* New Password */}
                             <div>
-                                <label className="block text-gray-700 font-medium">New Password</label>
+                                <label className="block text-gray-700 font-medium dark:text-gray-200">New Password</label>
                                 <div className="relative">
                                     <input
                                         type={showNew ? "text" : "password"}
@@ -154,7 +154,7 @@ const EditProfilePage = () => {
                                     />
                                     <span
                                         onClick={() => setShowNew(!showNew)}
-                                        className="absolute top-3 right-3 cursor-pointer text-gray-500"
+                                        className="absolute top-3 right-3 cursor-pointer text-gray-500 dark:text-gray-200"
                                     >
                                         {showNew ? <FaEyeSlash /> : <FaEye />}
                                     </span>
@@ -166,7 +166,7 @@ const EditProfilePage = () => {
 
                             {/* Confirm Password */}
                             <div>
-                                <label className="block text-gray-700 font-medium">Confirm Password</label>
+                                <label className="block text-gray-700 font-medium dark:text-gray-200">Confirm Password</label>
                                 <div className="relative">
                                     <input
                                         type={showConfirm ? "text" : "password"}
@@ -179,7 +179,7 @@ const EditProfilePage = () => {
                                     />
                                     <span
                                         onClick={() => setShowConfirm(!showConfirm)}
-                                        className="absolute top-3 right-3 cursor-pointer text-gray-500"
+                                        className="absolute top-3 right-3 cursor-pointer text-gray-500 dark:text-gray-200"
                                     >
                                         {showConfirm ? <FaEyeSlash /> : <FaEye />}
                                     </span>
@@ -201,7 +201,7 @@ const EditProfilePage = () => {
                 </div>
             )}
         </div>
-    );
-};
+    )
+}
 
 export default EditProfilePage;

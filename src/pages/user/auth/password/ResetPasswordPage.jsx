@@ -47,8 +47,8 @@ const ResetPasswordPage = () => {
             {loading ? (
                 <Loader />
             ) : (
-                <div className="min-h-screen flex items-center justify-center bg-pink-50 px-4">
-                    <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
+                <div className="min-h-screen flex items-center justify-center bg-pink-50 px-4 dark:bg-gray-900 ">
+                    <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8 dark:bg-gray-500 ">
                         {/* Logo */}
                         <div className="flex justify-center mb-4">
                             <img src={logo} alt="DealSpot Logo" className="w-12 h-12 rounded-full" />

@@ -108,8 +108,8 @@ const VerifyOtpPage = () => {
             {loading ? (
                 <Loader />
             ) : (
-                <div className="min-h-screen flex items-center justify-center bg-pink-50 px-4">
-                    <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 flex flex-col justify-between">
+                <div className="min-h-screen flex items-center justify-center bg-pink-50 px-4 dark:bg-gray-900 ">
+                    <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 flex flex-col justify-between dark:bg-gray-800 ">
                         <div className="flex justify-center mb-4">
                             <img src={logo} alt="DealSpot Logo" className="w-12 h-12 rounded-full" />
                         </div>
@@ -143,7 +143,7 @@ const VerifyOtpPage = () => {
                                         }}
                                         onChange={(e) => handleChange(index, e)}
                                         disabled={isExpired}
-                                        className="w-12 h-12 text-center border border-gray-300 rounded-lg text-xl font-bold text-gray-800 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                                        className="w-12 h-12 text-center border border-gray-300 rounded-lg text-xl font-bold text-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500"
                                     />
                                 ))}
                             </div>

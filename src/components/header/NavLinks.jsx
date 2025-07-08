@@ -1,9 +1,8 @@
-// NavLinks.jsx
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import ProfileDropdown from "./ProfileDropdown";
 
-export default function NavLinks({ isLoggedIn, user, userImage, isDark, cartCount }) {
+export default function NavLinks({ isLoggedIn, user, userImage, cartCount }) {
   return (
     <div className="hidden md:flex items-center gap-4 font-medium">
       {user?.role === "seller" ? (

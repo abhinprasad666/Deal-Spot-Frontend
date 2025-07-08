@@ -11,16 +11,12 @@ const ProductCard = ({ product }) => {
 
     return (
         <div
-            className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition duration-300 cursor-pointer flex flex-col"
+            className="bg-white border  dark:bg-blue-200 border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition duration-300 cursor-pointer flex flex-col"
             onClick={() => navigate(`/product/${product?._id}`)}
         >
             {/* Product Image */}
-            <div className="overflow-hidden rounded-t-xl flex justify-center items-center h-40 p-3 bg-gray-50">
-                <img
-                    src={product?.image}
-                    alt={product?.title}
-                    className="max-h-full object-contain"
-                />
+            <div className="overflow-hidden rounded-t-xl flex justify-center items-center h-40 p-3 bg-gray-50  dark:bg-gray-400">
+                <img src={product?.image} alt={product?.title} className="max-h-full object-contain" />
             </div>
 
             {/* Product Info */}
@@ -28,30 +24,22 @@ const ProductCard = ({ product }) => {
                 {/* Content Block */}
                 <div>
                     {/* Title */}
-                    <h3 className="font-semibold text-sm text-gray-800 line-clamp-2 h-[2.5rem]">
-                        {product?.title}
-                    </h3>
+                    <h3 className="font-semibold text-sm text-gray-800 line-clamp-2 h-[2.5rem]">{product?.title}</h3>
 
                     {/* Price & Discount */}
                     <div className="mt-2">
                         <span className="text-green-600 font-bold text-sm">₹{offerPrice}</span>
                         <span className="text-xs text-gray-500 line-through ml-2">₹{product?.price}</span>
                         {Number(product?.discount) > 0 && (
-                            <span className="ml-1 text-xs text-red-500 font-semibold">
-                                ({product?.discount} OFF)
-                            </span>
+                            <span className="ml-1 text-xs text-red-500 font-semibold">({product?.discount} OFF)</span>
                         )}
                     </div>
 
                     {/* Rating */}
-                    <p className="text-yellow-500 text-xs mt-1">
-                        ⭐ {product?.rating || 0} / 5
-                    </p>
+                    <p className="text-yellow-500 text-xs mt-1">⭐ {product?.rating || 0} / 5</p>
 
                     {/* Review Count */}
-                    <p className="text-gray-600 text-xs mt-1">
-                        ({product?.numOfReviews || 0} Reviews)
-                    </p>
+                    <p className="text-gray-600 text-xs mt-1">({product?.numOfReviews || 0} Reviews)</p>
                 </div>
 
                 {/* View Details Button */}

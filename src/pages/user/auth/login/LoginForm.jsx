@@ -41,10 +41,10 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="md:w-1/2 flex items-center justify-center p-8 animate-fadeIn">
+    <div className="md:w-1/2 flex items-center justify-center p-8 animate-fadeIn dark:bg-gray-900 ">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-md bg-white rounded-xl shadow-lg p-8"
+        className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 dark:bg-gray-800 "
       >
         <h2 className="text-2xl font-bold text-center mb-6 text-pink-600">Login</h2>
 

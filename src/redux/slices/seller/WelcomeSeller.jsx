@@ -16,7 +16,7 @@ const dispatch = useDispatch();
   }  
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 to-green-100 px-4 py-10 text-center">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 to-green-300 px-4 py-10 text-center dark:bg-gray-900 ">
       <div className="max-w-3xl space-y-6">
         <CheckCircle className="text-green-600 mx-auto w-16 h-16" />
 
@@ -28,7 +28,7 @@ const dispatch = useDispatch();
           🎉 Your seller account has been successfully created!
         </p>
 
-        <div className="bg-white shadow-md rounded-xl p-6 text-left mt-6 space-y-4">
+        <div className="bg-white shadow-md rounded-xl p-6 text-left mt-6 space-y-4 dark:bg-gray-800 ">
           <h2 className="text-2xl font-semibold text-green-700 mb-2">
             Next Steps to Activate Seller Mode
           </h2>

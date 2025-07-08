@@ -184,24 +184,24 @@ console.log('update profile...',)
       </div>
 
       {/* Seller Info */}
-      <div className="mt-16 bg-white rounded shadow p-4">
-        <h1 className="text-xl font-semibold">{seller.shopName}</h1>
-        <p className="text-gray-600 mt-1">{seller.bio}</p>
+      <div className="mt-16 bg-white rounded shadow p-4 dark:text-gray-700 dark:bg-gray-800 dark:border dark:border-gray-400  ">
+        <h1 className="text-xl font-semibold dark:text-gray-300">{seller.shopName}</h1>
+        <p className="text-gray-600 mt-1 dark:text-gray-300">{seller.bio}</p>
         <div className="mt-4 space-y-2">
-          <p>
+          <p className="dark:text-gray-300">
             <strong>Address:</strong> {seller.address}
           </p>
-          <p>
+          <p className="dark:text-gray-300">
             <strong>GST Number:</strong> {seller.gstNumber || "N/A"}
           </p>
-          <p>
-            <strong>Status:</strong>{" "}
-            <span className="text-green-600">{seller.status}</span>
+          <p >
+            <strong className="dark:text-gray-300">Status:</strong>{" "}
+            <span className="text-green-600 dark:text-green-500">{seller.status}</span>
           </p>
-          <p>
+          <p className="dark:text-gray-300">
             <strong>Verified:</strong> {seller.isVerified ? "Yes" : "No"}
           </p>
-          <p>
+          <p className="dark:text-gray-300">
             <strong>Joined:</strong>{" "}
             {new Date(seller.createdAt).toLocaleDateString()}
           </p>
@@ -210,7 +210,7 @@ console.log('update profile...',)
         {/* Buttons */}
         <Link
           to={"/seller/update-profile"}
-          className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 "
         >
           Edit Profile
         </Link>

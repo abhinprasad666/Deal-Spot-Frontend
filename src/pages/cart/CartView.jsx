@@ -58,12 +58,13 @@ const CartView = () => {
 
   return (
     <div className="container mx-auto px-4 py-10 mt-20">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800 flex items-center gap-2">
+      <h1 className="text-3xl font-bold mb-8 text-gray-800 flex items-center gap-2  dark:text-gray-300">
         🛒 Your Shopping Cart
       </h1>
 
       {!cartItems?.items || cartItems.items.length === 0 ? (
         <div className="flex flex-col items-center justify-center text-center mt-20">
+          
           <FaCartArrowDown className="text-6xl text-gray-400 mb-4 animate-bounce" />
           <h2 className="text-xl font-semibold text-gray-600 mb-2">Your cart is empty</h2>
           <p className="text-gray-500">Start adding items to see them here!</p>
@@ -71,7 +72,14 @@ const CartView = () => {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items Section */}
+          
           <div className="lg:col-span-2 space-y-6">
+               <button
+              onClick={handleClearCart}
+              className="text-red-600 hover:text-white hover:bg-red-600 border border-red-600 px-5 py-2 rounded-xl font-medium transition w-fit"
+            >
+              Clear Cart
+            </button>
             {cartItems.items.map((item) => (
               <CartItemCard
                 key={item._id}
@@ -83,18 +91,13 @@ const CartView = () => {
               />
             ))}
 
-            <button
-              onClick={handleClearCart}
-              className="text-red-600 hover:text-white hover:bg-red-600 border border-red-600 px-5 py-2 rounded-xl font-medium transition w-fit"
-            >
-              Clear Cart
-            </button>
+         
           </div>
 
           {/* Order Summary Section */}
-          <div className="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm">
-            <h2 className="text-xl font-bold mb-4 text-gray-800">Order Summary</h2>
-            <div className="space-y-3 text-gray-700 text-sm">
+          <div className="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm dark:bg-gray-700 ">
+            <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-300 ">Order Summary</h2>
+            <div className="space-y-3 text-gray-700 text-sm dark:text-gray-200">
               <div className="flex justify-between">
                 <span>Total MRP</span>
                 <span>₹{cartItems.totalPrice}</span>
@@ -103,7 +106,7 @@ const CartView = () => {
                 <span>Total Discount</span>
                 <span className="text-green-600">- ₹{cartItems.totalDiscount}</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between ">
                 <span>Delivery Charges</span>
                 <span>₹0</span>
               </div>

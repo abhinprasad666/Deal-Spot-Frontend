@@ -52,10 +52,10 @@ const UpdateSellerProfile = () => {
         }
     }, [error, dispatch, updateProfile]);
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-white rounded shadow flex flex-col md:flex-row gap-8">
+        <div className="max-w-4xl mx-auto p-6 mt-4 bg-white rounded shadow flex flex-col md:flex-row gap-8 dark:bg-gray-600">
             {/* Left: Info Box */}
-            <div className="md:w-1/3 flex flex-col items-center justify-center text-center bg-gray-100 rounded p-6">
-                <UserCircleIcon className="h-24 w-24 text-gray-500 mb-4" />
+            <div className="md:w-1/3 flex flex-col items-center justify-center text-center bg-gray-100 rounded p-6 dark:bg-gray-800">
+                <UserCircleIcon className="h-24 w-24 text-gray-500 mb-4 " />
                 <h3 className="text-lg font-semibold">Update Your Profile</h3>
                 <p className="text-gray-600 mt-2 text-sm">Keep your shop details up to date for better visibility.</p>
                 <button
@@ -107,7 +107,7 @@ const UpdateSellerProfile = () => {
                         <div className="flex justify-end gap-4 pt-2">
                             <button
                                 type="button"
-                                onClick={() => navigate("/seller")}
+                                onClick={() => navigate("/seller/dashboard")}
                                 className="px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400"
                             >
                                 Cancel

@@ -49,7 +49,7 @@ const CategoryScroll = () => {
                         <div className="w-16 h-16 md:w-24 md:h-24 rounded-full border-2 border-red-500 overflow-hidden flex items-center justify-center">
                             <img src={cat.image} alt={cat.name} className="w-full h-full object-cover" />
                         </div>
-                        <span className="mt-2 md:mt-3 text-sm md:text-base font-semibold text-gray-700">
+                        <span className="mt-2 md:mt-3 text-sm md:text-base font-semibold text-gray-700 dark:text-gray-400">
                             {cat.name}
                         </span>
                     </Link>

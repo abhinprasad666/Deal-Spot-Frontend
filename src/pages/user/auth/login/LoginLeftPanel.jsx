@@ -1,11 +1,13 @@
 // components/auth/LoginLeftPanel.jsx
 import React from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, UserPlus } from "lucide-react";
 
 const LoginLeftPanel = () => {
   return (
-    <div className="md:w-1/2 flex flex-col justify-center items-start p-12 text-left bg-white shadow-md animate-fadeIn">
-      <h1 className="text-4xl font-extrabold text-pink-600 mb-4">DealSpot</h1>
+    <div className="dark:bg-gray-900 md:w-1/2 flex flex-col justify-center items-start p-12 text-left bg-white shadow-md animate-fadeIn">
+    <h1 className="text-4xl font-extrabold text-pink-600 mb-4 animate-bounce flex items-center gap-2">
+            <UserPlus className="w-8 h-8" /> DealSpot
+          </h1>
       <p className="text-gray-700 text-lg mb-6">
         Welcome to <span className="font-semibold text-pink-600">DealSpot</span> — where quality products meet passionate sellers.
       </p>

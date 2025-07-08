@@ -21,7 +21,7 @@ const ShippingPreview = ({shippingInfo}) => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md border p-6 space-y-4 text-sm text-gray-800 max-w-2xl mx-auto mt-40">
+    <div className=" bg-white rounded-xl shadow-md border p-6 space-y-4 text-sm text-gray-800 max-w-2xl mx-auto mt-40 dark:bg-gray-700 dark:text-white">
       {/* Header */}
       <div className="flex items-center gap-2 text-pink-600 text-base font-semibold">
         <FaMapMarkerAlt className="text-lg" />
@@ -52,7 +52,7 @@ const ShippingPreview = ({shippingInfo}) => {
         </button>
         <button
           onClick={handleProceedToPayment}
-          className="px-5 py-2 rounded-md bg-pink-600 text-white hover:bg-pink-700 transition duration-200 shadow-sm font-medium"
+          className="px-5 py-2 rounded-md bg-pink-600 text-white hover:bg-pink-700 transition duration-200 shadow-sm font-medium  dark:text-gray-200"
         >
           Proceed to Payment
         </button>

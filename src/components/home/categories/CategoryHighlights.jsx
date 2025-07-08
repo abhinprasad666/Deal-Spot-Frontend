@@ -21,9 +21,9 @@ const CategoryHighlights = () => {
                                 return (
                                     <div
                                         key={index}
-                                        className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition duration-300 hover:scale-[1.03] cursor-pointer"
+                                        className="bg-white border  dark:bg-blue-200 border-gray-200 rounded-xl shadow-md hover:shadow-xl transition duration-300 hover:scale-[1.03] cursor-pointer"
                                     >
-                                        <div className="overflow-hidden rounded-t-xl flex justify-center items-center h-48 p-4 bg-gray-50">
+                                        <div className="overflow-hidden rounded-t-xl flex justify-center items-center h-48 p-4 bg-gray-50 dark:bg-gray-400">
                                             <img src={item.image} alt={item.name} className="max-h-full object-contain" />
                                         </div>
                                         <div className="p-4 text-center">

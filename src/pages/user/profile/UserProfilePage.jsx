@@ -19,8 +19,7 @@ import Loader from "../../../components/common/Loader";
 import { uploadProfileImage } from "../../../redux/actions/userProfileActions/uploadProfileIPicActions";
 import { logout } from "../../../redux/actions/authActions/logoutAction";
 import { clearCartState } from "../../../redux/slices/productSlices/cartSlice";
-import userPlaceholder from "../../../assets/icons/person.png"
-
+import userPlaceholder from "../../../assets/icons/person.png";
 
 const UserProfilePage = () => {
     const dispatch = useDispatch();
@@ -30,7 +29,7 @@ const UserProfilePage = () => {
 
     const [previewImage, setPreviewImage] = useState(user.profilePic || userPlaceholder);
     const [selectedImage, setSelectedImage] = useState(null);
-    console.log('user profile pic',previewImage)
+    console.log("user profile pic", previewImage);
 
     const handleImageClick = () => {
         fileInputRef.current.click();
@@ -65,10 +64,10 @@ const UserProfilePage = () => {
     return loading ? (
         <Loader layoutLoder={true} message={" Loading your profile information..."} />
     ) : (
-        <div className="min-h-screen bg-gray-50 py-10 px-4 flex justify-center">
-            <div className="w-full my-10 bg-white shadow-md rounded-2xl overflow-hidden border max-w-4xl">
+        <div className="min-h-screen bg-gray-50 py-10 px-4 flex justify-center dark:bg-gray-900 ">
+            <div className="w-full my-10 bg-white shadow-md rounded-2xl overflow-hidden border max-w-4xl dark:bg-gray-500">
                 {/* Header */}
-                <div className="flex flex-col items-center p-6 border-b relative bg-gradient-to-br from-pink-50 to-white">
+                <div className="flex flex-col items-center p-6 border-b relative bg-gradient-to-br from-pink-50 to-white ">
                     {/* Back to Home */}
                     <Link
                         to="/"
@@ -91,7 +90,7 @@ const UserProfilePage = () => {
                             />
                             <div
                                 onClick={handleImageClick}
-                                className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-md cursor-pointer hover:bg-pink-100 transition"
+                                className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-md cursor-pointer hover:bg-pink-100 transition dark:bg-gray-700"
                                 title="Change photo"
                             >
                                 <FaCamera className="text-pink-500 text-sm" />
@@ -134,12 +133,15 @@ const UserProfilePage = () => {
                 </div>
 
                 {/* Action Sections */}
-                <div className="divide-y">
+                <div className="divide-y  ">
                     <Link to={"/cart"}>
                         <ProfileItem icon={<FaShoppingCart />} label="My Cart" />
                     </Link>
                     <ProfileItem icon={<FaHeart />} label="My Wishlist" />
-                  <Link to={'/myOrders'}> <ProfileItem icon={<FaBoxOpen />} label="My Orders" /></Link> 
+                    <Link to={"/myOrders"}>
+                        {" "}
+                        <ProfileItem icon={<FaBoxOpen />} label="My Orders" />
+                    </Link>
                     <ProfileItem icon={<FaMapMarkerAlt />} label="My Address" />
                     <ProfileItem icon={<FaCreditCard />} label="Saved Cards" />
                     <ProfileItem icon={<FaBell />} label="Notifications" />
