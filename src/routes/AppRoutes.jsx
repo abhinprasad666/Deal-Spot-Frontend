@@ -6,8 +6,8 @@ import AuthLayout from "../components/layouts/user/AuthLayout";
 
 // Pages
 import Home from "../pages/user/Homepage";
-import Signup from "../pages/user/auth/Signup";
-import Login from "../pages/user/auth/Login";
+import Signup from "../pages/user/auth/singup/Signup";
+import Login from "../pages/user/auth/login/Login";
 import NotFound from "../pages/user/NotFound";
 import PaymentFailed from "../pages/user/payment/PaymentFailed";
 import PaymentSuccess from "../pages/user/payment/PaymentSuccess";
