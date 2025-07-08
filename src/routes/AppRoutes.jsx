@@ -30,7 +30,7 @@ import OrderDetails from "../pages/user/OrderDetails/OrderDetails";
 import ProtectedRoute from "./ProtectedRoute";
 
 //seller
-import SellerMainLayout from "../components/layouts/seller/sellerMainLayout";
+
 import SellerDashboard from "../components/seller/sellerDashboard/SellerDashboard";
 import SellerProducts from "../components/seller/products/SellerProducts";
 import AddProduct from "../components/seller/products/AddProduct";
@@ -43,6 +43,9 @@ import SellerProfile from "../components/seller/profile/SellerProfile";
 import UpdateSellerProfile from "../components/seller/profile/UpdateSellerProfile";
 import RegisterAsSeller from "../components/seller/RegisterAsSeller";
 import WelcomeSeller from "../redux/slices/seller/WelcomeSeller";
+import SellerMainLayout from "../components/layouts/seller/SellerMainLayout";
+
+
 
 const router = createBrowserRouter([
     {
@@ -78,7 +81,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute isSeller={true} />,
         children: [
             {
-                element: <SellerMainLayout />,
+                element: <SellerMainLayout/>,
                 children: [
                     { path: "dashboard", element: <SellerDashboard /> },
                     { path: "products", element: <SellerProducts /> },
@@ -94,6 +97,8 @@ const router = createBrowserRouter([
             },
         ],
     },
+
+
 //welcome seller
      {
         path: "/welcome/seller",

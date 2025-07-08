@@ -20,7 +20,7 @@ const SellerMainLayout = () => {
   // Show toast only when error changes and clear the error state
   useEffect(() => {
     if (error) {
-      showToast(`${error}`, "error", "get seller data");
+      showToast(`${error}`, 'error', 'get seller data');
       dispatch(clearGetSellerData());
     }
   }, [error, dispatch]);
@@ -28,7 +28,7 @@ const SellerMainLayout = () => {
   return (
     <div>
       {loading ? (
-        <Loader message={"Loading..."} />
+        <Loader message={'Loading...'} />
       ) : (
         <div className="flex flex-col min-h-screen">
           <SellerNavbar />
