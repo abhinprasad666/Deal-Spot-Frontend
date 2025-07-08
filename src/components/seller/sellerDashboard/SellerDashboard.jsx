@@ -14,7 +14,7 @@ import {
 
 import Loader from "../../common/Loader";
 import { getSellerStatus } from "../../../redux/actions/seller/statusAction";
-import { getSellerProducts } from "../../../redux/actions/seller/sellerProductsActions";
+// import { getSellerProducts } from "../../../redux/actions/seller/sellerProductsActions";
 
 const SellerDashboard = () => {
   const { status, loading, error } = useSelector((state) => state.status);
@@ -23,7 +23,7 @@ const SellerDashboard = () => {
 
   useEffect(() => {
     dispatch(getSellerStatus);
-    dispatch(getSellerProducts);
+    // dispatch(getSellerProducts);
   }, [dispatch]);
 
   return (

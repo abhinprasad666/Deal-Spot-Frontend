@@ -23,9 +23,13 @@ const sellerDatalice = createSlice({
       state.loading = false
       state.error=action.payload
     },
+     clearGetSellerData: (state) => {
+      state.loading = false
+      state.error=null
+    },
   },
 })
 
-export const {getsellerDataRequest,getsellerDataSuccess,getsellerDataFail}=sellerDatalice.actions;
+export const {getsellerDataRequest,getsellerDataSuccess,getsellerDataFail,clearGetSellerData}=sellerDatalice.actions;
 
 export default sellerDatalice.reducer

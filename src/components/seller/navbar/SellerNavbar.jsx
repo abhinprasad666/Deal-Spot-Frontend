@@ -54,7 +54,7 @@ const SellerNavbar = () => {
           <div className="hidden md:flex items-center space-x-6">
             {/* Home */}
             <Link
-              to="/seller"
+              to="/"
               className="flex items-center space-x-1 hover:underline font-medium"
             >
               <Home size={20} />
@@ -102,8 +102,8 @@ const SellerNavbar = () => {
                   onClick={handleLogout}
                   className="w-full flex items-center px-4 py-2 hover:bg-gray-100 space-x-2 text-left"
                 >
-                  <LogOut size={18} />
-                  <span>Logout</span>
+                  {/* <LogOut size={18} />
+                  <span>Logout</span> */}
                 </button>
               </div>
             </div>
@@ -176,8 +176,8 @@ const SellerNavbar = () => {
             }}
             className="flex items-center w-full space-x-2 py-2 hover:bg-pink-600 rounded-md px-2"
           >
-            <LogOut size={20} />
-            <span>Logout</span>
+            {/* <LogOut size={20} />
+            <span>Logout</span> */}
           </button>
         </div>
       )}

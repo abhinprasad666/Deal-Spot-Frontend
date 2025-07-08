@@ -4,7 +4,6 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../components/layouts/user/MainLayout";
 import AuthLayout from "../components/layouts/user/AuthLayout";
 
-
 // Pages
 import Home from "../pages/user/Homepage";
 import Signup from "../pages/user/auth/Signup";
@@ -27,7 +26,6 @@ import ConfirmOrderPage from "../components/checkout/ConfirmOrderPage";
 import CheckoutPage from "../pages/user/CheckoutPage";
 import OrderDetails from "../pages/user/OrderDetails/OrderDetails";
 
-
 // Middleware user
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -43,94 +41,109 @@ import SellerReviewList from "../components/seller/reviewList/SellerReviewList";
 import SellerProductReviews from "../components/seller/reviewList/SellerProductReviews";
 import SellerProfile from "../components/seller/profile/SellerProfile";
 import UpdateSellerProfile from "../components/seller/profile/UpdateSellerProfile";
+import RegisterAsSeller from "../components/seller/RegisterAsSeller";
+import WelcomeSeller from "../redux/slices/seller/WelcomeSeller";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainLayout />,
-    children: [
-      //  Public Routes
-      { path: "", element: <Home /> },
-      { path: "product/:id", element: <ProductDetails /> },
-      { path: "product/search/:keyword", element: <ProductSearch /> },
-
-      //  Protected Routes inside MainLayout
-      {
-        element: <ProtectedRoute />,
-        children: [
-          { path: "user-profile", element: <UserProfilePage /> },
-          { path: "edit-profile", element: <EditProfilePage /> },
-          { path: "myOrders", element: <OrderDetails /> },
-          { path: "cart", element: <CartView /> },
-          { path: "shippingInfo", element: <ShippingAddressForm /> },
-          { path: "order/confirm", element: <ConfirmOrderPage /> },
-          { path: "checkout", element: <CheckoutPage /> },
-        ],
-      },
-    ],
-  },
-
-  //seller
     {
-    path: "/seller",
-    element: <SellerMainLayout/>,
-    children: [
-      { path: "dashboard", element: <SellerDashboard /> },
-      { path: "products", element: <SellerProducts/> },
-      { path: "add-product", element: <AddProduct/> },
-      { path: "edit-product/:productId", element: <EditProduct/> },
-      { path: "orders", element: <SellerOrdersList/> },
-      { path: "users", element: <TotalUsersList/> },
-      { path: "reviews", element: <SellerReviewList/> },
-      { path: "product/:productId/reviews", element: <SellerProductReviews/> },
-      { path: "profile", element: <SellerProfile/> },
-      { path: "update-profile", element: <UpdateSellerProfile/> },
-    ],
-  },
+        path: "/",
+        element: <MainLayout />,
+        children: [
+            //  Public Routes
+            { path: "", element: <Home /> },
+            { path: "product/:id", element: <ProductDetails /> },
+            { path: "product/search/:keyword", element: <ProductSearch /> },
 
-  //  Auth Routes
-  {
-    path: "/login",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <Login /> }],
-  },
-  {
-    path: "/signup",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <Signup /> }],
-  },
-  {
-    path: "/forgot-password",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <ForgotPasswordPage /> }],
-  },
-  {
-    path: "/verify-otp",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <VerifyOtpPage /> }],
-  },
-  {
-    path: "/reset-password",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <ResetPasswordPage /> }],
-  },
-  {
-    path: "/password-update-success",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <PasswordResetSuccessPage /> }],
-  },
-  {
-    path: "/reset-error",
-    element: <AuthLayout />,
-    children: [{ path: "", element: <ResetErrorPage /> }],
-  },
+            //  Protected Routes inside MainLayout
+            {
+                element: <ProtectedRoute />,
+                children: [
+                    { path: "user-profile", element: <UserProfilePage /> },
+                    { path: "edit-profile", element: <EditProfilePage /> },
+                    { path: "myOrders", element: <OrderDetails /> },
+                    { path: "cart", element: <CartView /> },
+                    { path: "shippingInfo", element: <ShippingAddressForm /> },
+                    { path: "order/confirm", element: <ConfirmOrderPage /> },
+                    { path: "checkout", element: <CheckoutPage /> },
+                    //seller register
+                    { path: "become-seller", element: <RegisterAsSeller /> },
+                ],
+            },
+        ],
+    },
 
-  // Payment Status
-  { path: "/payment/success", element: <PaymentSuccess /> },
-  { path: "/payment/failure", element: <PaymentFailed /> },
+    //seller
+    {
+        path: "/seller",
+        element: <ProtectedRoute isSeller={true} />,
+        children: [
+            {
+                element: <SellerMainLayout />,
+                children: [
+                    { path: "dashboard", element: <SellerDashboard /> },
+                    { path: "products", element: <SellerProducts /> },
+                    { path: "add-product", element: <AddProduct /> },
+                    { path: "edit-product/:productId", element: <EditProduct /> },
+                    { path: "orders", element: <SellerOrdersList /> },
+                    { path: "users", element: <TotalUsersList /> },
+                    { path: "reviews", element: <SellerReviewList /> },
+                    { path: "product/:productId/reviews", element: <SellerProductReviews /> },
+                    { path: "profile", element: <SellerProfile /> },
+                    { path: "update-profile", element: <UpdateSellerProfile /> },
+                ],
+            },
+        ],
+    },
+//welcome seller
+     {
+        path: "/welcome/seller",
+        element:<WelcomeSeller/>
+        
+    },
 
-  // 404 Page
-  { path: "*", element: <NotFound /> },
+    //  Auth Routes
+    {
+        path: "/login",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <Login /> }],
+    },
+    {
+        path: "/signup",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <Signup /> }],
+    },
+    {
+        path: "/forgot-password",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <ForgotPasswordPage /> }],
+    },
+    {
+        path: "/verify-otp",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <VerifyOtpPage /> }],
+    },
+    {
+        path: "/reset-password",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <ResetPasswordPage /> }],
+    },
+    {
+        path: "/password-update-success",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <PasswordResetSuccessPage /> }],
+    },
+    {
+        path: "/reset-error",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <ResetErrorPage /> }],
+    },
+
+    // Payment Status
+    { path: "/payment/success", element: <PaymentSuccess /> },
+    { path: "/payment/failure", element: <PaymentFailed /> },
+
+    // 404 Page
+    { path: "*", element: <NotFound /> },
 ]);
 
 export default router;
