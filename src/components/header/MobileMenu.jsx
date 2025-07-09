@@ -61,7 +61,7 @@ export default function MobileMenu({
               alt="User"
               className="w-8 h-8 rounded-full object-cover border-2 border-white"
             />
-            <span>My Profile</span>
+            <Link to={"user-profile"}>My Profile</Link>
             <ChevronDown
               size={18}
               className={`${mobileProfileOpen ? "rotate-180" : ""} transition-transform`}
