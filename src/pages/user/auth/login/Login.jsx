@@ -10,7 +10,7 @@ const Login = () => {
 
 
   const navigate = useNavigate();
-  const { error, isAuthenticated, loginMessage } = useSelector((state) => state.auth);
+  const { error, isAuthenticated, loginMessage, loading } = useSelector((state) => state.auth);
   const location = useLocation();
   const redirect = location.state?.redirect || "/";
 
@@ -31,12 +31,18 @@ const Login = () => {
 
   
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-gradient-to-br from-pink-50 via-pink-100 to-pink-200 ">
-      <LoginLeftPanel />
-      <LoginForm />
-      
-    </div>
-  );
+  <div className="min-h-screen flex flex-col md:flex-row bg-gradient-to-br from-pink-50 via-pink-100 to-pink-200">
+    {loading ? (
+      <Loader />
+    ) : (
+      <>
+        <LoginLeftPanel />
+        <LoginForm />
+      </>
+    )}
+  </div>
+);
+
 };
 
 export default Login;
