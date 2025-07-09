@@ -14,7 +14,7 @@ const SellerMainLayout = () => {
 
   // Fetch seller data only once on mount
   useEffect(() => {
-    dispatch(getSellerData);
+    dispatch(getSellerData)
   }, [dispatch]);
 
   // Show toast only when error changes and clear the error state

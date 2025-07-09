@@ -16,9 +16,10 @@ const AllProducts = () => {
         if (error) {
             return showToast(` ${error}`, "error", "api-error");
         }
+        dispatch(getCategories);
         dispatch(getProducts(null));
         dispatch(getSlides);
-        dispatch(getCategories);
+        
         if (isAuthenticated) {
             dispatch(getCart);
         }

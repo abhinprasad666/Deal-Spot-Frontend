@@ -6,13 +6,14 @@ import SearchBar from "../layouts/user/SearchBar";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
 import userPlaceholder from "../../assets/icons/person.png";
+import Loader from "../common/Loader";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileProfileOpen, setMobileProfileOpen] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { isAuthenticated, user ,loading} = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
 
   const userImage = user?.profilePic || userPlaceholder;
@@ -39,7 +40,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-pink-600 text-white dark:bg-gray-600 dark:text-white shadow-md fixed top-0 left-0 w-full z-50 transition-all duration-500">
+    <div>
+    {loading?<Loader/>:<nav className="bg-pink-600 text-white dark:bg-gray-600 dark:text-white shadow-md fixed top-0 left-0 w-full z-50 transition-all duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 gap-4">
           <NavbarBrand />
@@ -95,6 +97,7 @@ export default function Navbar() {
           cartCount={cartCount}
         />
       )}
-    </nav>
+    </nav>}
+    </div>
   );
 }

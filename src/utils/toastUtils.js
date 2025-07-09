@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-// Simple Toast with optional ID
+
 export const showToast = (message, type = "success", toastId = null) => {
   if (toastId && toast.isActive(toastId)) return;
 

@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux";
 
-import Loader from "../../common/Loader";
-
 const CategoryHighlights = () => {
     const { categories, loading } = useSelector((state) => state.categories);
 
