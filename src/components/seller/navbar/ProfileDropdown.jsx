@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,} from "react-router-dom";
 import {
   Menu, X, LayoutDashboard, Users, ShoppingCart, Settings, LogOut,
   Moon, Sun, Bell
@@ -9,7 +9,7 @@ import ProfileDropdown from "./ProfileDropdown"; // Reusing your existing dropdo
 const AdminNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  const navigate = useNavigate();
+ 
 
   const navLinks = [
     { name: "Dashboard", path: "/admin/dashboard", icon: <LayoutDashboard size={20} /> },

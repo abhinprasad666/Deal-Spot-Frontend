@@ -22,7 +22,7 @@ const App = () => {
     } else {
         return (
             <div>
-                (
+                
                 <>
                     <RouterProvider router={router} />
                     <ToastContainer
@@ -35,7 +35,7 @@ const App = () => {
                         theme="light"
                     />
                 </>
-                )
+                
             </div>
         );
     }

@@ -11,6 +11,7 @@ const CartItemCard = ({
   actionType,
 }) => {
   const isLoading = activeItemId === item.productId._id;
+  const stock = item.productId?.stock || 0;
 
   return (
     <div className="dark:bg-gray-700 flex flex-col sm:flex-row items-center bg-white border border-gray-200 shadow-sm p-4 rounded-2xl relative">
@@ -41,6 +42,11 @@ const CartItemCard = ({
             <span className="font-medium">Delivery:</span> ₹{item.deliveryCharge}
           </p>
         </div>
+
+        {/* ✅ Stock Display */}
+        <p className={`mt-2 text-sm font-medium ${stock > 0 ? "text-green-500" : "text-red-500"}`}>
+          {stock > 0 ? `In Stock (${stock} left)` : "Out of Stock"}
+        </p>
 
         <div className="mt-3 flex items-center gap-3">
           <span className="text-sm text-gray-700 font-medium">Quantity:</span>

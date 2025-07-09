@@ -83,7 +83,7 @@ const router = createBrowserRouter([
             {
                 element: <SellerMainLayout/>,
                 children: [
-                    { path: "", element: <SellerDashboard /> },
+                    { path: "dashboard", element: <SellerDashboard /> },
                     { path: "products", element: <SellerProducts /> },
                     { path: "add-product", element: <AddProduct /> },
                     { path: "edit-product/:productId", element: <EditProduct /> },
