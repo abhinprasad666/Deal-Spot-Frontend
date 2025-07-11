@@ -102,8 +102,13 @@ const router = createBrowserRouter([
 //welcome seller
      {
         path: "/welcome/seller",
-        element:<WelcomeSeller/>
+        element:<WelcomeSeller isSeller/>
         
+    },
+     {
+        path: "/login",
+        element: <AuthLayout />,
+        children: [{ path: "", element: <Login /> }],
     },
 
     //  Auth Routes

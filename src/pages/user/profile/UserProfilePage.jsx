@@ -65,9 +65,9 @@ const UserProfilePage = () => {
         <Loader layoutLoder={true} message={" Loading your profile information..."} />
     ) : (
         <div className="min-h-screen bg-gray-50 py-10 px-4 flex justify-center dark:bg-gray-900 ">
-            <div className="w-full my-10 bg-white shadow-md rounded-2xl overflow-hidden border max-w-4xl dark:bg-gray-500">
+            <div className="w-full my-10 bg-white shadow-md rounded-2xl overflow-hidden border max-w-4xl dark:bg-gray-500  dark:text-white ">
                 {/* Header */}
-                <div className="flex flex-col items-center p-6 border-b relative bg-gradient-to-br from-pink-50 to-white ">
+                <div className="flex flex-col items-center p-6 border-b relative bg-gradient-to-br from-pink-50 to-white  ">
                     {/* Back to Home */}
                     <Link
                         to="/"
@@ -109,7 +109,7 @@ const UserProfilePage = () => {
                     {isImageChanged && (
                         <button
                             onClick={handleUploadImage}
-                            className={`mt-4 px-4 py-1 text-sm rounded-full font-medium shadow transition 
+                            className={`mt-4 px-4 py-1 text-sm rounded-full font-medium shadow transition
                                 ${
                                     selectedImage
                                         ? "bg-green-100 text-green-600 hover:bg-green-200"
@@ -121,7 +121,7 @@ const UserProfilePage = () => {
                     )}
 
                     <h2 className="text-xl font-bold mt-3 text-gray-800">{user.name}</h2>
-                    <p className="text-gray-500 text-sm">{user.email}</p>
+                    <p className="text-gray-700 text-sm">{user.email}</p>
 
                     <Link
                         to="/edit-profile"
@@ -168,7 +168,7 @@ const UserProfilePage = () => {
 const ProfileItem = ({
     icon,
     label,
-    textColor = "text-gray-700",
+    textColor = "text-gray-200",
     hoverColor = "hover:text-pink-600",
     onClick = () => {},
 }) => (

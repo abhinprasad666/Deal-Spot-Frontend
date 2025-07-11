@@ -18,6 +18,7 @@ export default function Navbar() {
 
   const userImage = user?.profilePic || userPlaceholder;
   const cartCount = cartItems?.items?.length || null;
+  console.log("user....",user)
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");

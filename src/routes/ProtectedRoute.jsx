@@ -5,7 +5,7 @@ import Navbar from "../components/header/Navbar";
 
 const ProtectedRoute = ({ isSeller }) => {
     const { isAuthenticated, user, loading } = useSelector((state) => state.auth);
-console.log("User",user)
+
     if (!isAuthenticated && !loading) {
         return <Navigate to="/login" replace />;
     }
