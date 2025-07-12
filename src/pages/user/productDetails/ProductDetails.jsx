@@ -3,10 +3,10 @@ import ProductCardDetail from "./ProductCardDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getProduct } from "../../../redux/actions/productActions/singleProductActions";
-import Loader from "../../../components/common/Loader";
 import { showToast } from "../../../utils/toastUtils";
 import Reviews from "../../../components/reviews/Reviews";
 import { addToCart, getCart } from "../../../redux/actions/productActions/cartActions";
+import ButtonLoader from "../../../components/common/ButtonLoader";
 
 const ProductDetails = () => {
     const params = useParams();
@@ -37,7 +37,6 @@ const ProductDetails = () => {
         await Promise.resolve(dispatch(addToCart({ productId: params.id, quantity: 1 })));
         dispatch(getProduct(params.id));
         dispatch(getCart);
-        
     };
 
     const handleAddToWishlist = () => {
@@ -58,7 +57,11 @@ const ProductDetails = () => {
     return (
         <div>
             {loading ? (
-                <Loader layoutLoder={true} message={"Loading products..."} />
+                <ButtonLoader
+                    message="Getting all the details ready for you..."
+                    bottomMessage="Hang tight! We’re fetching everything about this product."
+                    fullPage={true}
+                />
             ) : (
                 <div className="container mx-auto px-4 py-10 mt-20">
                     <ProductCardDetail
