@@ -1,7 +1,7 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { Lock, Mail, Eye, EyeOff } from "lucide-react";
 import { loginUser } from "../../../../redux/actions/authActions/loginActions";
@@ -100,7 +100,15 @@ const LoginForm = () => {
                     className={`w-full text-white py-2 rounded-md transition flex justify-center items-center 
           ${loading ? "bg-pink-400 cursor-not-allowed" : "bg-pink-600 hover:bg-pink-700"}`}
                 >
-                    {loading ? <ButtonLoader size={6} color="#fff" message="Verifying credentials" /> : "Login"}
+                    {loading ? (
+                        <ButtonLoader
+                            message="Welcome back!"
+                            bottomMessage="Logging you in... Let’s find you something amazing!"
+                            fullPage={true}
+                        />
+                    ) : (
+                        "Login"
+                    )}
                 </button>
 
                 {/* Register Link */}

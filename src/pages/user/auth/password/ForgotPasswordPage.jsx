@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { forgotPassword } from "../../../../redux/actions/passwordActions/forgotPasswordAction";
 import { showToast } from "../../../../utils/toastUtils";
 import Loader from "../../../../components/common/Loader";
-
+import ButtonLoader from "../../../../components/common/ButtonLoader";
 
 const ForgotPasswordPage = () => {
     const {
@@ -39,7 +39,8 @@ const ForgotPasswordPage = () => {
     return (
         <div>
             {loading ? (
-                <Loader message="Verifying your request and sending OTP..." />
+             <ButtonLoader  bottomMessage={"You’ll receive it shortly on your registered email."}  fullPage={true} message="Hang tight! Your OTP is on the way" />
+
             ) : (
                 <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 dark:bg-gray-900 ">
                     <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 dark:bg-gray-800 ">
@@ -63,7 +64,9 @@ const ForgotPasswordPage = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                             {/* Email Field */}
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-400 ">Email Address</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-400 ">
+                                    Email Address
+                                </label>
                                 <input
                                     type="email"
                                     placeholder="Enter your email"

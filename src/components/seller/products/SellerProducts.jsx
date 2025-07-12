@@ -52,7 +52,8 @@ const SellerProducts = () => {
       </h1>
 
       {loading ? (
-        <Loader message={"Loading Products Please Wait..."} />
+             <ButtonLoader  bottomMessage={"Preparing the list of your amazing products."}  fullPage={true} message="Getting your awesome products ready!" />
+
       ) : error ? (
         <p className="text-red-500 text-center">{error}</p>
       ) : sellerProducts.length === 0 ? (

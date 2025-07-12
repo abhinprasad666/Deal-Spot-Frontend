@@ -20,6 +20,7 @@ import { uploadProfileImage } from "../../../redux/actions/userProfileActions/up
 import { logout } from "../../../redux/actions/authActions/logoutAction";
 import { clearCartState } from "../../../redux/slices/productSlices/cartSlice";
 import userPlaceholder from "../../../assets/icons/person.png";
+import ButtonLoader from "../../../components/common/ButtonLoader";
 
 const UserProfilePage = () => {
     const dispatch = useDispatch();
@@ -62,7 +63,7 @@ const UserProfilePage = () => {
     const isImageChanged = selectedImage !== null;
 
     return loading ? (
-        <Loader layoutLoder={true} message={" Loading your profile information..."} />
+         <ButtonLoader  bottomMessage={"Bringing up your account details..."}  fullPage={true} message="Just a moment" />
     ) : (
         <div className="min-h-screen bg-gray-50 py-10 px-4 flex justify-center dark:bg-gray-900 ">
             <div className="w-full my-10 bg-white shadow-md rounded-2xl overflow-hidden border max-w-4xl dark:bg-gray-500  dark:text-white ">
@@ -90,7 +91,7 @@ const UserProfilePage = () => {
                             />
                             <div
                                 onClick={handleImageClick}
-                                className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-md cursor-pointer hover:bg-pink-100 transition dark:bg-gray-700"
+                                className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-md cursor-pointer hover:bg-pink-100 transition dark: dark:bg-gray-700"
                                 title="Change photo"
                             >
                                 <FaCamera className="text-pink-500 text-sm" />
@@ -174,7 +175,8 @@ const ProfileItem = ({
 }) => (
     <div
         onClick={onClick}
-        className={`flex items-center space-x-4 p-4 cursor-pointer transition duration-200 ${hoverColor} hover:bg-pink-50 hover:shadow-sm rounded-lg mx-2 my-1`}
+       className={`flex items-center space-x-4 p-4 cursor-pointer transition duration-200 ${hoverColor} hover:bg-pink-50 hover:shadow-sm dark:hover:bg-gray-800 rounded-lg mx-2 my-1`}
+
     >
         <div className="text-pink-500 text-xl">{icon}</div>
         <p className={`font-medium ${textColor}`}>{label}</p>

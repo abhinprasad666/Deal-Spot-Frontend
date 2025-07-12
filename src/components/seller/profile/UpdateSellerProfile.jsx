@@ -45,10 +45,9 @@ const UpdateSellerProfile = () => {
         if (updateProfile) {
             showToast(`${updateProfile}`, "success", "api-error");
             dispatch(clearSellerProfileState());
-            setTimeout(()=>{
-         dispatch(getSellerData);
-            },5000)
-              
+            setTimeout(() => {
+                dispatch(getSellerData);
+            }, 5000);
         }
     }, [error, dispatch, updateProfile]);
     return (
@@ -70,7 +69,7 @@ const UpdateSellerProfile = () => {
             <div className="md:w-2/3">
                 <h2 className="text-2xl font-bold mb-4">Edit Seller Details</h2>
                 {loading ? (
-                    <p className="text-gray-500">Loading seller details...</p>
+                    <p className="text-gray-500 dark:text-gray-400">Loading seller details...</p>
                 ) : (
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                         <div>

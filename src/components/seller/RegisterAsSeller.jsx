@@ -151,7 +151,15 @@ const RegisterAsSeller = () => {
                         className={`w-full text-white py-2 rounded-md transition flex justify-center items-center 
               ${loading ? "bg-green-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"}`}
                     >
-                        {loading ? <ButtonLoader size={6} color="#fff" message=" Registering" /> : "Register as Seller"}
+                        {loading ? (
+                            <ButtonLoader
+                                message="Welcome aboard, partner!"
+                                bottomMessage="We’re setting up your Deal-Spot seller portal."
+                                fullPage={true}
+                            />
+                        ) : (
+                            "Register as Seller"
+                        )}
                     </button>
                 </form>
             </div>

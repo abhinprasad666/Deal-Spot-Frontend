@@ -6,6 +6,7 @@ import { verifyOtp } from "../../../../redux/actions/passwordActions/verifyOtpAc
 import { clearPasswordState } from "../../../../redux/slices/passwordSlice";
 import logo from "../../../../../public/favicon.png";
 import Loader from "../../../../components/common/Loader";
+import ButtonLoader from "../../../../components/common/ButtonLoader";
 
 const OTP_VALIDITY_DURATION = 300; // 5 minutes
 
@@ -106,7 +107,8 @@ const VerifyOtpPage = () => {
     return (
         <>
             {loading ? (
-                <Loader />
+                           <ButtonLoader  bottomMessage={"You’ll receive it shortly on your registered email."}  fullPage={true} message="Hang tight! Your OTP is on the way" />
+
             ) : (
                 <div className="min-h-screen flex items-center justify-center bg-pink-50 px-4 dark:bg-gray-900 ">
                     <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 flex flex-col justify-between dark:bg-gray-800 ">

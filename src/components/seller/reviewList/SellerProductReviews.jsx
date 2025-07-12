@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getReviewsAction } from "../../../redux/actions/reviewsActions/getReviewAction";
 import Loader from "../../common/Loader";
+import ButtonLoader from "../../common/ButtonLoader";
 
 const SellerProductReviews = () => {
     const dispatch = useDispatch();
@@ -22,7 +23,11 @@ const SellerProductReviews = () => {
     return (
         <div className="p-4 sm:p-6 lg:p-8">
             {loading ? (
-                <Loader message={"Loading product reviews..."} />
+                <ButtonLoader
+                    bottomMessage={"Let’s check what buyers feel about this product."}
+                    fullPage={true}
+                    message="Fetching reviews for this product"
+                />
             ) : (
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* LEFT: Product Info */}

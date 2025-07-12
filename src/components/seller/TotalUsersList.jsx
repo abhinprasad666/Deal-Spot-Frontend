@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersList } from "../../redux/actions/seller/usersListActions";
 import { User, Fingerprint } from "lucide-react"; // 👈 make sure this is installed
-import Loader from "../common/Loader";
+import ButtonLoader from "../common/ButtonLoader";
+
+
 
 
 const TotalUsersList = () => {
@@ -14,7 +16,8 @@ const TotalUsersList = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <Loader message={"Loading users..."}/>;
+    return <ButtonLoader bottomMessage={"We’re loading the list of users who love your products!"}  fullPage={true} message="Fetching your customers" />
+;
   }
 
   return (

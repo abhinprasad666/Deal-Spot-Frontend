@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 import { updateProfile } from "../../../../redux/actions/userProfileActions/updateProfileActions";
 import Loader from "../../../../components/common/Loader";
+import ButtonLoader from "../../../../components/common/ButtonLoader";
 import { clearUserProfileState } from "../../../../redux/slices/userProfileSlice";
 
 const EditProfilePage = () => {
     const { user } = useSelector((state) => state.auth);
-    const { isUploading, error, message, update } = useSelector((state) => state.userProfile);
+    const { isUploading, error, message, update, loading } = useSelector((state) => state.userProfile);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -41,15 +42,25 @@ const EditProfilePage = () => {
         const { confirmPassword, ...updatedData } = data;
         dispatch(updateProfile(updatedData));
     };
+
     useEffect(() => {
         if (update || error) {
             const timer = setTimeout(() => {
                 dispatch(clearUserProfileState());
-            }, 2000); // 2000 milliseconds = 2 seconds
-
-            return () => clearTimeout(timer); // Cleanup on unmount or update
+            }, 2000);
+            return () => clearTimeout(timer);
         }
     }, [dispatch, update, error]);
+
+    if (loading) {
+        return (
+            <ButtonLoader
+                fullPage={true}
+                message="Just a moment"
+                bottomMessage="Updating your profile. This won't take long..."
+            />
+        );
+    }
 
     return (
         <div className="mt-12">
@@ -68,14 +79,14 @@ const EditProfilePage = () => {
                             <FaArrowLeft className="mr-2" /> Back to Profile
                         </button>
 
-                        {/* Error */}
+                        {/* Error Message */}
                         {error && (
                             <div className="mb-4 p-3 rounded bg-red-100 text-red-700 border border-red-300 text-sm">
                                 {error}
                             </div>
                         )}
 
-                        {/* Success */}
+                        {/* Success Message */}
                         {message && (
                             <div className="mb-4 p-3 rounded bg-green-100 text-green-700 border border-green-300 text-sm">
                                 {message}
@@ -116,7 +127,9 @@ const EditProfilePage = () => {
 
                             {/* Current Password */}
                             <div>
-                                <label className="block text-gray-700 font-medium dark:text-gray-200">Current Password</label>
+                                <label className="block text-gray-700 font-medium dark:text-gray-200">
+                                    Current Password
+                                </label>
                                 <div className="relative">
                                     <input
                                         type={showCurrent ? "text" : "password"}
@@ -166,7 +179,9 @@ const EditProfilePage = () => {
 
                             {/* Confirm Password */}
                             <div>
-                                <label className="block text-gray-700 font-medium dark:text-gray-200">Confirm Password</label>
+                                <label className="block text-gray-700 font-medium dark:text-gray-200">
+                                    Confirm Password
+                                </label>
                                 <div className="relative">
                                     <input
                                         type={showConfirm ? "text" : "password"}
@@ -201,7 +216,7 @@ const EditProfilePage = () => {
                 </div>
             )}
         </div>
-    )
-}
+    );
+};
 
 export default EditProfilePage;

@@ -4,7 +4,6 @@ import router from "./routes/AppRoutes";
 import { useEffect } from "react";
 import { loadUser } from "./redux/actions/authActions/loadUser";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "./components/common/Loader";
 import ButtonLoader from "./components/common/ButtonLoader";
 
 const App = () => {
@@ -19,11 +18,10 @@ const App = () => {
     }, [dispatch]);
 
     if (loading) {
-        return  <ButtonLoader size={6} color="#fff" message="Loading Deal-Spot" /> ;
+        return <ButtonLoader  bottomMessage="Loading the best offers and products just for you!" fullPage={true} size={10} color="#EC4899" message="Welcome to Deal-Spot!" />;
     } else {
         return (
             <div>
-                
                 <>
                     <RouterProvider router={router} />
                     <ToastContainer
@@ -36,7 +34,6 @@ const App = () => {
                         theme="light"
                     />
                 </>
-                
             </div>
         );
     }

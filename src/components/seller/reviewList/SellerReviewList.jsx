@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import DeleteReviewModal from "./DeleteReviewModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getSellerReviewsList } from "../../../redux/actions/seller/sellerReviewsActions";
-import Loader from "../../common/Loader";
+import ButtonLoader from "../../common/ButtonLoader";
 
 const SellerReviewList = () => {
   const navigate = useNavigate();
@@ -55,7 +55,8 @@ const SellerReviewList = () => {
 
       {loading ? (
         <p className="text-center text-gray-500 dark:text-gray-400">
-          <Loader message={"Loading reviews..."}/>
+           <ButtonLoader  bottomMessage={"Let’s see what your customers are saying!"}  fullPage={true} message="Fetching customer feedback" />
+
         </p>
       ) : error ? (
         <p className="text-center text-red-500">{error}</p>

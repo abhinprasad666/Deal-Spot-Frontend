@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { showToast } from "../../../utils/toastUtils";
 import { getSellerData } from "../../../redux/actions/seller/getSellerInfoActions";
 import { clearGetSellerData } from "../../../redux/slices/seller/getSellerInfo";
-import Loader from "../../common/Loader";
+import ButtonLoader from "../../common/ButtonLoader";
 
 const SellerMainLayout = () => {
     const dispatch = useDispatch();
@@ -28,7 +28,11 @@ const SellerMainLayout = () => {
     return (
         <div>
             {loading ? (
-                <Loader message={"Loading..."} />
+                <ButtonLoader
+                    bottomMessage={"Fetching your latest sales, stats, and updates..."}
+                    fullPage={true}
+                    message="Gearing up your store"
+                />
             ) : (
                 <div className="flex flex-col min-h-screen">
                     <SellerNavbar />

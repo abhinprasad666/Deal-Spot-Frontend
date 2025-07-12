@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import logo from "../../../../../public/favicon.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Loader from "../../../../components/common/Loader";
+import ButtonLoader from "../../../../components/common/ButtonLoader";
 
 const ResetPasswordPage = () => {
     const dispatch = useDispatch();
@@ -45,7 +46,13 @@ const ResetPasswordPage = () => {
     return (
         <>
             {loading ? (
-                <Loader />
+<ButtonLoader
+  message="Hold tight! We’re verifying your OTP."
+  bottomMessage="Please wait while we confirm your identity."
+  fullPage={true}
+/>
+
+
             ) : (
                 <div className="min-h-screen flex items-center justify-center bg-pink-50 px-4 dark:bg-gray-900 ">
                     <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8 dark:bg-gray-500 ">

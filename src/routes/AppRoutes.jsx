@@ -59,6 +59,7 @@ const router = createBrowserRouter([
 
             //  Protected Routes inside MainLayout
             {
+                //  <ButtonLoader  bottomMessage={"We’re fetching your latest order details."}  fullPage={true} message="Just a moment" />
                 element: <ProtectedRoute />,
                 children: [
                     { path: "user-profile", element: <UserProfilePage /> },
@@ -105,12 +106,6 @@ const router = createBrowserRouter([
         element:<WelcomeSeller isSeller/>
         
     },
-     {
-        path: "/login",
-        element: <AuthLayout />,
-        children: [{ path: "", element: <Login /> }],
-    },
-
     //  Auth Routes
     {
         path: "/login",
