@@ -19,7 +19,7 @@ const App = () => {
     }, [dispatch]);
 
     if (loading) {
-        return <ButtonLoader message={"Loading"} layoutLoder={true} />;
+        return  <ButtonLoader size={6} color="#fff" message="Loading Deal-Spot" /> ;
     } else {
         return (
             <div>
