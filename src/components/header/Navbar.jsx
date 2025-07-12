@@ -13,12 +13,11 @@ export default function Navbar() {
   const [mobileProfileOpen, setMobileProfileOpen] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
-  const { isAuthenticated, user ,loading} = useSelector((state) => state.auth);
+  const { isAuthenticated, user ,loading} = useSelector((state) => state?.auth);
   const { cartItems } = useSelector((state) => state.cart);
 
   const userImage = user?.profilePic || userPlaceholder;
   const cartCount = cartItems?.items?.length || null;
-  console.log("user....",user)
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FaEdit, FaCloudUploadAlt, FaBoxes, FaCheckCircle, FaInfoCircle } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getCategories } from "../../../redux/actions/productActions/categoriesActions";
 import { showToast } from "../../../utils/toastUtils";
 import { updateProduct } from "../../../redux/actions/seller/sellerProductsActions";
@@ -12,7 +12,6 @@ import { getProduct } from "../../../redux/actions/productActions/singleProductA
 import { clearProductMessage } from "../../../redux/slices/seller/sellerProductsSlice";
 import ButtonLoader from "../../common/ButtonLoader";
 
-// Validation schema
 const schema = yup.object().shape({
     title: yup.string().required("Title is required"),
     description: yup.string().required("Description is required").min(10),
@@ -31,11 +30,12 @@ const schema = yup.object().shape({
 const EditProduct = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
+    const navigate = useNavigate();
 
     const { categories } = useSelector((state) => state.categories);
     const singleProductState = useSelector((state) => state.product);
     const { product } = singleProductState || {};
-    const { loading, error, updateMessage } = useSelector((state) => state.sellerProducts);
+    const { loading } = useSelector((state) => state.sellerProducts);
 
     const [preview, setPreview] = useState(null);
     const [currentImage, setCurrentImage] = useState(null);
@@ -49,21 +49,18 @@ const EditProduct = () => {
     } = useForm({ resolver: yupResolver(schema) });
 
     useEffect(() => {
-        
         dispatch(getCategories);
         dispatch(getProduct(productId));
     }, [dispatch, productId]);
 
     useEffect(() => {
         if (product && categories.length > 0) {
-            reset(); // Clear previous values
+            reset();
 
-            // Find matching category by ID or name
             const matchedCategory = categories.find(
                 (cat) => cat._id === product.category || cat.name === product.category || product.category?._id === cat._id
             );
 
-            // Set all form values
             setValue("title", product.title || "");
             setValue("description", product.description || "");
             setValue("price", product.price || "");
@@ -97,9 +94,9 @@ const EditProduct = () => {
 
         dispatch(updateProduct(productId, formData))
             .then(() => {
-               
                 showToast("Product updated successfully!", "success");
                 dispatch(clearProductMessage());
+                navigate("/seller/products"); // Optional redirect
             })
             .catch(() => {
                 showToast("Failed to update product", "error");
@@ -240,7 +237,8 @@ const EditProduct = () => {
                             loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
                         } text-white font-semibold py-3 rounded-lg transition`}
                     >
-                        <FaEdit /> {loading ?  <ButtonLoader size={6} color="#fff"  message="Updating"/>: "Update Product"}
+                        <FaEdit />
+                        {loading ? <ButtonLoader size={6} color="#fff" message="Updating" /> : "Update Product"}
                     </button>
                 </form>
             </div>
