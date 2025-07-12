@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { loadUser } from "./redux/actions/authActions/loadUser";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./components/common/Loader";
+import ButtonLoader from "./components/common/ButtonLoader";
 
 const App = () => {
     const { loading } = useSelector((state) => state.auth);
@@ -18,7 +19,7 @@ const App = () => {
     }, [dispatch]);
 
     if (loading) {
-        return <Loader message={"loading"} layoutLoder={true} />;
+        return <ButtonLoader message={"Loading"} layoutLoder={true} />;
     } else {
         return (
             <div>
