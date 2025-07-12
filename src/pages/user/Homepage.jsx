@@ -8,9 +8,10 @@ const Home = () => {
     return (
         <div>
             <CategoryScroll />
+             <AllProducts />
             <Slider />
             <CategoryHighlights />
-            <AllProducts />
+           
             
           
         </div>

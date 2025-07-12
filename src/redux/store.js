@@ -19,12 +19,13 @@ import sellerReviews from "./slices/seller/sellerReviewsSlice";
 import sellerProfile from "./slices/seller/sellerProfileSlice";
 import sellerData from "./slices/seller/getSellerInfo";
 import sellerRegister from "./slices/seller/sellerRegisterSlice";
-
+import categoryProducts from "./slices/productSlices/categoryProductsSlice"
 // Combine all reducers
 const appReducer = combineReducers({
   products,
   product,
   categories,
+  categoryProducts,
   slides,
   auth,
   password,
@@ -40,6 +41,7 @@ const appReducer = combineReducers({
   sellerProfile,
   sellerData,
   sellerRegister,
+   
 });
 
 // Special RESET action handling

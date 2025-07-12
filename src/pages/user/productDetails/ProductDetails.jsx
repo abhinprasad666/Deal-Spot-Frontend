@@ -74,7 +74,7 @@ const ProductDetails = () => {
                         cartError={cartError}
                     />
 
-                    <div className="bg-gray-50 pt-12">
+                    <div className="bg-gray-50 pt-12 dark:bg-gray-900 ">
                         <Reviews productId={params.id} />
                     </div>
                 </div>

@@ -25,7 +25,7 @@ import ShippingAddressForm from "../components/checkout/ShippingAddressForm";
 import ConfirmOrderPage from "../components/checkout/ConfirmOrderPage";
 import CheckoutPage from "../pages/user/CheckoutPage";
 import OrderDetails from "../pages/user/OrderDetails/OrderDetails";
-
+import  CategoryProductsPage from "../../src/pages/categoryProducts/CategoryProductsPage"
 // Middleware user
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -44,6 +44,8 @@ import UpdateSellerProfile from "../components/seller/profile/UpdateSellerProfil
 import RegisterAsSeller from "../components/seller/RegisterAsSeller";
 import WelcomeSeller from "../redux/slices/seller/WelcomeSeller";
 import SellerMainLayout from "../components/layouts/seller/SellerMainLayout";
+// import { CategoryProductsPage } from '../pages/';
+
 
 
 
@@ -69,6 +71,8 @@ const router = createBrowserRouter([
                     { path: "shippingInfo", element: <ShippingAddressForm /> },
                     { path: "order/confirm", element: <ConfirmOrderPage /> },
                     { path: "checkout", element: <CheckoutPage /> },
+
+                    { path: "category/products/:categoryId", element: <CategoryProductsPage/> },
                     //seller register
                     { path: "become-seller", element: <RegisterAsSeller /> },
                 ],

@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
 
     return (
         <div
-            className="bg-white border  dark:bg-blue-200 border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition duration-300 cursor-pointer flex flex-col"
+            className="bg-white border  dark:bg-gray-800 border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:scale-[1.02] transition duration-300 cursor-pointer flex flex-col"
             onClick={() => navigate(`/product/${product?._id}`)}
         >
             {/* Product Image */}
@@ -28,18 +28,18 @@ const ProductCard = ({ product }) => {
 
                     {/* Price & Discount */}
                     <div className="mt-2">
-                        <span className="text-green-600 font-bold text-sm">₹{offerPrice}</span>
-                        <span className="text-xs text-gray-500 line-through ml-2">₹{product?.price}</span>
+                        <span className="text-green-600 font-bold text-sm  dark:text-green-400">₹{offerPrice}</span>
+                        <span className="text-xs text-gray-500 line-through ml-2  dark:text-white">₹{product?.price}</span>
                         {Number(product?.discount) > 0 && (
-                            <span className="ml-1 text-xs text-red-500 font-semibold">({product?.discount} OFF)</span>
+                            <span className="ml-1 text-xs text-red-500 font-semibold ">({product?.discount} OFF)</span>
                         )}
                     </div>
 
                     {/* Rating */}
-                    <p className="text-yellow-500 text-xs mt-1">⭐ {product?.rating || 0} / 5</p>
+                    <p className="text-yellow-500 text-xs mt-1  dark:text-yellow-300">⭐ {product?.rating || 0} / 5</p>
 
                     {/* Review Count */}
-                    <p className="text-gray-600 text-xs mt-1">({product?.numOfReviews || 0} Reviews)</p>
+                    <p className="text-gray-600 text-xs mt-1 dark:text-white">({product?.numOfReviews || 0} Reviews)</p>
                 </div>
 
                 {/* View Details Button */}

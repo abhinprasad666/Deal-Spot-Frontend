@@ -22,20 +22,20 @@ const ProductCardDetail = ({ product, onAddToCart, onAddToWishlist, handleCopyLi
             {/* Product Info */}
             <div>
                 <h2 className="text-3xl font-bold mb-2">{product.title}</h2>
-                <p className="text-gray-600 text-sm mb-4">{product.brand}</p>
+                <p className="text-gray-600 text-sm mb-4 dark:text-gray-100">{product.brand}</p>
 
                 {/* Rating */}
                 <div className="flex items-center mb-4">
-                    <p className="text-yellow-500 text-sm mt-1">⭐ {product?.rating || 0} / 5</p>
-                    <span className="ml-2 text-sm text-gray-500">{product.numOfReviews} reviews</span>
+                    <p className="text-yellow-500 text-sm mt-1 dark:text-green-300">⭐ {product?.rating || 0} / 5</p>
+                    <span className="ml-2 text-sm text-gray-500 dark:text-gray-100">{product.numOfReviews} reviews</span>
                 </div>
 
                 {/* Price */}
                 <div className="mb-4">
-                    <span className="text-2xl font-semibold text-green-600">₹{offerPrice}</span>
+                    <span className="text-2xl font-semibold text-green-600 dark:text-green-400">₹{offerPrice}</span>
                     {product.discount > 0 && (
                         <>
-                            <span className="ml-2 line-through text-gray-400">₹{product.price.toFixed(2)}</span>
+                            <span className="ml-2 line-through text-gray-400 dark:text-gray-100">₹{product.price.toFixed(2)}</span>
                             <span className="ml-2 text-red-500">({product.discount} OFF)</span>
                         </>
                     )}
@@ -44,7 +44,7 @@ const ProductCardDetail = ({ product, onAddToCart, onAddToWishlist, handleCopyLi
                 {/* Description */}
                 <div className="mb-4">
                     <h4 className="font-semibold mb-1">Description:</h4>
-                    <p className="text-gray-700 leading-relaxed">{product.description}</p>
+                    <p className="text-gray-700 leading-relaxed dark:text-gray-100">{product.description}</p>
                 </div>
 
                 {/* Stock */}
@@ -53,8 +53,8 @@ const ProductCardDetail = ({ product, onAddToCart, onAddToWishlist, handleCopyLi
                 </p>
 
                 {/* Shipping Info */}
-                <p className="text-sm text-gray-600 mb-6">
-                    <span className="font-semibold">Shipping:</span>{" "}
+                <p className="text-sm text-gray-600 mb-6 dark:text-gray-200">
+                    <span className="font-semibold dark:text-gray-100">Shipping:</span>{" "}
                     {shippingCharge === 0 ? "Free Shipping" : `₹${shippingCharge}`}
                 </p>
 

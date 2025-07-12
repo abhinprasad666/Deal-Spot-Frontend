@@ -24,10 +24,10 @@ const dispatch=useDispatch()
 
  <>
  {  loading?<Loader/>: 
-    <div className="my-6 max-w-3xl mx-auto px-4 mt-[-4em]">
-    {!reviews.length==0?<h2 className="text-xl font-bold mb-4 text-gray-800">Customer Reviews</h2>
-    :<h2 className="text-xl font-bold mb-4 text-gray-800"> No reviews yet. Be the first to review this product!</h2>}
-      <div className="space-y-4">
+    <div className="my-6 max-w-3xl mx-auto px-4 mt-[-5em] dark:bg-gray-900">
+    {!reviews.length==0?<h2 className="text-xl font-bold mb-4  text-gray-800 dark:text-gray-100">Customer Reviews</h2>
+    :<h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-100"> No reviews yet. Be the first to review this product!</h2>}
+      <div className="space-y-4 ">
         {reviews?.map((review) => (
           <ReviewCard key={review._id} review={review} />
         ))}
