@@ -33,7 +33,7 @@ const ButtonLoader = ({
     <div className="flex items-center gap-2">
       {message && (
         <span
-          className={`text-sm font-bold  text-red truncate ${messageWidth} ${messageClass}`}
+          className={`text-sm font-bold  text-white truncate ${messageWidth} ${messageClass}`}
         >
           {message}
         </span>
