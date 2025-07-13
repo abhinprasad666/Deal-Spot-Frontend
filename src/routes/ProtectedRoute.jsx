@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../components/common/Loader";
-import Navbar from "../components/header/Navbar";
+
 
 const ProtectedRoute = ({ isSeller }) => {
     const { isAuthenticated, user, loading } = useSelector((state) => state.auth);

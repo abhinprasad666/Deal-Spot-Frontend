@@ -1,31 +1,31 @@
 import { createBrowserRouter } from "react-router-dom";
 
 // Layouts
-import MainLayout from "../components/layouts/user/MainLayout";
-import AuthLayout from "../components/layouts/user/AuthLayout";
 
+import AuthLayout from "../layouts/authLayout/AuthLayout";
+import MainLayout from "../layouts/userLayout/MainLayout";
 // Pages
-import Home from "../pages/user/Homepage";
-import Signup from "../pages/user/auth/singup/Signup";
-import Login from "../pages/user/auth/login/Login";
-import NotFound from "../pages/user/NotFound";
-import PaymentFailed from "../pages/user/payment/PaymentFailed";
-import PaymentSuccess from "../pages/user/payment/PaymentSuccess";
+import Home from "../pages/userPages/homePage/Homepage";
+import Signup from "../pages/authPages/singup/Signup";
+import Login from "../pages/authPages/login/Login";
+import NotFound from "../pages/userPages/notFound/NotFound";
+import PaymentFailed from "../pages/userPages/payment/PaymentFailed";
+import PaymentSuccess from "../pages/userPages/payment/PaymentSuccess";
 import ProductSearch from "../components/home/allProducts/ProductSearch";
-import ProductDetails from "../pages/user/productDetails/ProductDetails";
-import ForgotPasswordPage from "../pages/user/auth/password/ForgotPasswordPage";
-import VerifyOtpPage from "../pages/user/auth/password/VerifyOtpPage";
-import ResetPasswordPage from "../pages/user/auth/password/ResetPasswordPage";
-import ResetErrorPage from "../pages/user/auth/password/ResetErrorPage";
-import PasswordResetSuccessPage from "../pages/user/auth/password/PasswordResetSuccessPage";
-import UserProfilePage from "../pages/user/profile/UserProfilePage";
-import EditProfilePage from "../pages/user/profile/editProfile/EditProfilePage";
-import CartView from "../pages/cart/CartView";
-import ShippingAddressForm from "../components/checkout/ShippingAddressForm";
-import ConfirmOrderPage from "../components/checkout/ConfirmOrderPage";
-import CheckoutPage from "../pages/user/CheckoutPage";
-import OrderDetails from "../pages/user/OrderDetails/OrderDetails";
-import  CategoryProductsPage from "../../src/pages/categoryProducts/CategoryProductsPage"
+import ProductDetails from "../pages/userPages/productDetails/ProductDetails";
+import ForgotPasswordPage from "../pages/authPages/password/ForgotPasswordPage";
+import VerifyOtpPage from "../pages/authPages/password/VerifyOtpPage";
+import ResetPasswordPage from "../pages/authPages/password/ResetPasswordPage";
+import ResetErrorPage from "../pages/authPages/password/ResetErrorPage";
+import PasswordResetSuccessPage from "../pages/authPages/password/PasswordResetSuccessPage";
+import UserProfilePage from "../pages/userPages/profile/profilePage/UserProfilePage";
+import EditProfilePage from "../pages/userPages/profile/editProfile/EditProfilePage";
+import CartView from "../pages/userPages/cart/CartView";
+import ShippingAddressForm from "../pages/userPages/checkout/ShippingAddressForm";
+import ConfirmOrderPage from "../pages/userPages/checkout/ConfirmOrderPage";
+import CheckoutPage from "../pages/userPages/checkout/CheckoutPage";
+import OrderDetails from "../pages/userPages/OrderDetails/OrderDetails";
+import  CategoryProductsPage from "../pages/userPages/categoryProducts/CategoryProductsPage"
 // Middleware user
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -41,9 +41,11 @@ import SellerReviewList from "../components/seller/reviewList/SellerReviewList";
 import SellerProductReviews from "../components/seller/reviewList/SellerProductReviews";
 import SellerProfile from "../components/seller/profile/SellerProfile";
 import UpdateSellerProfile from "../components/seller/profile/UpdateSellerProfile";
-import RegisterAsSeller from "../components/seller/RegisterAsSeller";
 import WelcomeSeller from "../redux/slices/seller/WelcomeSeller";
-import SellerMainLayout from "../components/layouts/seller/SellerMainLayout";
+import SellerMainLayout from "../layouts/sellerLayout/SellerMainLayout";
+import RegisterAsSeller from "../pages/authPages/registerSeller/RegisterAsSeller";
+
+
 // import { CategoryProductsPage } from '../pages/';
 
 
