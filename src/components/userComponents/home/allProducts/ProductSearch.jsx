@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import { showToast } from "../../../../utils/toastUtils";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
-import { getSellerProducts } from "../../../../redux/actions/seller/sellerProductsActions";
+
 import Loader from "../../../common/loaders/Loader";
+import { getProducts } from "../../../../redux/actions/productActions/productsActions";
 
 const ProductSearch = () => {
     const { keyword } = useParams();
@@ -15,7 +16,7 @@ const ProductSearch = () => {
         if (error) {
             return showToast(` ${error}`, "error", "api-error");
         }
-        dispatch(getSellerProducts(keyword));
+        dispatch(getProducts(keyword));
     }, [dispatch, error, keyword]);
 
     return (
