@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const CategoryHighlights = () => {
     const { categories, loading } = useSelector((state) => state.categories);
@@ -22,7 +23,7 @@ const CategoryHighlights = () => {
                     {/* Categories Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 ">
                         {categoryHighlights.slice(0, maxCategoryHighlights).map((item, index) => (
-                            <div
+                            <Link to={`/category/products/${item._id}`}
                                 key={index}
                                 className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition duration-300 hover:scale-[1.03] cursor-pointer overflow-hidden"
                             >
@@ -39,7 +40,7 @@ const CategoryHighlights = () => {
                                         <p className="text-green-600 text-sm font-medium mt-1 dark:text-green-500">{item.labal}</p>
                                     )}
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </section>
