@@ -9,6 +9,9 @@ const initialState = {
         ? JSON.parse(localStorage.getItem("shippingInfo"))
         : null,
     msg: null,
+    clearCartLoading:false,
+
+
 };
 
 const cartSlice = createSlice({
@@ -94,13 +97,16 @@ const cartSlice = createSlice({
         // Clear cart
         clearCartRequest: (state) => {
             state.cartLoading = true;
+            state.clearCartLoading=true
         },
         clearCartSuccess: (state) => {
+            state.clearCartLoading=false
             state.cartLoading = false;
             state.cartError = null;
             state.cartSuccess = true;
         },
         clearCartFail: (state, action) => {
+            state.clearCartLoading=false
             state.cartLoading = false;
             state.cartError = action.payload;
             state.cartSuccess = false;

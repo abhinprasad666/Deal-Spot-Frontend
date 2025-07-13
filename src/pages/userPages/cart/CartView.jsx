@@ -11,9 +11,10 @@ import {
 } from "../../../redux/actions/productActions/cartActions";
 import { showToast } from "../../../utils/toastUtils";
 import { useNavigate } from "react-router-dom";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 
 const CartView = () => {
-    const { cartItems, cartError } = useSelector((state) => state.cart);
+    const { cartItems, cartError, clearCartLoading } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -34,7 +35,6 @@ const CartView = () => {
         setActiveItemId(id);
         setActionType("increment");
         try {
-            // await Promise.resolve(dispatch(addToCart({ productId: params.id, quantity: 1 })));
             await Promise.resolve(dispatch(incremntQuantity(id)));
             await Promise.resolve(dispatch(getCart));
             showToast("Quantity incremented", "success", "wishlist-toast");
@@ -76,7 +76,7 @@ const CartView = () => {
     };
 
     const handleClearCart = async () => {
-        await Promise.resolve(dispatch(clearCart()));
+        await Promise.resolve(dispatch(clearCart));
         dispatch(getCart);
     };
 
@@ -101,9 +101,18 @@ const CartView = () => {
                     <div className="lg:col-span-2 space-y-6">
                         <button
                             onClick={handleClearCart}
-                            className="text-red-600 hover:text-white hover:bg-red-600 border border-red-600 px-5 py-2 rounded-xl font-medium transition w-fit"
+                            disabled={clearCartLoading}
+                            className={`${
+                                clearCartLoading
+                                    ? "bg-red-400 cursor-not-allowed"
+                                    : "text-red-600 hover:text-white hover:bg-red-600"
+                            } border border-red-600 px-5 py-2 rounded-xl font-medium transition w-fit flex items-center gap-2`}
                         >
-                            Clear Cart
+                            {clearCartLoading ? (
+                                <ButtonLoader bottomMessage="" fullPage={false} size={10} color="red" message="Clearing" />
+                            ) : (
+                                "Clear Cart"
+                            )}
                         </button>
 
                         {cartItems.items.map((item) => (
@@ -119,7 +128,7 @@ const CartView = () => {
                         ))}
                     </div>
 
-                    <div className="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm dark:bg-gray-700 ">
+                    <div className="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm dark:bg-gray-700">
                         <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-300">Order Summary</h2>
                         <div className="space-y-3 text-gray-700 text-sm dark:text-gray-200">
                             <div className="flex justify-between">

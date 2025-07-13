@@ -82,6 +82,7 @@ const authSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
             state.isAuthenticated = false;
+            localStorage.removeItem("isLoggedIn")
         },
 
     },
