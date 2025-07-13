@@ -2,7 +2,7 @@ import React from "react";
 import { FaHeart, FaWhatsapp, FaCopy } from "react-icons/fa";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Loader from "../../../components/common/Loader";
+import Loader from "../../../components/common/loaders/Loader";
 
 const ProductCardDetail = ({ product, onAddToCart, onAddToWishlist, handleCopyLink, handleWhatsAppShare, cartLoading }) => {
     const offerPrice = product?.price - product?.discount;

@@ -6,7 +6,7 @@ import logo from "../../../../public/favicon.png"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { resetPassword } from "../../../redux/actions/passwordActions/resetPasswordAction";
-import ButtonLoader from "../../../components/common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 
 const ResetPasswordPage = () => {
     const dispatch = useDispatch();

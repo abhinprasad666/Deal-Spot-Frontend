@@ -1,7 +1,7 @@
-import AllProducts from "../../../components/home/allProducts/AllProducts";
-import CategoryHighlights from "../../../components/home/categories/CategoryHighlights";
-import CategoryScroll from "../../../components/home/categories/CategoryScroll";
-import Slider from "../../../components/home/slider/Slider";
+import CategoryHighlights from "../../../components/userComponents/home/categories/CategoryHighlights";
+import CategoryScroll from "../../../components/userComponents/home/categories/CategoryScroll";
+import Slider from "../../../components/userComponents/home/slider/Slider";
+import AllProducts from "../../../components/userComponents/home/allProducts/AllProducts";
 
 
 const Home = () => {

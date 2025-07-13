@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 import { clearPasswordState } from "../../../redux/slices/passwordSlice";
-import Loader from "../../../components/common/Loader";
+import Loader from "../../../components/common/loaders/Loader";
 
 const ResetErrorPage = () => {
   const { error, loading } = useSelector((state) => state.password);

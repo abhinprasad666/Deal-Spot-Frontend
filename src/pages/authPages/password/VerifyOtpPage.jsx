@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { verifyOtp } from "../../../redux/actions/passwordActions/verifyOtpAction";
 import { clearPasswordState } from "../../../redux/slices/passwordSlice";
 import logo from "../../../../public/favicon.png"
-import ButtonLoader from "../../../components/common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 
 const OTP_VALIDITY_DURATION = 300; // 5 minutes
 

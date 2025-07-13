@@ -8,7 +8,7 @@ import { Mail, Lock, Eye, EyeOff, Store, MapPin, FileText } from "lucide-react";
 import { showToast } from "../../../utils/toastUtils";
 import { clearSellerRegisterState } from "../../../redux/slices/seller/sellerRegisterSlice";
 import { sellerRegisterAction } from "../../../redux/actions/seller/sellerRegisterActions";
-import ButtonLoader from "../../../components/common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 
 const RegisterAsSeller = () => {
     const { loading, error, isRegister } = useSelector((state) => state.sellerRegister);

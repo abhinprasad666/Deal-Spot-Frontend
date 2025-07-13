@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsersList } from "../../redux/actions/seller/usersListActions";
-import { User, Fingerprint } from "lucide-react"; // 👈 make sure this is installed
-import ButtonLoader from "../common/ButtonLoader";
+import { User, Fingerprint } from "lucide-react"; 
+import { getUsersList } from "../../../redux/actions/seller/usersListActions";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 
 
 

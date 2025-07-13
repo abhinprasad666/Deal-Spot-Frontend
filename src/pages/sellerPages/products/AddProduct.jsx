@@ -13,8 +13,8 @@ import { createProduct } from "../../../redux/actions/seller/sellerProductsActio
 import { showToast } from "../../../utils/toastUtils";
 import { getCategories } from "../../../redux/actions/productActions/categoriesActions";
 import { clearProductMessage } from "../../../redux/slices/seller/sellerProductsSlice";
-import ButtonLoader from "../../common/ButtonLoader";
 import { schema } from "./schema";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 
 
 const AddProduct = () => {

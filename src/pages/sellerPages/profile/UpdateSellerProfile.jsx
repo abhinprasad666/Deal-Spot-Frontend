@@ -8,7 +8,8 @@ import { clearSellerProfileState } from "../../../redux/slices/seller/sellerProf
 import { showToast } from "../../../utils/toastUtils";
 import { getSellerData } from "../../../redux/actions/seller/getSellerInfoActions";
 import { FaEdit } from "react-icons/fa";
-import ButtonLoader from "../../common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
+
 const UpdateSellerProfile = () => {
     const navigate = useNavigate();
     const { seller, error } = useSelector((state) => state.sellerData);

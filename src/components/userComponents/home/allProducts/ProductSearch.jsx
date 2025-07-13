@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getProducts } from "../../../redux/actions/productActions/productsActions";
-import { showToast } from "../../../utils/toastUtils";
+import { showToast } from "../../../../utils/toastUtils";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
-import Loader from "../../common/Loader";
+import { getSellerProducts } from "../../../../redux/actions/seller/sellerProductsActions";
+import Loader from "../../../common/loaders/Loader";
 
 const ProductSearch = () => {
     const { keyword } = useParams();
@@ -15,7 +15,7 @@ const ProductSearch = () => {
         if (error) {
             return showToast(` ${error}`, "error", "api-error");
         }
-        dispatch(getProducts(keyword));
+        dispatch(getSellerProducts(keyword));
     }, [dispatch, error, keyword]);
 
     return (
@@ -30,7 +30,7 @@ const ProductSearch = () => {
                         <ProductCard key={product._id} product={product} />
                     ))}
                 </div>
-            ) :(
+            ) : (
                 <div className="text-center mt-10 text-gray-600">
                     <p className="text-lg font-medium">
                         No products found for "<span className="text-black">{keyword}</span>"

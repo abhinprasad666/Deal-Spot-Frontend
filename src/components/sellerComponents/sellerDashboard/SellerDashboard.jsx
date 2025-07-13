@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import DashboardCard from "./DashboardCard";
 import { FaRupeeSign, FaBoxOpen, FaUsers, FaShoppingCart, FaExclamationTriangle, FaStar } from "react-icons/fa";
 import { getSellerStatus } from "../../../redux/actions/seller/statusAction";
-import ButtonLoader from "../../common/ButtonLoader";
+import ButtonLoader from "../../common/loaders/ButtonLoader";
 // import { getSellerProducts } from "../../../redux/actions/seller/sellerProductsActions";
 
 const SellerDashboard = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { FiTrash2 } from "react-icons/fi";
-import Loader from "../../../components/common/Loader";
+import Loader from "../../../components/common/loaders/Loader";
 
 const CartItemCard = ({
   item,

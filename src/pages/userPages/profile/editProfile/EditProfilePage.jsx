@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaEye, FaEyeSlash } from "react-icons/fa";
 import { updateProfile } from "../../../../redux/actions/userProfileActions/updateProfileActions";
-import Loader from "../../../../components/common/Loader";
-import ButtonLoader from "../../../../components/common/ButtonLoader";
+import Loader from "../../../../components/common/loaders/Loader";
+import ButtonLoader from "../../../../components/common/loaders/ButtonLoader";
 import { clearUserProfileState } from "../../../../redux/slices/userProfileSlice";
 
 const EditProfilePage = () => {

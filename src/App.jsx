@@ -4,7 +4,7 @@ import router from "./routes/AppRoutes";
 import { useEffect } from "react";
 import { loadUser } from "./redux/actions/authActions/loadUser";
 import { useDispatch, useSelector } from "react-redux";
-import ButtonLoader from "./components/common/ButtonLoader";
+import ButtonLoader from "./components/common/loaders/ButtonLoader";
 
 const App = () => {
     const { loading } = useSelector((state) => state.auth);
@@ -18,7 +18,15 @@ const App = () => {
     }, [dispatch]);
 
     if (loading) {
-        return <ButtonLoader  bottomMessage="Loading the best offers and products just for you!" fullPage={true} size={10} color="#EC4899" message="Welcome to Deal-Spot!" />;
+        return (
+            <ButtonLoader
+                bottomMessage="Loading the best offers and products just for you!"
+                fullPage={true}
+                size={10}
+                color="#EC4899"
+                message="Welcome to Deal-Spot!"
+            />
+        );
     } else {
         return (
             <div>

@@ -10,7 +10,8 @@ import { showToast } from "../../../utils/toastUtils";
 import { updateProduct } from "../../../redux/actions/seller/sellerProductsActions";
 import { getProduct } from "../../../redux/actions/productActions/singleProductActions";
 import { clearProductMessage } from "../../../redux/slices/seller/sellerProductsSlice";
-import ButtonLoader from "../../common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
+
 
 const schema = yup.object().shape({
     title: yup.string().required("Title is required"),

@@ -11,7 +11,7 @@ import Login from "../pages/authPages/login/Login";
 import NotFound from "../pages/userPages/notFound/NotFound";
 import PaymentFailed from "../pages/userPages/payment/PaymentFailed";
 import PaymentSuccess from "../pages/userPages/payment/PaymentSuccess";
-import ProductSearch from "../components/home/allProducts/ProductSearch";
+import ProductSearch from "../components/userComponents/home/allProducts/ProductSearch";
 import ProductDetails from "../pages/userPages/productDetails/ProductDetails";
 import ForgotPasswordPage from "../pages/authPages/password/ForgotPasswordPage";
 import VerifyOtpPage from "../pages/authPages/password/VerifyOtpPage";
@@ -31,19 +31,20 @@ import ProtectedRoute from "./ProtectedRoute";
 
 //seller
 
-import SellerDashboard from "../components/seller/sellerDashboard/SellerDashboard";
-import SellerProducts from "../components/seller/products/SellerProducts";
-import AddProduct from "../components/seller/products/AddProduct";
-import EditProduct from "../components/seller/products/EditProduct";
-import SellerOrdersList from "../components/seller/orderList/SellerOrdersList";
-import TotalUsersList from "../components/seller/TotalUsersList";
-import SellerReviewList from "../components/seller/reviewList/SellerReviewList";
-import SellerProductReviews from "../components/seller/reviewList/SellerProductReviews";
-import SellerProfile from "../components/seller/profile/SellerProfile";
-import UpdateSellerProfile from "../components/seller/profile/UpdateSellerProfile";
+import SellerDashboard from "../components/sellerComponents/sellerDashboard/SellerDashboard";
+import SellerProducts from "../pages/sellerPages/products/SellerProducts";
+import AddProduct from "../pages/sellerPages/products/AddProduct";
+import EditProduct from "../pages/sellerPages/products/EditProduct";
 import WelcomeSeller from "../redux/slices/seller/WelcomeSeller";
 import SellerMainLayout from "../layouts/sellerLayout/SellerMainLayout";
 import RegisterAsSeller from "../pages/authPages/registerSeller/RegisterAsSeller";
+import SellerProfile from "../pages/sellerPages/profile/SellerProfile";
+import UpdateSellerProfile from "../pages/sellerPages/profile/UpdateSellerProfile";
+import SellerOrdersList from "../pages/sellerPages/orderList/SellerOrdersList";
+import SellerReviewList from "../pages/sellerPages/reviewList/SellerReviewList";
+import SellerProductReviews from "../pages/sellerPages/reviewList/SellerProductReviews";
+import TotalUsersList from "../pages/sellerPages/totalUsersList/TotalUsersList";
+
 
 
 // import { CategoryProductsPage } from '../pages/';

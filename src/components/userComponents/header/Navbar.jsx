@@ -6,7 +6,7 @@ import NavbarBrand from "./NavbarBrand";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
 import userPlaceholder from "../../../assets/icons/person.png";
-import Loader from "../../common/Loader";
+import Loader from "../../common/loaders/Loader";
 import SearchBar from "./SearchBar";
 
 export default function Navbar() {

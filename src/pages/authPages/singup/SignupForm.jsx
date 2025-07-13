@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Lock, Mail, User, Eye, EyeOff } from "lucide-react";
 import { registerUser } from "../../../redux/actions/authActions/registerActions";
 import { showToast } from "../../../utils/toastUtils";
-import ButtonLoader from "../../../components/common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 
 const SignupForm = () => {
     const {

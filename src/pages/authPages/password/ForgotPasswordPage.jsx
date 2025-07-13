@@ -5,7 +5,7 @@ import logo from "../../../../public/favicon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { forgotPassword } from "../../../redux/actions/passwordActions/forgotPasswordAction";
 import { showToast } from "../../../utils/toastUtils";
-import ButtonLoader from "../../../components/common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 
 const ForgotPasswordPage = () => {
     const {

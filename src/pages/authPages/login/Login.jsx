@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { showToast } from "../../../utils/toastUtils";
-import Loader from "../../../components/common/Loader";
+import Loader from "../../../components/common/loaders/Loader";
 
 const Login = () => {
 

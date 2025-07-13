@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import ProductCard from "./components/home/allProducts/ProductCard";
+import ProductCard from "../../userComponents/home/allProducts/ProductCard";
+
 
 const PaginatedProductGrid = ({ products }) => {
   const [currentPage, setCurrentPage] = useState(1);

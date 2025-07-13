@@ -5,7 +5,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getProduct } from "../../../redux/actions/productActions/singleProductActions";
 import { showToast } from "../../../utils/toastUtils";
 import { addToCart, getCart } from "../../../redux/actions/productActions/cartActions";
-import ButtonLoader from "../../../components/common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 import Reviews from "../../../components/userComponents/reviews/Reviews";
 
 const ProductDetails = () => {

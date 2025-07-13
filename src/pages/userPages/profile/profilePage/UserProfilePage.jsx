@@ -15,12 +15,12 @@ import {
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Loader from "../../../../components/common/Loader";
+import Loader from "../../../../components/common/loaders/Loader";
 import { uploadProfileImage } from "../../../../redux/actions/userProfileActions/uploadProfileIPicActions";
 import { logout } from "../../../../redux/actions/authActions/logoutAction";
 import { clearCartState } from "../../../../redux/slices/productSlices/cartSlice";
 import userPlaceholder from "../../../../assets/icons/person.png";
-import ButtonLoader from "../../../../components/common/ButtonLoader";
+import ButtonLoader from "../../../../components/common/loaders/ButtonLoader";
 
 const UserProfilePage = () => {
     const dispatch = useDispatch();

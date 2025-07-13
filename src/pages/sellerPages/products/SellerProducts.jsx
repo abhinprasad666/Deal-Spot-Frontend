@@ -12,10 +12,10 @@ import {
   FaBoxOpen,
   FaRegStar,
 } from "react-icons/fa";
-import Loader from "../../common/Loader";
+import Loader from "../../../components/common/loaders/Loader";
 import { showToast } from "../../../utils/toastUtils";
 import { clearProductMessage } from "../../../redux/slices/seller/sellerProductsSlice";
-import ButtonLoader from "../../common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 
 const SellerProducts = () => {
   const dispatch = useDispatch();

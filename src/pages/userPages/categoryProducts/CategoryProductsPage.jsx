@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { showToast } from "../../../utils/toastUtils";
 import { getSingleCategoryProducts } from "../../../redux/actions/productActions/categoryProductsActions";
 import { clearCategoryProducts } from "../../../redux/slices/productSlices/categoryProductsSlice";
-import ButtonLoader from "../../../components/common/ButtonLoader";
-import PaginatedProductGrid from "../../../PaginatedProductGrid";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
+import PaginatedProductGrid from "../../../components/common/paginationGrid/PaginatedProductGrid";
 
 const CategoryProductsPage = () => {
   const dispatch = useDispatch();

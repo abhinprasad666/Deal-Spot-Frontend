@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import SellerNavbar from "../../components/seller/navbar/SellerNavbar";
-import SellerFooter from "../../components/seller/footer/SellerFooter";
+import SellerNavbar from "../../components/sellerComponents/navbar/SellerNavbar";
+import SellerFooter from "../../components/sellerComponents/footer/SellerFooter";
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { showToast } from "../../utils/toastUtils";
 import { getSellerData } from "../../redux/actions/seller/getSellerInfoActions";
 import { clearGetSellerData } from "../../redux/slices/seller/getSellerInfo";
-import ButtonLoader from "../../components/common/ButtonLoader";
+import ButtonLoader from "../../components/common/loaders/ButtonLoader";
 
 const SellerMainLayout = () => {
     const dispatch = useDispatch();

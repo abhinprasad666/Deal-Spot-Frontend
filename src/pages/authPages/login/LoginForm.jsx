@@ -7,7 +7,7 @@ import { Lock, Mail, Eye, EyeOff } from "lucide-react";
 
 
 import { loginUser } from "../../../redux/actions/authActions/loginActions";
-import ButtonLoader from "../../../components/common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 
 const LoginForm = () => {
     const {

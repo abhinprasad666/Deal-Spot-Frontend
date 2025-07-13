@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { showToast } from "../../../utils/toastUtils";
 import { getMyOrders } from "../../../redux/actions/ordersActions";
 import { getReviewsAction } from "../../../redux/actions/reviewsActions/getReviewAction";
-import ButtonLoader from "../../../components/common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
 
 const statusColorMap = {
     Pending: "bg-yellow-100 text-yellow-800",

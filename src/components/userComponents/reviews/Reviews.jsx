@@ -3,7 +3,7 @@ import ReviewCard from "./ReviewCard";
 import { useDispatch, useSelector } from "react-redux";
 import { showToast } from "../../../utils/toastUtils";
 import { getReviewsAction } from "../../../redux/actions/reviewsActions/getReviewAction";
-import Loader from "../../common/Loader";
+import Loader from "../../common/loaders/Loader";
 
 const Reviews = ({ productId }) => {
     const { reviews, loading, error } = useSelector((state) => state.review);

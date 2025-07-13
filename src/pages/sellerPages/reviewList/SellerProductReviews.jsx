@@ -3,8 +3,9 @@ import { FaStar } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getReviewsAction } from "../../../redux/actions/reviewsActions/getReviewAction";
-import Loader from "../../common/Loader";
-import ButtonLoader from "../../common/ButtonLoader";
+import ButtonLoader from "../../../components/common/loaders/ButtonLoader";
+import Loader from "../../../components/common/loaders/Loader";
+
 
 const SellerProductReviews = () => {
     const dispatch = useDispatch();
