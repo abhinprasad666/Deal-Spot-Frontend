@@ -48,6 +48,7 @@ import WelcomeSeller from "../redux/slices/seller/WelcomeSeller";
 
 // ─── Middleware ───────────────────────────────────────────────────────────
 import ProtectedRoute from "./ProtectedRoute";
+import BlockedUserPage from "../pages/userPages/BlockedUser/BlockedUserPage";
 
 // ─── Router Setup ─────────────────────────────────────────────────────────
 const router = createBrowserRouter([
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
       { path: "", element: <Home /> },
       { path: "product/:id", element: <ProductDetails /> },
       { path: "product/search/:keyword", element: <ProductSearch /> },
-
+      { path: "category/products/:categoryId", element: <CategoryProductsPage /> },
       // ─── Protected Routes for Logged-in Users ──────────────
       {
         element: <ProtectedRoute />,
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
           { path: "shippingInfo", element: <ShippingAddressForm /> },
           { path: "order/confirm", element: <ConfirmOrderPage /> },
           { path: "checkout", element: <CheckoutPage /> },
-          { path: "category/products/:categoryId", element: <CategoryProductsPage /> },
+         
 
           // ─── Seller Registration ───────────────────────────
           { path: "become-seller", element: <RegisterAsSeller /> },
@@ -101,6 +102,12 @@ const router = createBrowserRouter([
         ],
       },
     ],
+  },
+
+   // ─── Blocked user  ─────────────────────────────────────────
+  {
+    path: "/blocked/user",
+    element: <BlockedUserPage isSeller />,
   },
 
   // ─── Welcome Seller ─────────────────────────────────────────
